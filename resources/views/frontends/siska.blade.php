@@ -4,16 +4,56 @@
     <section class="w-full relative" >
         @include('partials.navMobile')
         @include('partials.nav')
-         <div class="absolute w-full bg-pabrik">
-            <iframe style="height:100vh; width:100%;" src="https://datastudio.google.com/embed/reporting/d72b87aa-45b2-48c2-b9e2-315f98e5e41a/page/rTMvC" frameborder="0" style="border:0" allowfullscreen></iframe>
-            <footer class="w-full bg-gray-100 py-2  z-50">
-                <div class="mx-auto max-w-7xl flex flex-col justify-center items-center text-center px-4 py-4">
-                    <h1 class="text-color-siska font-bold sm:text-2xl text-sm">Terukur. Berkeadilan. Berkelanjutan.</h1>
+        <div class="flex justify-center max-w-3xl mx-auto sm:mt-32 py-4 px-4">
+            <p class="mb-4 leading-relaxed"><a class="font-bold">SISKA</a> Sistem Informasi Perkebunan Sawit Kalimantan Tengah merupakan platform yang diinisiasi pemerintah daerah Kalimantan Tengah sejak 2022 untuk menyajikan basis data dan informasi terkait perkebunan sawit. SISKA menghimpun dan menyajikan data dan informasi perizinan perkebunan, industri pengolahan, sawit rakyat, dan produksi sehingga dapat dijadikan tools dalam memonitoring tata kelola perkebunan sawit yang berkelanjutan meliputi legalitas perizinan, kinerja, termasuk menghubungkannya dengan pemenuhan kewajiban lingkungan dan keuangan untuk mendukung pendapatan daerah yang sejalan dengan daya dukung dan daya tampung lingkungan.</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto px-4 py-4 border border-siska" x-data="{nav:'tujuan'}">
+            <div class="flex whitespace-nowrap justify-center max-w-3xl mx-auto   ">
+
+                <div :class="(nav === 'tujuan') ? 'bgtentangsiskagelap flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 cursor-pointer ' : ' cursor-pointer bgtentangsiskamuda flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 ' " @click="nav='tujuan'">
+                    <a class="text-white sm:text-sm text-xs">TUJUAN</a>
                 </div>
-            </footer>
+                <div :class="(nav === 'produkpengguna') ? 'bgtentangsiskagelap flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 cursor-pointer ' : ' cursor-pointer bgtentangsiskamuda flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 ' " @click="nav='produkpengguna'">
+                    <a class="text-white sm:text-sm text-xs ">PRODUK & PENGGUNA</a>
+                </div>
+                <div :class="(nav === 'manfaat') ? 'bgtentangsiskagelap flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 cursor-pointer ' : ' cursor-pointer bgtentangsiskamuda flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 ' " @click="nav='manfaat'">
+                    <a class="text-white sm:text-sm text-xs">MANFAAT</a>
+                </div>
+            </div>
+            <div class="flex flex-col  max-w-3xl mx-auto text-sm mt-4">
+                <div x-show="nav==='tujuan'" style="display: none !important;">
+                    <p class="leading-relaxed mb-2"> <a class="font-bold">Tujuan</a> mendukung penerapan decision support system untuk perencanaan, pengawasan dan pengendalian usaha perkebunan sawit di Kalimantan Tengah yang terukur, berkeadilan dan berkelanjutan.</p>
+                    <div class="w-full flex sm:flex-row flex-col mb-6">
+                        <div class="border border-black  px-4 py-2 sm:w-4/12 w-full">
+                            <a class="font-bold mb-1">Terukur:</a>
+                            <p>Perencanaan, pengendalian dan pengawasan perkebunan akan lebih terukur dengan basis data yang kredibel dan terintegrasi sehingga menjamin stabilitas industrialisasi perkebunan sawit</p>
+                        </div>
+                        <div class="sm:border-t sm:border-b sm:border-l-0 sm:border-r-0 border-l border-r border-black px-4 py-2 sm:w-4/12 w-full">
+                            <a class="font-bold mb-1">Berkeadilan:</a>
+                            <p>Perkembangan usaha perkebunan sawit tidak hanya fokus pada perkebunan skala besar namun juga berdampak langsung pada sawit rakyat serta berkontribusi pada pendapatan daerah</p>
+                        </div>
+                        <div class="border border-black px-4 py-2 sm:w-4/12 w-full">
+                            <a class="font-bold mb-1">Berkelanjutan:</a>
+                            <p>Pengembangan perkebunan sawit selaras dengan daya dukung dan daya tampung lingkungan sebagai bentuk komitmen pembangunan berkelanjutan </p>
+                        </div>
+                    </div>
+                </div>
+                <div x-show="nav==='produkpengguna'" style="display: none !important;">
+                    <p class="leading-relaxed mb-4"> <a class="font-bold">Produk</a> dalam platform ini meliputi basis data perizinan, pabrik, dan sawit rakyat yang disajikan dalam dashboard data dan peta yang memungkinkan pengguna mengakses dan mengeksplor perkembangan perkebunan sawit berdasarkan kabupaten, subyek perizinan, status lahan dsb.</p>
+
+                    <p class="leading-relaxed mb-6"><a class="font-bold"> Pengguna </a> adalah internal Dinas Perkebunan Provinsi Kalimantan Tengah, Instansi Pemerintah lainnya, dan Publik.</p>
+                </div>
+                <div x-show="nav==='manfaat'" style="display: none !important;">
+                    <p class="mb-4"><a class="font-bold">Pemerintah Daerah</a>: Memudahkan Pemerintah Provinsi dan Kabupaten/Kota menghimpun dan menyajikan data secara cepat untuk mendukung perencanaan, pengawasan dan pengendalian perizinan, termasuk penilaian usaha perkebunan.</p>
+                    <p class="mb-4"><a class="font-bold">Pemerintah Pusat</a>: Memudahkan Pemerintah Pusat mengintegrasikan data untuk pengawasan kepatuhan perizinan, kewajiban keuangan dan lingkungan, serta kinerja perkebunan.</p>
+                    <p class="mb-4"><a class="font-bold">Pelaku Usaha</a>: Memungkinkan Pelaku Usaha untuk mengidentifikasi potensi pasokan bahan baku dan pengawasan rantai pasok dari kebun sawit swadaya.
+                            </p>
+                </div>
+
+            </div>
         </div>
     </section>
 @endsection
 
 
- 
