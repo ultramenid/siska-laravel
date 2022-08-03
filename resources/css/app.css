@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.text-color-siska{
+    color: #009180;
+}
+.text-siska-hover{
+    color: #333333;
+}
+.bgtentangsiskamuda{
+    background-color: #8ccfc2;
+}
+.border-siska {
+    --tw-border-opacity: 1;
+    border-color: #009180;
+}
+.bgtentangsiskagelap{
+    background-color: #009180;
+}
+
+.bg-color-siska{
+    background-color:#009180;
+}
+.siska-hover{
+    background-color:#aad0c9;
+}
+
+.font-ultrabold {
+    font-weight: 900;
+}
+
+.bg-pabrik{
+    background-color: #666666ff;
+}
+
+.bg-img-siska{
+    background-image: url(../assets/bg-2.png);
+            background-repeat: no-repat;
+            background-size: cover;
+            background-color: transparent;
+            background-blend-mode:multiply;
+}
+
+.bg-img-siska1{
+    
+            background-repeat: no-repat;
+            background-size: cover;
+            height: 100vh;
+            background-color: transparent;
+            background-position: center;
+            background-blend-mode:multiply;
+}
+.bg-img-siska1hover{
+    
+            background-repeat: no-repat;
+            background-size: cover;
+            height: 100vh;
+            background-color: #009180;
+            background-position: center;
+            background-blend-mode:multiply;
+}
+.bg-img-siska2{
+    
+            background-repeat: no-repat;
+            background-size: cover;
+            height: 100vh;
+            background-position: center;
+            background-color: transparent;
+            background-blend-mode:multiply;
+}
+.bg-img-siska2hover{
+    
+            background-repeat: no-repat;
+            background-size: cover;
+            height: 100vh;
+            background-position: center;
+            background-color: transparent;
+            background-blend-mode:multiply;
+            background-color: #009180;
+}
+
+
+.bg-img-siska3{
+    
+            background-repeat: no-repat;
+            background-size: cover;
+            height: 100vh;
+            background-position: center;
+            background-color: transparent;
+            background-blend-mode:multiply;
+}
+.bg-img-siska3hover{
+    
+            background-repeat: no-repat;
+            background-size: cover;
+            height: 100vh;
+            background-position: center;
+            background-color: transparent;
+            background-blend-mode:multiply;
+            background-color: #009180;
+}
+.bg-img-siska4{
+    
+            background-repeat: no-repat;
+            background-size: cover;
+            height: 100vh;
+            background-position: center;
+            background-color: transparent;
+            background-blend-mode:multiply;
+}
+.bg-img-siska4hover{
+    
+            background-repeat: no-repat;
+            background-size: cover;
+            height: 100vh;
+            background-position: center;
+            background-color: transparent;
+            background-blend-mode:multiply;
+            background-color: #009180;
+}
+
+@media screen and (max-width: 420px) {
+    .bg-img-siska4{
+        
+                background-repeat: no-repat;
+                background-size: cover;
+                background-position: center;
+                background-color: transparent;
+                background-blend-mode:multiply;
+                height: 25vh;
+    }
+    .bg-img-siska4hover{
+        
+                background-repeat: no-repat;
+                background-size: cover;
+                background-position: center;
+                background-color: transparent;
+                background-blend-mode:multiply;
+                height: 25vh;
+                background-color: #009180;
+    }
+    .bg-img-siska3{
+        
+                background-repeat: no-repat;
+                background-size: cover;
+                background-position: center;
+                background-color: transparent;
+                background-blend-mode:multiply;
+                height: 25vh;
+    }
+    .bg-img-siska3hover{
+        
+                background-repeat: no-repat;
+                background-size: cover;
+                background-position: center;
+                background-color: transparent;
+                background-blend-mode:multiply;
+                height: 25vh;
+                background-color: #009180;
+    }
+    .bg-img-siska2{
+        
+                background-repeat: no-repat;
+                background-size: cover;
+                background-position: center;
+                background-color: transparent;
+                background-blend-mode:multiply;
+                height: 25vh;
+    }
+    .bg-img-siska2hover{
+        
+                background-repeat: no-repat;
+                background-size: cover;
+                background-position: center;
+                background-color: transparent;
+                background-blend-mode:multiply;
+                height: 25vh;
+                background-color: #009180;
+    }
+    .bg-img-siska1{
+        
+                background-repeat: no-repat;
+                background-size: cover;
+                background-position: center;
+                background-color: transparent;
+                background-blend-mode:multiply;
+                height: 25vh;
+    }
+    .bg-img-siska1hover{
+        
+                background-repeat: no-repat;
+                background-size: cover;
+                background-position: center;
+                background-color: transparent;
+                background-blend-mode:multiply;
+                height: 25vh;
+                background-color: #009180;
+    }
+    
+}
