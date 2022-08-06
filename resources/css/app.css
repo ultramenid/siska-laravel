@@ -44,7 +44,7 @@
 }
 
 .bg-img-siska1{
-    
+
             background-repeat: no-repat;
             background-size: cover;
             height: 100vh;
@@ -53,7 +53,6 @@
             background-blend-mode:multiply;
 }
 .bg-img-siska1hover{
-    
             background-repeat: no-repat;
             background-size: cover;
             height: 100vh;
@@ -62,7 +61,7 @@
             background-blend-mode:multiply;
 }
 .bg-img-siska2{
-    
+
             background-repeat: no-repat;
             background-size: cover;
             height: 100vh;
@@ -71,7 +70,7 @@
             background-blend-mode:multiply;
 }
 .bg-img-siska2hover{
-    
+
             background-repeat: no-repat;
             background-size: cover;
             height: 100vh;
@@ -83,7 +82,7 @@
 
 
 .bg-img-siska3{
-    
+
             background-repeat: no-repat;
             background-size: cover;
             height: 100vh;
@@ -92,7 +91,7 @@
             background-blend-mode:multiply;
 }
 .bg-img-siska3hover{
-    
+
             background-repeat: no-repat;
             background-size: cover;
             height: 100vh;
@@ -102,7 +101,7 @@
             background-color: #009180;
 }
 .bg-img-siska4{
-    
+
             background-repeat: no-repat;
             background-size: cover;
             height: 100vh;
@@ -111,7 +110,7 @@
             background-blend-mode:multiply;
 }
 .bg-img-siska4hover{
-    
+
             background-repeat: no-repat;
             background-size: cover;
             height: 100vh;
@@ -123,7 +122,7 @@
 
 @media screen and (max-width: 420px) {
     .bg-img-siska4{
-        
+
                 background-repeat: no-repat;
                 background-size: cover;
                 background-position: center;
@@ -132,7 +131,7 @@
                 height: 25vh;
     }
     .bg-img-siska4hover{
-        
+
                 background-repeat: no-repat;
                 background-size: cover;
                 background-position: center;
@@ -142,7 +141,7 @@
                 background-color: #009180;
     }
     .bg-img-siska3{
-        
+
                 background-repeat: no-repat;
                 background-size: cover;
                 background-position: center;
@@ -151,7 +150,7 @@
                 height: 25vh;
     }
     .bg-img-siska3hover{
-        
+
                 background-repeat: no-repat;
                 background-size: cover;
                 background-position: center;
@@ -161,7 +160,7 @@
                 background-color: #009180;
     }
     .bg-img-siska2{
-        
+
                 background-repeat: no-repat;
                 background-size: cover;
                 background-position: center;
@@ -170,7 +169,7 @@
                 height: 25vh;
     }
     .bg-img-siska2hover{
-        
+
                 background-repeat: no-repat;
                 background-size: cover;
                 background-position: center;
@@ -180,7 +179,7 @@
                 background-color: #009180;
     }
     .bg-img-siska1{
-        
+
                 background-repeat: no-repat;
                 background-size: cover;
                 background-position: center;
@@ -189,7 +188,7 @@
                 height: 25vh;
     }
     .bg-img-siska1hover{
-        
+
                 background-repeat: no-repat;
                 background-size: cover;
                 background-position: center;
@@ -198,5 +197,5 @@
                 height: 25vh;
                 background-color: #009180;
     }
-    
+
 }

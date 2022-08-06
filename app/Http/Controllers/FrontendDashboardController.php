@@ -21,4 +21,9 @@ class FrontendDashboardController extends Controller
         $nav = 'frontendDashboard';
         return view('frontends.sawitrakyat', compact('title', 'nav'));
     }
+    public function analisistutupansawit(){
+        $title = 'Analisis Tutupan Sawit - Sistem Informasi Perkebunan Kelapa Sawit Kalimantan Tengah ';
+        $nav = 'frontendDashboard';
+        return view('frontends.analisistutupansawit', compact('title', 'nav'));
+    }
 }

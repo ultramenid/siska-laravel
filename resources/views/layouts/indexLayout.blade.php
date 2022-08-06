@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{$title}}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css">
     <link href="css/Control.MiniMap.min.css" rel="stylesheet">
@@ -18,9 +17,9 @@
 </head>
 
 <body class="font-sans">
-   
+
     @yield('content')
-    
+
 </body>
     @stack('script')
 </html>

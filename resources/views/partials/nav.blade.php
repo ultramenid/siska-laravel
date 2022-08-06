@@ -2,7 +2,7 @@
             <div class="flex sm:flex-row flex-col sm:space-y-0 space-y-4 items-center mx-auto max-w-7xl justify-between px-8 py-4">
                 <div class="">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset('assets/logo-siska-ok1.png') }}" alt="" class="w-40">
+                        <img src="{{ asset('assets/v1/web-logo-ok.png') }}" alt="" class="w-40">
                     </a>
                 </div>
                 <div class="flex  sm:space-x-12 space-x-4">
@@ -26,7 +26,7 @@
                             </div>
                             <div class=" py-1" >
                                 <a href="#" class="text-sm text-gray-900">
-                                Petunjuk Penggunaan 
+                                Petunjuk Penggunaan
                                 </a>
                             </div>
                             <div class=" py-1" >
@@ -34,7 +34,7 @@
                                 FAQ
                                 </a>
                             </div>
-                           
+
                         </div>
                     </div>
                     <div class="flex-col flex items-center whitespace-nowrap" x-data="{peta:false}">
@@ -66,8 +66,8 @@
                                 </a>
                             </div>
                             <div class=" py-1" >
-                                <a href="#" class="text-sm text-gray-900">
-                                    Sawit Belum Terklasifikasi
+                                <a href="{{ url('/dashboard/analisistutupansawit') }}" class="text-sm text-gray-900">
+                                    Analisis Tutupan Sawit
                                 </a>
                             </div>
                         </div>
@@ -106,8 +106,8 @@
                     <a href="" class="text-white sm:text-base text-xs">Login</a>
                 </div>
                 <div class="">
-                    <a href="index.html">
-                        <img src="{{ asset('assets/logoprovinsi.png') }}" alt="" class="w-11">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset('assets/v1/web-logo-ok-disbun.png') }}" alt="" class="w-56 ">
                     </a>
                 </div>
             </div>

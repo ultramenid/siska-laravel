@@ -9,8 +9,8 @@
                         <img src="{{asset('assets/logoprovinsi.png')}}" alt="" class="h-5">
                     </div>
                 </div>
-                
-    
+
+
                 <div class="fixed w-full h-screen z-50 bg-color-siska inset-0 overflow-y-auto " x-show="open"
                 x-transition:enter="transition ease-in-out duration-150"
                 x-transition:enter-start="opacity-0"
@@ -25,7 +25,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                           </svg>
                     </button>
-    
+
                     <div class="mt-12 space-y-3">
                         <div class=" px-6">
                             <a href="{{ url('/') }}"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Home<a>
@@ -84,12 +84,12 @@
                                             <a href="{{ url('/dashboard/sawitrakyat') }}" class=" text-siska text-sm uppercase">
                                             Sawit Rakyat</a>
                                         </div>
-                                        
+
                                         <div class="" >
-                                            <a href="#" class=" text-siska text-sm uppercase">
-                                            Sawit Belum Terklasifikasi</a>
+                                            <a href="{{ url('/dashboard/analisistutupansawit') }}" class=" text-siska text-sm uppercase">
+                                            Analisis Tutupan Sawit</a>
                                         </div>
-                                        
+
                             </div>
                             <p class="border-b border-gray-300 mt-4"></p>
                         </div>
@@ -121,12 +121,12 @@
                             </div>
                             <p class="border-b border-gray-300 mt-4"></p>
                         </div>
-                        
+
                         <div class=" px-6">
                             <a href="#"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Login<a>
                             <p class="border-b border-gray-300"></p>
                         </div>
-    
+
                         <div class="px-6 flex space-x-6 text-white text-sm  bottom-5 fixed z-30">
                             <img src="{{ asset('assets/logo-siska-ok1.png') }}" alt="" class="h-10">
                             <img src="{{ asset('assets/logoprovinsi.png') }}" alt="" class="h-10">
@@ -134,7 +134,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="max-w-6xl mx-auto px-6 -py-2 sm:block hidden">
                 <div class="flex justify-between px-3">
                     <a></a>
