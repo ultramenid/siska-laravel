@@ -16,8 +16,8 @@
                 </div>
                 <div class="flex sm:flex-row  flex-col-reverse space-x-4 sm:items-end items-center sm:w-3/12 w-full">
                     <div class="flex flex-col">
-                        <h1 class="font-bold sm:text-base text-xs">H. Sugianto Sabran</h1>
-                        <p class="sm:text-xs text-xss">Gubernur Kalimantan Tengah</p>
+                        <h1 class="font-bold sm:text-base text-xs">H. Edy Pratowo</h1>
+                        <p class="sm:text-xs text-xss">Wakil Gubernur Kalimantan Tengah</p>
                     </div>
                     <img class="sm:h-24 h-12" src="{{ asset('assets/v1/wagub.png') }}" alt="">
                 </div>
