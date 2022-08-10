@@ -2,6 +2,33 @@
 
 @section('content')
     <section class="w-full relative">
+        <div class="bg-white py-2">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="flex sm:flexrow flex-col space-x-4 sm:items-end items-center sm:w-3/12 w-full">
+                    <img class="sm:h-24 h-12" src="{{ asset('assets/v1/gubernur.png') }}" alt="">
+                    <div class="flex flex-col">
+                        <h1 class="font-bold sm:text-base text-xs">H. Sugianto Sabran</h1>
+                        <p class="sm:text-xs text-xss">Gubernur Kalimantan Tengah</p>
+                    </div>
+                </div>
+                <div class="sm:w-6/12 w-full sm:block hidden">
+                    <h1 class="font-bold sm:text-2xl text-sm text-center "> Terwujud perkebunan yang produktif, berdaya saing dan berkelanjutan</h1>
+                </div>
+                <div class="flex sm:flex-row  flex-col-reverse space-x-4 sm:items-end items-center sm:w-3/12 w-full">
+                    <div class="flex flex-col">
+                        <h1 class="font-bold sm:text-base text-xs">H. Sugianto Sabran</h1>
+                        <p class="text-xss">Gubernur Kalimantan Tengah</p>
+                    </div>
+                    <img class="sm:h-24 h-12" src="{{ asset('assets/v1/wagub.png') }}" alt="">
+                </div>
+
+            </div>
+            <div class="max-w-7xl mx-auto flex justify-center items-center">
+                <div class="  px-4 py-2 sm:hidden block">
+                    <h1 class="font-bold text-xs  text-center"> Terwujud perkebunan yang produktif, berdaya saing dan berkelanjutan</h1>
+                </div>
+            </div>
+        </div>
         @include('partials.navMobile')
         @include('partials.nav')
          <div class="flex sm:flex-row flex-col  justify-between items-center " x-data="{open:false}">

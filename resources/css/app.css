@@ -35,6 +35,11 @@
     background-color: rgb(255, 255, 255);
 }
 
+.text-xss {
+    font-size: 0.45rem/* 12px */;
+    line-height: 0.5rem/* 16px */;
+}
+
 .bg-img-siska{
     background-image: url(../assets/bg-2.png);
             background-repeat: no-repat;
