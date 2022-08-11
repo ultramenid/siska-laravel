@@ -77,7 +77,7 @@
                                             Izin</a>
                                         </div>
                                         <div class="" >
-                                            <a href="#" class=" text-siska text-sm uppercase">
+                                            <a href="{{ url('/dashboard/produksi') }}" class=" text-siska text-sm uppercase">
                                             Produksi</a>
                                         </div>
                                         <div class="" >

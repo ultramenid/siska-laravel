@@ -56,7 +56,7 @@
                                 </a>
                             </div>
                             <div class=" py-1" >
-                                <a href="#" class="text-sm text-gray-900">
+                                <a href="{{ url('/dashboard/produksi') }}" class="text-sm text-gray-900">
                                    Produksi
                                 </a>
                             </div>
