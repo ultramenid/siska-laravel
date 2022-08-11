@@ -61,17 +61,17 @@
             <div x-data="{open1:false}" :class="open1 ? 'sm:w-3/12 w-full  bg-img-siska2hover ' : 'sm:w-3/12 w-full  bg-img-siska2'" style="background-image: url({{asset('assets/v1/web-bg-produksi-ok.jpeg')}})">
                 <div class="h-full w-full flex flex-col  items-center justify-center " @mouseover="open1=true" @mouseout="open1=false">
                     <div class="" >
-                        <a href="#" :class="open1 ? 'text-4xl font-extrabold text-white' : 'text-5xl font-extrabold text-white'">Produksi</a>
+                        <a href="{{ url('/dashboard/produksi') }}" :class="open1 ? 'text-4xl font-extrabold text-white' : 'text-5xl font-extrabold text-white'">Produksi</a>
                     </div>
                     <div x-show="open1" style="display: none;" class="flex sm:flex-col flex-row justify-between px-4">
                         <div class="flex flex-col justify-center" >
                             <div class="sm:flex hidden  justify-center px-4 mt-6">
                                 <p class="text-white text-center text-xs  ">
-                                    Telusuri data dan informasi potensi dan realisasi produksi kelapa sawit di Kalimantan Tengah. <a href="#" class="underline">Selengkapnya</a>
+                                    Telusuri data dan informasi potensi dan realisasi produksi kelapa sawit di Kalimantan Tengah. <a href="{{ url('/dashboard/produksi') }}" class="underline">Selengkapnya</a>
                                 </p>
                             </div>
                             <div class="flex justify-center items-end mt-6" >
-                                <a href="#" class="sm:text-8xl text-4xl font-extrabold text-white" >2,45</a>
+                                <a href="{{ url('/dashboard/produksi') }}" class="sm:text-8xl text-4xl font-extrabold text-white" >2,45</a>
                                 <a class="text-white mt-2">Juta</a>
                             </div>
                             <a class="text-white inline-flex justify-center mt-2">Ton</a>

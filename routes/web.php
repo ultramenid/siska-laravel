@@ -21,6 +21,7 @@ Route::get('/tentang/siska', [TentangController::class, 'index']);
 Route::get('/tentang/tim', [TentangController::class, 'tim']);
 Route::get('/tentang/faq', [TentangController::class, 'faq']);
 Route::get('/dashboard/pabrik', [FrontendDashboardController::class, 'index']);
+Route::get('/dashboard/produksi', [FrontendDashboardController::class, 'produksi']);
 Route::get('/dashboard/izin', [FrontendDashboardController::class, 'izin']);
 Route::get('/dashboard/sawitrakyat', [FrontendDashboardController::class, 'sawitrakyat']);
 Route::get('/dashboard/analisistutupansawit', [FrontendDashboardController::class, 'analisistutupansawit']);
