@@ -59,40 +59,42 @@
                             </div>
                             <p class="border-b border-gray-300 mt-4"></p>
                         </div>
-                        <div class="  px-6" x-data="{open:false}">
-                            <div class="flex items-center px-4" @click="open=!open" @clic.away="open=false">
-                                <a class="inline-block text-base leading-5 text-gray-100 font-semibold uppercase">
-                                    Dashboard</a>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 ml-1 -mb-1 text-gray-100" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                            </div>
-                            <div x-show="open" class="mt-3 flex flex-col justify-center px-6 space-y-1 py-2 bg-white">
-                                        <div class="" >
-                                            <a href="{{ url('/dashboard/pabrik') }}" class=" text-siska text-sm  uppercase">
-                                            Pabrik</a>
-                                        </div>
-                                        <div class="" >
-                                            <a href="{{ url('/dashboard/izin') }}" class=" text-siska text-sm uppercase">
-                                            Izin</a>
-                                        </div>
-                                        <div class="" >
-                                            <a href="{{ url('/dashboard/produksi') }}" class=" text-siska text-sm uppercase">
-                                            Produksi</a>
-                                        </div>
-                                        <div class="" >
-                                            <a href="{{ url('/dashboard/sawitrakyat') }}" class=" text-siska text-sm uppercase">
-                                            Sawit Rakyat</a>
-                                        </div>
+                        @if(session('username'))
+                            <div class="  px-6" x-data="{open:false}">
+                                <div class="flex items-center px-4" @click="open=!open" @clic.away="open=false">
+                                    <a class="inline-block text-base leading-5 text-gray-100 font-semibold uppercase">
+                                        Dashboard</a>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 ml-1 -mb-1 text-gray-100" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                </div>
+                                <div x-show="open" class="mt-3 flex flex-col justify-center px-6 space-y-1 py-2 bg-white">
+                                            <div class="" >
+                                                <a href="{{ url('/dashboard/pabrik') }}" class=" text-siska text-sm  uppercase">
+                                                Pabrik</a>
+                                            </div>
+                                            <div class="" >
+                                                <a href="{{ url('/dashboard/izin') }}" class=" text-siska text-sm uppercase">
+                                                Izin</a>
+                                            </div>
+                                            <div class="" >
+                                                <a href="{{ url('/dashboard/produksi') }}" class=" text-siska text-sm uppercase">
+                                                Produksi</a>
+                                            </div>
+                                            <div class="" >
+                                                <a href="{{ url('/dashboard/sawitrakyat') }}" class=" text-siska text-sm uppercase">
+                                                Sawit Rakyat</a>
+                                            </div>
 
-                                        <div class="" >
-                                            <a href="{{ url('/dashboard/analisistutupansawit') }}" class=" text-siska text-sm uppercase">
-                                            Analisis Tutupan Sawit</a>
-                                        </div>
+                                            <div class="" >
+                                                <a href="{{ url('/dashboard/analisistutupansawit') }}" class=" text-siska text-sm uppercase">
+                                                Analisis Tutupan Sawit</a>
+                                            </div>
 
+                                </div>
+                                <p class="border-b border-gray-300 mt-4"></p>
                             </div>
-                            <p class="border-b border-gray-300 mt-4"></p>
-                        </div>
+                        @endif
                         <div class="  px-6" x-data="{open:false}">
                             <div class="flex items-center px-4" @click="open=!open" @clic.away="open=false">
                                 <a class="inline-block text-base leading-5 text-gray-100 font-semibold uppercase">
@@ -122,10 +124,12 @@
                             <p class="border-b border-gray-300 mt-4"></p>
                         </div>
 
+                        @if(!session('username'))
                         <div class=" px-6">
                             <a href="#"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Login<a>
                             <p class="border-b border-gray-300"></p>
                         </div>
+                        @endif
 
                         <div class="px-6 flex space-x-6 text-white text-sm  bottom-5 fixed z-30">
                             <img src="{{ asset('assets/logo-siska-ok1.png') }}" alt="" class="h-10">
