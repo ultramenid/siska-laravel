@@ -126,7 +126,12 @@
 
                         @if(!session('username'))
                         <div class=" px-6">
-                            <a href="#"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Login<a>
+                            <a href="{{ url('/login') }}"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Login<a>
+                            <p class="border-b border-gray-300"></p>
+                        </div>
+                        @else
+                        <div class=" px-6">
+                            <a href="{{ url('/logout') }}"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Login<a>
                             <p class="border-b border-gray-300"></p>
                         </div>
                         @endif
