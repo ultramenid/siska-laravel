@@ -131,7 +131,7 @@
                         </div>
                         @else
                         <div class=" px-6">
-                            <a href="{{ url('/logout') }}"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Login<a>
+                            <a href="{{ url('/logout') }}"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Logout<a>
                             <p class="border-b border-gray-300"></p>
                         </div>
                         @endif
