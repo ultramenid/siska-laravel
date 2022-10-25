@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Http;
 class IndexController extends Controller
 {
     public function getISPO(){
-            $req = Http::get('https://aws.simontini.id/geoserver/wfs',
+            $req = Http::get('https://geoserver.sawitkalteng.id/geoserver/wfs',
             [
                 'service' => 'wfs',
                 'version' => '1.1.1',
                 'request' => 'GetFeature',
-                'typename' => 'siska:Pabrik_Kelapa_Sawit_New_1',
+                'typename' => 'siska:Pabrik_Kelapa_Sawit_New',
                 'cql_filter' => "sertifikasi='ISPO'",
                 'outputFormat' => 'application/json',
             ]);
@@ -23,12 +23,12 @@ class IndexController extends Controller
 
     }
     public function getNonISPO(){
-        $req = Http::get('https://aws.simontini.id/geoserver/wfs',
+        $req = Http::get('https://geoserver.sawitkalteng.id/geoserver/wfs',
             [
                 'service' => 'wfs',
                 'version' => '1.1.1',
                 'request' => 'GetFeature',
-                'typename' => 'siska:Pabrik_Kelapa_Sawit_New_1',
+                'typename' => 'siska:Pabrik_Kelapa_Sawit_New',
                 'cql_filter' => "sertifikasi='Non ISPO'",
                 'outputFormat' => 'application/json',
             ]);
@@ -37,12 +37,12 @@ class IndexController extends Controller
     }
 
     // public function getTotalPabrik(){
-    //     $req = Http::get('https://aws.simontini.id/geoserver/wfs',
+    //     $req = Http::get('https://geoserver.sawitkalteng.id/geoserver/wfs',
     //         [
     //             'service' => 'wfs',
     //             'version' => '1.1.1',
     //             'request' => 'GetFeature',
-    //             'typename' => 'siska:Pabrik_Kelapa_Sawit_New_1',
+    //             'typename' => 'siska:Pabrik_Kelapa_Sawit_New',
     //             'featurename' =>'perusahaan',
     //             'outputFormat' => 'application/json',
     //         ]);
@@ -51,7 +51,7 @@ class IndexController extends Controller
     //         return $response['numberMatched'];
     // }
     public function getTotalIzin(){
-        $req = Http::get('https://aws.simontini.id/geoserver/wfs',
+        $req = Http::get('https://geoserver.sawitkalteng.id/geoserver/wfs',
             [
                 'service' => 'wfs',
                 'version' => '1.1.1',
