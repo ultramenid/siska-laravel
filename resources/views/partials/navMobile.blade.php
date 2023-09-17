@@ -1,12 +1,12 @@
 <header class="bg-color-siska sticky top-0 z-50">
             <div x-data="{ open: false }" class="px-6 py-2 bg-color-siska z-10 lg:hidden block">
-                <div class="flex justify-between">
+                <div class="flex justify-between items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white " viewBox="0 0 20 20" fill="currentColor" @click="open = true">
                         <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
                       </svg>
                     <div class=" flex space-x-6 text-white text-sm ">
-                        <img src="{{ asset('assets/logo-siska-ok1.png') }}" alt="" class="h-5">
-                        <img src="{{asset('assets/logoprovinsi.png')}}" alt="" class="h-5">
+                        {{-- <img src="{{ asset('assets/logo-siska-ok1.png') }}" alt="" class="h-5"> --}}
+                        <img src="{{asset('assets/v1/web-logo-ok-disbun.png')}}" alt="" class="h-10">
                     </div>
                 </div>
 
@@ -31,33 +31,10 @@
                             <a href="{{ url('/') }}"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Home<a>
                             <p class="border-b border-gray-300"></p>
                         </div>
-                        <div class="  px-6" x-data="{open:false}">
-                            <div class="flex items-center px-4" @click="open=!open" @clic.away="open=false">
-                                <a class="inline-block text-base leading-5 text-gray-100 font-semibold uppercase">
-                                    Tentang</a>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 ml-1 -mb-1 text-gray-100" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                            </div>
-                            <div x-show="open" class="mt-3 flex flex-col justify-center px-6 space-y-1 py-2 bg-white">
-                                        <div class="" >
-                                            <a href="{{ url('/tentang/siska') }}" class=" text-siska text-sm  uppercase">
-                                            SISKA</a>
-                                        </div>
-                                        <div class="" >
-                                            <a href="{{ url('/tentang/tim') }}" class=" text-siska text-sm uppercase">
-                                            Tim</a>
-                                        </div>
-                                        <div class="" >
-                                            <a href="#" class=" text-siska text-sm uppercase">
-                                            Petunjuk Penggunaan</a>
-                                        </div>
-                                        <div class="" >
-                                            <a href="{{ url('/tentang/faq') }}" class=" text-siska text-sm uppercase">
-                                            FAQ</a>
-                                        </div>
-                            </div>
-                            <p class="border-b border-gray-300 mt-4"></p>
+
+                        <div class=" px-6">
+                            <a href="{{ url('/tentang') }}"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Tentang<a>
+                            <p class="border-b border-gray-300"></p>
                         </div>
                         @if(session('username'))
                             <div class="  px-6" x-data="{open:false}">
@@ -95,7 +72,7 @@
                                 <p class="border-b border-gray-300 mt-4"></p>
                             </div>
                         @endif
-                        <div class="  px-6" x-data="{open:false}">
+                        {{-- <div class="  px-6" x-data="{open:false}">
                             <div class="flex items-center px-4" @click="open=!open" @clic.away="open=false">
                                 <a class="inline-block text-base leading-5 text-gray-100 font-semibold uppercase">
                                     Peta & Data</a>
@@ -122,7 +99,19 @@
                                         </div>
                             </div>
                             <p class="border-b border-gray-300 mt-4"></p>
+                        </div> --}}
+
+                        <div class=" px-6">
+                            <a href="{{ url('/map') }}"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Peta<a>
+                            <p class="border-b border-gray-300"></p>
                         </div>
+
+                        @if (session('username'))
+                            <div class=" px-6">
+                                <a href="#"class="mb-4 px-4 inline-block text-base leading-5 text-white font-semibold uppercase">Data<a>
+                                <p class="border-b border-gray-300"></p>
+                            </div>
+                        @endif
 
                         @if(!session('username'))
                         <div class=" px-6">
@@ -137,8 +126,8 @@
                         @endif
 
                         <div class="px-6 flex space-x-6 text-white text-sm  bottom-5 fixed z-30">
-                            <img src="{{ asset('assets/logo-siska-ok1.png') }}" alt="" class="h-10">
-                            <img src="{{ asset('assets/logoprovinsi.png') }}" alt="" class="h-10">
+                            {{-- <img src="{{ asset('assets/logo-siska-ok1.png') }}" alt="" class="h-10"> --}}
+                            {{-- <img src="{{ asset('assets/v1/web-logo-ok-disbun.png') }}" alt="" class="h-10"> --}}
                         </div>
                     </div>
                 </div>

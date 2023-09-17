@@ -6,6 +6,8 @@ use App\Http\Controllers\TentangController;
 use App\Http\Controllers\FrontendDashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PetaDataController;
+use App\Http\Controllers\sawitController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,21 +21,29 @@ use App\Http\Controllers\PetaDataController;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
-Route::get('/tentang/siska', [TentangController::class, 'index']);
-Route::get('/tentang/tim', [TentangController::class, 'tim']);
-Route::get('/tentang/faq', [TentangController::class, 'faq']);
+// Route::get('/tentang/siska', [TentangController::class, 'index']);
+// Route::get('/tentang/tim', [TentangController::class, 'tim']);
+// Route::get('/tentang/faq', [TentangController::class, 'faq']);
+Route::get('/dashboard/sawit', [sawitController::class, 'index']);
+Route::get('/tentang', [TentangController::class, 'index']);
 
 Route::get('/map', [PetaDataController::class, 'index']);
-Route::get('/daftaristilah', [PetaDataController::class, 'daftaristilah']);
+// Route::get('/daftaristilah', [PetaDataController::class, 'daftaristilah']);
 
 
 
-
-    Route::get('/dashboard/pabrik', [FrontendDashboardController::class, 'index']);
-    Route::get('/dashboard/produksi', [FrontendDashboardController::class, 'produksi']);
-    Route::get('/dashboard/izin', [FrontendDashboardController::class, 'izin']);
-    Route::get('/dashboard/sawitrakyat', [FrontendDashboardController::class, 'sawitrakyat']);
-    Route::get('/dashboard/analisistutupansawit', [FrontendDashboardController::class, 'analisistutupansawit']);
+    // sawit
+    Route::get('/dashboard/sawit/pabrik', [FrontendDashboardController::class, 'index']);
+    // Route::get('/dashboard/sawit/produksi', [FrontendDashboardController::class, 'produksi']);
+    // Route::get('/dashboard/sawit/izin', [FrontendDashboardController::class, 'izin']);
+    // Route::get('/dashboard/sawit/sawitrakyat', [FrontendDashboardController::class, 'sawitrakyat']);
+    // Route::get('/dashboard/sawit/analisistutupansawit', [FrontendDashboardController::class, 'analisistutupansawit']);
+    Route::get('/dashboard/sawit/mutasitanaman', [sawitController::class, 'mutasitanaman']);
+    Route::get('/dashboard/sawit/mutasitanamanrakyat', [sawitController::class, 'mutasitanamanrakyat']);
+    Route::get('/dashboard/sawit/pengusahaan', [sawitController::class, 'pengusahaan']);
+    Route::get('/dashboard/sawit/perkebunanbesar', [sawitController::class, 'perkebunanbesar']);
+    Route::get('/dashboard/sawit/perkebunanrakyat', [sawitController::class, 'perkebunanrakyat']);
+    Route::get('/dashboard/sawit/produksi', [sawitController::class, 'produksi']);
 
 
 

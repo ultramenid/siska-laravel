@@ -43,28 +43,28 @@
 		var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: true }).addTo(map);
 
 
-          var pabrik = L.tileLayer.wms('https://geoserver.sawitkalteng.id/geoserver/wms', {
+          var pabrik = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
             layers: 'siska:Pabrik_Kelapa_Sawit_New',
             transparent: true,
             format: 'image/png'
           });
-        var TutupanSawit = L.tileLayer.wms('https://geoserver.sawitkalteng.id/geoserver/wms', {
+        var TutupanSawit = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
             layers: 'siska:kalteng_tutupan_sawit_20190918',
             transparent: true,
             format: 'image/png'
           });
 
-          var kawasanKalteng = L.tileLayer.wms('https://geoserver.sawitkalteng.id/geoserver/wms', {
+          var kawasanKalteng = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
             layers: 'siska:Penunjukan_Kawasan_Hutan_Update2021_Trial',
             transparent: true,
             format: 'image/png'
           });
-          var izinUsaha = L.tileLayer.betterWms('https://geoserver.sawitkalteng.id/geoserver/wms', {
+          var izinUsaha = L.tileLayer.betterWms('https://aws.simontini.id/geoserver/wms', {
             layers: 'siska:Update_Ijin_Kalteng 2021',
             transparent: true,
             format: 'image/png'
           }).addTo(map);
-          var admKalteng = L.tileLayer.wms('https://geoserver.sawitkalteng.id/geoserver/wms', {
+          var admKalteng = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
             layers: 'siska:kalteng_adm_line',
             transparent: true,
             format: 'image/png'
