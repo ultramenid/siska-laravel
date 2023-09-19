@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\TentangController;
@@ -28,6 +29,7 @@ Route::get('/dashboard/sawit', [sawitController::class, 'index']);
 Route::get('/tentang', [TentangController::class, 'index']);
 
 Route::get('/map', [PetaDataController::class, 'index']);
+Route::get('/data', [DataController::class, 'index']);
 // Route::get('/daftaristilah', [PetaDataController::class, 'daftaristilah']);
 
 

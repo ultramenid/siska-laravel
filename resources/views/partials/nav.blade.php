@@ -6,6 +6,7 @@
                     </a>
                 </div>
                 <div class="flex  sm:space-x-8 space-x-4">
+                    <a href="{{ url('/') }}" class="text-white sm:text-base text-xs font-semobild">Home</a>
 
                     <a href="{{ url('/tentang') }}" class="text-white sm:text-base text-xs font-semobild">Tentang</a>
 
@@ -37,7 +38,7 @@
                     </div> --}}
                     <a href="{{ url('/map') }}" class="text-white sm:text-base text-xs font-semobild">Peta</a>
                     @if(session('username'))
-                        <a href="#" class="text-white sm:text-base text-xs font-semobild">Data</a>
+                        <a href="{{ url('/data') }}" class="text-white sm:text-base text-xs font-semobild">Data</a>
                     @endif
                     <!-- <a href="" class="text-white sm:text-base text-xs font-semobild">FAQ</a> -->
                     @if(!session('username'))

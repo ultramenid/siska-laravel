@@ -119,6 +119,6 @@ class sawitController extends Controller
         $title = 'Produksi - Sawit';
         $nav = 'data';
         $data = $this->getProduksi();
-        return view('frontends.perkebunanrakyat', compact('title','nav', 'data'));
+        return view('frontends.produksi', compact('title','nav', 'data'));
     }
 }
