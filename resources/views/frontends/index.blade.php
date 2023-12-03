@@ -40,7 +40,7 @@
                     </div>
 
                     <div x-show="open" style="display: none;" class="flex flex-col justify-between " @click.outside="open=false">
-                        <div class="flex mt-6">
+                        <div class="flex sm:mt-6 mt-2">
                             <p class="text-white  text-xs  ">
                                 Telusuri data dan informasi industri pengolahan kelapa sawit meliputi jumlah, sebaran, serta kapasitas pengolahan pabrik di Kalimantan Tengah. <a href="{{ url('/dashboard/sawit') }}" class="underline">Selengkapnya</a>
                             </p>
@@ -48,21 +48,21 @@
                         </div>
 
 
-                        <div class="flex sm:flex-row flex-col w-full justify-between mt-6 transition-all  delay-700">
-                            <div class="flex flex-col space-y-6 sm:w-5/12 w-full">
+                        <div class="flex sm:flex-row flex-col w-full justify-between mt-6 transition-all gap-2  delay-700">
+                            <div class="flex flex-col gap-3 sm:w-5/12 w-full">
                                 <div class="w-full">
                                     <div class="px-4">
                                         <div class="bg-white rounded-full px-1 py-1 flex space-x-2 items-center ">
-                                            <img src="{{ asset('assets/measure.png') }}" alt="sawitkalteng">
-                                            <a class="font-semibold pr-4">Luas Total</a>
+                                            <img src="{{ asset('assets/measure.png') }}" alt="sawitkalteng" class="sm:h-12 sm:w-12 h-6 w-6">
+                                            <a class="font-semibold pr-4 sm:text-base text-xs">Luas Total</a>
                                         </div>
                                         <div class=" flex w-full justify-between space-x-4 text-white mt-2">
-                                            <a class="font-semibold">Perkebunan Sawit</a>
-                                            <a class="font-semibold">2.029.319 ha</a>
+                                            <a class="font-semibold sm:text-base text-xs">Perkebunan Sawit</a>
+                                            <a class="font-semibold sm:text-base text-xs">2.029.319 ha</a>
                                         </div>
                                         <div class=" flex w-full justify-between space-x-4 text-white ">
-                                            <a class="font-semibold">Izin Usaha(280 Izin)</a>
-                                            <a class="font-semibold">2.936.486 ha</a>
+                                            <a class="font-semibold sm:text-base text-xs">Izin Usaha(280 Izin)</a>
+                                            <a class="font-semibold sm:text-base text-xs">2.936.486 ha</a>
                                         </div>
                                     </div>
                                 </div>
@@ -70,43 +70,43 @@
                                 <div>
                                     <div class="px-4">
                                         <div class="bg-white rounded-full px-1 py-1 flex space-x-2 items-center">
-                                            <img src="{{ asset('assets/measure.png') }}" alt="sawitkalteng">
+                                            <img src="{{ asset('assets/measure.png') }}" alt="sawitkalteng" class="sm:h-12 sm:w-12 h-6 w-6">
                                             <a href="{{ url('/dashboard/sawit/mutasitanaman') }}" class="font-semibold pr-4 hover:underline">Mutasi Tanaman</a>
                                         </div>
                                         <div class=" flex w-full justify-between text-white mt-2">
-                                            <a class="font-semibold">TM</a>
-                                            <a class="font-semibold">1.949.146 ha</a>
+                                            <a class="font-semibold sm:text-base text-xs">TM</a>
+                                            <a class="font-semibold sm:text-base text-xs">1.949.146 ha</a>
                                         </div>
                                         <div class=" flex w-full justify-between text-white ">
-                                            <a class="font-semibold">TBM</a>
-                                            <a class="font-semibold">13.319 ha</a>
+                                            <a class="font-semibold sm:text-base text-xs">TBM</a>
+                                            <a class="font-semibold sm:text-base text-xs">13.319 ha</a>
                                         </div>
                                         <div class=" flex w-full justify-between text-white ">
-                                            <a class="font-semibold">TR</a>
-                                            <a class="font-semibold">66.854 ha</a>
+                                            <a class="font-semibold sm:text-base text-xs">TR</a>
+                                            <a class="font-semibold sm:text-base text-xs">66.854 ha</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="flex flex-col space-y-6 sm:w-5/12 w-full">
+                            <div class="flex flex-col gap-3 sm:w-5/12 w-full">
                                 <div>
                                     <div class="px-4">
                                         <div class="bg-white rounded-full px-1 py-1 flex space-x-2 items-center">
-                                            <img src="{{ asset('assets/measure.png') }}" alt="sawitkalteng">
+                                            <img src="{{ asset('assets/measure.png') }}" alt="sawitkalteng" class="sm:h-12 sm:w-12 h-6 w-6">
                                             <a href="{{ url('/dashboard/sawit/pengusahaan') }}" class="font-semibold pr-4 hover:underline">Pengusahaan</a>
                                         </div>
                                         <div class=" flex w-full justify-between text-white mt-2">
-                                            <a class="font-semibold">PBN</a>
-                                            <a class="font-semibold">- ha</a>
+                                            <a class="font-semibold sm:text-base text-xs">PBN</a>
+                                            <a class="font-semibold sm:text-base text-xs">- ha</a>
                                         </div>
                                         <div class=" flex w-full justify-between text-white ">
-                                            <a class="font-semibold">PBS</a>
-                                            <a class="font-semibold">1.731.586 ha</a>
+                                            <a class="font-semibold sm:text-base text-xs">PBS</a>
+                                            <a class="font-semibold sm:text-base text-xs">1.731.586 ha</a>
                                         </div>
                                         <div class=" flex w-full justify-between text-white ">
-                                            <a class="font-semibold">PR</a>
-                                            <a class="font-semibold">297.733 ha</a>
+                                            <a class="font-semibold sm:text-base text-xs">PR</a>
+                                            <a class="font-semibold sm:text-base text-xs">297.733 ha</a>
                                         </div>
                                     </div>
                                 </div>
@@ -114,20 +114,20 @@
                                 <div>
                                     <div class="px-4">
                                         <div class="bg-white rounded-full px-1 py-1 flex space-x-2 items-center">
-                                            <img src="{{ asset('assets/measure.png') }}" alt="sawitkalteng">
+                                            <img src="{{ asset('assets/measure.png') }}" alt="sawitkalteng" class="sm:h-12 sm:w-12 h-6 w-6">
                                             <a href="{{ url('/dashboard/sawit/produksi') }}" class="font-semibold pr-4 hover:underline">Produksi</a>
                                         </div>
                                         <div class=" flex w-full justify-between text-white mt-2">
-                                            <a class="font-semibold">TBS</a>
-                                            <a class="font-semibold">2.512.651 Ton</a>
+                                            <a class="font-semibold sm:text-base text-xs">TBS</a>
+                                            <a class="font-semibold sm:text-base text-xs">2.512.651 Ton</a>
                                         </div>
                                         <div class=" flex w-full justify-between text-white ">
-                                            <a class="font-semibold">CPO</a>
-                                            <a class="font-semibold">2.453.631 ha</a>
+                                            <a class="font-semibold sm:text-base text-xs">CPO</a>
+                                            <a class="font-semibold sm:text-base text-xs">2.453.631 ha</a>
                                         </div>
                                         <div class=" flex w-full justify-between text-white ">
-                                            <a class="font-semibold">Jumlah Pabrik</a>
-                                            <a class="font-semibold">127 Unit</a>
+                                            <a class="font-semibold sm:text-base text-xs">Jumlah Pabrik</a>
+                                            <a class="font-semibold sm:text-base text-xs">127 Unit</a>
                                         </div>
                                     </div>
                                 </div>
