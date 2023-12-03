@@ -16,7 +16,7 @@
                                 <span class="text-white text-xl font-semibold">Pengusahaan</span>
                             </div>
 
-                            <a href="{{ url('/dashboard/sawit/pengusahaan') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer">
+                            <a href="{{ url('/dashboard/sawit/pengusahaan') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer sm:text-base text-xs">
                                 Lihat Data
                             </a>
                         </div>
@@ -32,7 +32,7 @@
                                 <span class="text-white text-xl font-semibold">Perkebunan Besar</span>
                             </div>
 
-                            <a href="{{ url('/dashboard/sawit/perkebunanbesar') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer">
+                            <a href="{{ url('/dashboard/sawit/perkebunanbesar') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer sm:text-base text-xs">
                                 Lihat Data
                             </a>
                         </div>
@@ -48,7 +48,7 @@
                                 <span class="text-white text-xl font-semibold">Perkebunan Rakyat</span>
                             </div>
 
-                            <a href="{{ url('/dashboard/sawit/perkebunanrakyat') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer">
+                            <a href="{{ url('/dashboard/sawit/perkebunanrakyat') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer sm:text-base text-xs">
                                 Lihat Data
                             </a>
                         </div>
@@ -68,7 +68,7 @@
                                 <span class="text-white text-xl font-semibold">Mutasi Tanaman</span>
                             </div>
 
-                            <a href="{{ url('/dashboard/sawit/mutasitanaman') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer">
+                            <a href="{{ url('/dashboard/sawit/mutasitanaman') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer sm:text-base text-xs">
                                 Lihat Data
                             </a>
                         </div>
@@ -84,7 +84,7 @@
                                 <span class="text-white text-xl font-semibold">Pabrik</span>
                             </div>
 
-                            <a href="{{ url('/dashboard/sawit/pabrik') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer">
+                            <a href="{{ url('/dashboard/sawit/pabrik') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer sm:text-base text-xs">
                                 Lihat Data
                             </a>
                         </div>
@@ -100,7 +100,7 @@
                                 <span class="text-white text-xl font-semibold">Produksi</span>
                             </div>
 
-                            <a href="{{ url('/dashboard/sawit/produksi') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer">
+                            <a href="{{ url('/dashboard/sawit/produksi') }}" class="rounded-full px-4 py-2 bg-white font-semibold cursor-pointer sm:text-base text-xs">
                                 Lihat Data
                             </a>
                         </div>
