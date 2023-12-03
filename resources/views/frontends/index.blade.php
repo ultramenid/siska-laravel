@@ -48,11 +48,11 @@
                         </div>
 
 
-                        <div class="flex w-full justify-between mt-6 transition-all  delay-700">
-                            <div class="flex flex-col space-y-6 w-5/12">
-                                <div>
+                        <div class="flex sm:flex-row flex-col w-full justify-between mt-6 transition-all  delay-700">
+                            <div class="flex flex-col space-y-6 sm:w-5/12 w-full">
+                                <div class="w-full">
                                     <div class="px-4">
-                                        <div class="bg-white rounded-full px-1 py-1 flex space-x-2 items-center">
+                                        <div class="bg-white rounded-full px-1 py-1 flex space-x-2 items-center ">
                                             <img src="{{ asset('assets/measure.png') }}" alt="sawitkalteng">
                                             <a class="font-semibold pr-4">Luas Total</a>
                                         </div>
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex flex-col space-y-6 w-5/12">
+                            <div class="flex flex-col space-y-6 sm:w-5/12 w-full">
                                 <div>
                                     <div class="px-4">
                                         <div class="bg-white rounded-full px-1 py-1 flex space-x-2 items-center">
