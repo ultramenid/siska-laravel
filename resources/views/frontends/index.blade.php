@@ -39,8 +39,8 @@
                         <a  :class="open ? 'text-4xl font-extrabold text-white cursor-pointer' : 'text-5xl font-extrabold text-white cursor-pointer'">Sawit</a>
                     </div>
 
-                    <div x-show="open" style="display: none;" class="flex sm:flex-col flex-row justify-between " @click.outside="open=false">
-                        <div class="sm:flex hidden mt-6">
+                    <div x-show="open" style="display: none;" class="flex flex-col justify-between " @click.outside="open=false">
+                        <div class="flex mt-6">
                             <p class="text-white  text-xs  ">
                                 Telusuri data dan informasi industri pengolahan kelapa sawit meliputi jumlah, sebaran, serta kapasitas pengolahan pabrik di Kalimantan Tengah. <a href="{{ url('/dashboard/sawit') }}" class="underline">Selengkapnya</a>
                             </p>
