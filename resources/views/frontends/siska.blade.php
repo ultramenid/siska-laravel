@@ -5,8 +5,8 @@
         @include('partials.navMobile')
         @include('partials.nav')
 
-        <div class="max-w-3xl mx-auto px-6 pt-20">
-            <div class="pb-16 text-center">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="pt-8 pb-16 text-center">
                 <h1 class="text-4xl font-bold text-gray-900 mb-6">Tentang SISKA</h1>
                 <p class="text-gray-600 text-lg leading-relaxed mb-8">
                     Sistem Informasi Komoditas Perkebunan Kalimantan Tengah merupakan platform yang menyajikan data dan informasi mengenai komoditas perkebunan meliputi perkebunan sawit, karet, kelapa, lada, kopi, kakau, pinang, aren, jambu mete, kemiri, kapuk randu, dan cengkeh yang ada di Provinsi Kalimantan Tengah.
