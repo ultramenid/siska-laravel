@@ -74,7 +74,7 @@
         </div>
 
         <!-- Manfaat Section -->
-        <div class="bg-cream py-12 px-6 pb-24">
+        <div class="bg-cream py-12 px-6">
             <div class="max-w-4xl mx-auto">
                 <h2 class="text-2xl font-bold text-forest mb-8 text-center">Manfaat</h2>
                 <div class="grid md:grid-cols-3 gap-4">
