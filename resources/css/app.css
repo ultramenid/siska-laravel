@@ -23,6 +23,45 @@
     background-color: #009180;
 }
 
+.bg-sage-light {
+    background-color: #E8F5E9;
+}
+.bg-cream {
+    background-color: #FFFDD0;
+}
+.text-forest {
+    color: #228B22;
+}
+.text-sage {
+    color: #8FBC8F;
+}
+.border-terracotta {
+    border-color: #CC7755;
+}
+
+.organic-card {
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(34, 139, 34, 0.1);
+}
+.leaf-divider {
+    position: relative;
+}
+.leaf-divider:after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23228B22' d='M12 2C8 2 4 6 4 12c0 3 1 5 3 7 1 1 2 0 2-2 0-2-1-4-2-5-1-2 1-4 3-5 1-1 2 0 2 2 0 3-1 5-3 7-2 2-2 5-2 7 0 1 1 2 2 0 2 2 0 2-4 1-5 2-5 1-2 2 0 2-1 0-3-3-5 0-7 0-2-1-3-2-4 0-5 1-6 2-7 3-7 2 0 1 2 3 4 2 5 1 6 2 7 1 2 2 2 2 2 2 2 2 2 2 2 2 2?z=1'%3E%3C/path%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.nature-pattern {
+    background-image: radial-gradient(circle at 10% 20%, rgba(143, 194, 191, 0.1) 0%, transparent 20%);
+}
+
 .bg-color-siska{
     background-color:#009180;
 }
