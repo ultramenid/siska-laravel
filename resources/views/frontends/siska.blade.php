@@ -6,7 +6,7 @@
         @include('partials.nav')
 
         <div class="max-w-3xl mx-auto px-6">
-            <div class="pt-20 pb-16 text-center">
+            <div class="pt-24 pb-16 text-center">
                 <h1 class="text-4xl font-bold text-gray-900 mb-6">Tentang SISKA</h1>
                 <p class="text-gray-600 text-lg leading-relaxed mb-8">
                     Sistem Informasi Komoditas Perkebunan Kalimantan Tengah merupakan platform yang menyajikan data dan informasi mengenai komoditas perkebunan meliputi perkebunan sawit, karet, kelapa, lada, kopi, kakau, pinang, aren, jambu mete, kemiri, kapuk randu, dan cengkeh yang ada di Provinsi Kalimantan Tengah.
@@ -34,6 +34,8 @@
                 </div>
             </div>
 
+            <hr class="border-gray-200 mb-20">
+
             <div class="mb-20">
                 <h2 class="text-2xl font-semibold text-gray-900 mb-8">Produk & Pengguna</h2>
                 <div class="grid md:grid-cols-2 gap-6">
@@ -51,6 +53,8 @@
                     </div>
                 </div>
             </div>
+
+            <hr class="border-gray-200 mb-20">
 
             <div class="mb-20">
                 <h2 class="text-2xl font-semibold text-gray-900 mb-8">Manfaat</h2>
