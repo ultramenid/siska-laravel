@@ -1,62 +1,116 @@
 @extends('layouts.indexLayout')
 
 @section('content')
-    <section class="w-full relative" >
+    <section class="w-full relative">
         @include('partials.navMobile')
         @include('partials.nav')
-        <div class="flex justify-center max-w-3xl mx-auto sm:mt-32 py-4 px-4">
-            <p class="mb-4 leading-relaxed">Sistem Informasi Komoditas Perkebunan Kalimantan Tengah merupakan platform yang menyajikan data dan informasi mengenai komoditas perkebunan meliputi perkebunan sawit, karet, kelapa, lada, kopi, kakau, pinang, aren, jambu mete, kemiri, kapuk randu, dan cengkeh yang ada di Provinsi Kalimantan Tengah. Platform ini merupakan inisiatif pemerintah provinsi yang dibangun sejak 2022 untuk sebagai upaya untuk mendukung industrialisasi perkebunan yang berkelanjutan. Platform ini menghimpun, mengintegrasikan, dan memvisualisasikan informasi perizinan perkebunan, industri pengolahan, perkebunan rakyat, dan produksi.</p>
+
+        <!-- Hero Section -->
+        <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+            <img src="{{ asset('assets/v1/web-logo-ok-disbun.png') }}" alt="SISKA" class="h-20 mx-auto mb-8">
+            <h1 class="text-4xl font-bold text-forest mb-6">Tentang SISKA</h1>
+            <p class="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto">
+                Sistem Informasi Komoditas Perkebunan Kalimantan Tengah merupakan platform yang menyajikan data dan informasi mengenai komoditas perkebunan meliputi perkebunan sawit, karet, kelapa, lada, kopi, kakau, pinang, aren, jambu mete, kemiri, kapuk randu, dan cengkeh yang ada di Provinsi Kalimantan Tengah.
+            </p>
+            <div class="mt-12 mb-8 leaf-divider"></div>
         </div>
 
-        <div class="max-w-3xl mx-auto px-4 py-4 border border-siska" x-data="{nav:'tujuan'}">
-            <div class="flex whitespace-nowrap justify-center max-w-3xl mx-auto   ">
-
-                <div :class="(nav === 'tujuan') ? 'bgtentangsiskagelap flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 cursor-pointer ' : ' cursor-pointer bgtentangsiskamuda flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 ' " @click="nav='tujuan'">
-                    <a class="text-white sm:text-sm text-xs">TUJUAN</a>
-                </div>
-                <div :class="(nav === 'produkpengguna') ? 'bgtentangsiskagelap flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 cursor-pointer ' : ' cursor-pointer bgtentangsiskamuda flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 ' " @click="nav='produkpengguna'">
-                    <a class="text-white sm:text-sm text-xs ">PRODUK & PENGGUNA</a>
-                </div>
-                <div :class="(nav === 'manfaat') ? 'bgtentangsiskagelap flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 cursor-pointer ' : ' cursor-pointer bgtentangsiskamuda flex justify-center sm:w-3/12 w-full h-full  py-4 px-1 ' " @click="nav='manfaat'">
-                    <a class="text-white sm:text-sm text-xs">MANFAAT</a>
-                </div>
-            </div>
-            <div class="flex flex-col  max-w-3xl mx-auto text-sm mt-4">
-                <div x-show="nav==='tujuan'" style="display: none !important;">
-                    <p class="leading-relaxed mb-2"> <a class="font-bold">Tujuan</a> mendukung penerapan decision support system untuk perencanaan, pengawasan dan pengendalian usaha perkebunan  di Kalimantan Tengah yang terukur, berkeadilan dan berkelanjutan.</p>
-                    <div class="w-full flex sm:flex-row flex-col mb-6">
-                        <div class="border border-black  px-4 py-2 sm:w-4/12 w-full">
-                            <a class="font-bold mb-1">Terukur:</a>
-                            <p>Perencanaan, pengendalian dan pengawasan perkebunan akan lebih terukur dengan basis data yang kredibel dan terintegrasi sehingga menjamin stabilitas industrialisasi perkebunan </p>
+        <!-- Tujuan Section -->
+        <div class="bg-sage-light py-20 px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-forest mb-8 text-center">Tujuan</h2>
+                <p class="text-gray-700 leading-relaxed mb-12 text-center max-w-2xl mx-auto">
+                    Mendukung penerapan decision support system untuk perencanaan, pengawasan dan pengendalian usaha perkebunan di Kalimantan Tengah yang terukur, berkeadilan dan berkelanjutan.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white organic-card p-6 text-center nature-pattern">
+                        <div class="w-16 h-16 bg-sage rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
                         </div>
-                        <div class="sm:border-t sm:border-b sm:border-l-0 sm:border-r-0 border-l border-r border-black px-4 py-2 sm:w-4/12 w-full">
-                            <a class="font-bold mb-1">Berkeadilan:</a>
-                            <p>Perkembangan usaha perkebunan  tidak hanya fokus pada perkebunan skala besar namun juga berdampak langsung pada perkebunan rakyat serta berkontribusi pada pendapatan daerah</p>
+                        <h3 class="text-xl font-semibold text-forest mb-2">Terukur</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Perencanaan, pengendalian dan pengawasan perkebunan akan lebih terukur dengan basis data yang kredibel dan terintegrasi.</p>
+                    </div>
+                    <div class="bg-white organic-card p-6 text-center nature-pattern">
+                        <div class="w-16 h-16 bg-forest rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
                         </div>
-                        <div class="border border-black px-4 py-2 sm:w-4/12 w-full">
-                            <a class="font-bold mb-1">Berkelanjutan:</a>
-                            <p>Pengembangan perkebunan  selaras dengan daya dukung dan daya tampung lingkungan sebagai bentuk komitmen pembangunan berkelanjutan </p>
+                        <h3 class="text-xl font-semibold text-forest mb-2">Berkeadilan</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Perkembangan usaha perkebunan tidak hanya fokus pada perkebunan skala besar namun juga berdampak langsung pada perkebunan rakyat.</p>
+                    </div>
+                    <div class="bg-white organic-card p-6 text-center nature-pattern">
+                        <div class="w-16 h-16 bg-terracotta rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 0118 0z"></path>
+                            </svg>
                         </div>
+                        <h3 class="text-xl font-semibold text-forest mb-2">Berkelanjutan</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Pengembangan perkebunan selaras dengan daya dukung dan daya tampung lingkungan sebagai bentuk komitmen pembangunan berkelanjutan.</p>
                     </div>
                 </div>
-                <div x-show="nav==='produkpengguna'" style="display: none !important;">
-                    <p class="leading-relaxed mb-4"> <a class="font-bold">Produk</a> dalam platform ini meliputi basis data perizinan, pabrik, dan perkebunan  rakyat yang disajikan dalam dashboard data dan peta yang memungkinkan pengguna mengakses dan mengeksplor perkembangan perkebunan  berdasarkan kabupaten, subyek perizinan, status lahan dsb.</p>
+            </div>
+        </div>
 
-                    <p class="leading-relaxed mb-6"><a class="font-bold"> Pengguna </a> adalah internal Dinas Perkebunan Provinsi Kalimantan Tengah, Instansi Pemerintah lainnya, dan Publik.</p>
+        <!-- Produk & Pengguna Section -->
+        <div class="py-20 px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-forest mb-12 text-center">Produk & Pengguna</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-sage-light organic-card p-8">
+                        <h3 class="text-2xl font-semibold text-forest mb-4">Produk</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Basis data perizinan, pabrik, dan perkebunan rakyat yang disajikan dalam dashboard data dan peta yang memungkinkan pengguna mengakses dan mengeksplor perkembangan perkebunan berdasarkan kabupaten, subyek perizinan, status lahan dan lainnya.
+                        </p>
+                    </div>
+                    <div class="bg-cream organic-card p-8">
+                        <h3 class="text-2xl font-semibold text-forest mb-4">Pengguna</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Internal Dinas Perkebunan Provinsi Kalimantan Tengah, Instansi Pemerintah lainnya, dan Publik.
+                        </p>
+                    </div>
                 </div>
-                <div x-show="nav==='manfaat'" style="display: none !important;">
-                    <p class="mb-4"><a class="font-bold">Pemerintah Daerah</a>: Memudahkan Pemerintah Provinsi dan Kabupaten/Kota menghimpun dan menyajikan data secara cepat untuk mendukung perencanaan, pengawasan dan pengendalian perizinan, termasuk penilaian usaha perkebunan.</p>
-                    <p class="mb-4"><a class="font-bold">Pemerintah Pusat</a>: Memudahkan Pemerintah Pusat mengintegrasikan data untuk pengawasan kepatuhan perizinan, kewajiban keuangan dan lingkungan, serta kinerja perkebunan.</p>
-                    <p class="mb-4"><a class="font-bold">Pelaku Usaha</a>: Memungkinkan Pelaku Usaha untuk mengidentifikasi potensi pasokan bahan baku dan pengawasan rantai pasok dari perkebunan rakyat.
-                            </p>
+            </div>
+        </div>
+
+        <!-- Manfaat Section -->
+        <div class="bg-cream py-20 px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-forest mb-12 text-center">Manfaat</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white organic-card p-6 text-center">
+                        <div class="w-14 h-14 bg-forest rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m0 0h16m-16 0h16"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-forest mb-2">Pemerintah Daerah</h3>
+                        <p class="text-gray-600 text-sm">Memudahkan Pemerintah Provinsi dan Kabupaten/Kota menghimpun dan menyajikan data secara cepat untuk mendukung perencanaan, pengawasan dan pengendalian perizinan.</p>
+                    </div>
+                    <div class="bg-white organic-card p-6 text-center">
+                        <div class="w-14 h-14 bg-sage rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v-7a2 2 0 012 2v7a2 2 0 002-2 2 2 0 012-2 2 2 0 002 2v-1a2 2 0 012-2h2.945"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-forest mb-2">Pemerintah Pusat</h3>
+                        <p class="text-gray-600 text-sm">Memudahkan Pemerintah Pusat mengintegrasikan data untuk pengawasan kepatuhan perizinan, kewajiban keuangan dan lingkungan.</p>
+                    </div>
+                    <div class="bg-white organic-card p-6 text-center">
+                        <div class="w-14 h-14 bg-terracotta rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-3-3h-4m-2 5h2v-2a3 3 0 00-3-3H7a3 3 0 00-3 3v2h2v-2a3 3 0 013-3h4a3 3 0 013 3v2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-forest mb-2">Pelaku Usaha</h3>
+                        <p class="text-gray-600 text-sm">Memungkinkan Pelaku Usaha untuk mengidentifikasi potensi pasokan bahan baku dan pengawasan rantai pasok dari perkebunan rakyat.</p>
+                    </div>
                 </div>
-
-
             </div>
         </div>
 
         @include('partials.footer')
     </section>
 @endsection
-
-
