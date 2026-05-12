@@ -42,7 +42,7 @@ larasiska-react/
 └── package.json
 ```
 
-## Pages (20 total)
+## Pages (12 total)
 
 ### Public Pages
 1. **HomePage** (`/`) - Landing with expandable commodity cards
@@ -50,25 +50,22 @@ larasiska-react/
 3. **Map** (`/map`) - Interactive Leaflet map
 4. **Data** (`/data`) - Tabbed data tables
 
-### Dashboard Pages (with sidebar)
-5. **SawitDashboard** (`/dashboard/sawit`) - 6-card grid
-6. **MutasiTanaman** (`/dashboard/sawit/mutasitanaman`) - Plant mutation chart
-7. **MutasiTanamanRakyat** (`/dashboard/sawit/mutasitanamanrakyat`)
-8. **Pengusahaan** (`/dashboard/sawit/pengusahaan`) - Cultivation chart
-9. **PerkebunanBesar** (`/dashboard/sawit/perkebunanbesar`)
-10. **PerkebunanRakyat** (`/dashboard/sawit/perkebunanrakyat`)
-11. **Produksi** (`/dashboard/sawit/produksi`) - Data studio iframe
-12. **Pabrik** (`/dashboard/sawit/pabrik`) - Factory data
-13. **Izin** (`/dashboard/sawit/izin`) - Business permits
-14. **SawitRakyat** (`/dashboard/sawit/sawitrakyat`) - Smallholders
-15. **AnalisisTutupanSawit** (`/dashboard/sawit/analisistutupansawit`)
+### Dashboard Page (Consolidated - with sidebar + tabs)
+5. **SawitDashboard** (`/dashboard/sawit`) - ONE page with tabbed sections:
+   - **Mutasi Tanaman** → sub-tabs: PBS / Rakyat
+   - **Pengusahaan** → PBS vs PBR comparison
+   - **Perkebunan** → sub-tabs: Besar / Rakyat
+   - **Produksi** → TBS, CPO, Jumlah Pabrik stats
+   - **Pabrik** → Factory list/map
+   - **Izin** → Business permits data
+   - **Sawit Rakyat** → Smallholders data
 
 ### Static Pages
-16. **Tentang** (`/tentang`) - About SISKA with tabs
-17. **FAQ** (`/faq`) - FAQ accordion
-18. **Tim** (`/tim`) - Team page
-19. **DaftarIstilah** (`/daftaristilah`) - Glossary
-20. **Siska** (`/siska`) - Alternative about page
+6. **Tentang** (`/tentang`) - About SISKA with tabs
+7. **FAQ** (`/faq`) - FAQ accordion
+8. **Tim** (`/tim`) - Team page
+9. **DaftarIstilah** (`/daftaristilah`) - Glossary
+10. **Siska** (`/siska`) - Alternative about page
 
 ## Design System
 
@@ -108,10 +105,41 @@ Static JSON files extracted from Laravel:
 
 ### Navigation
 - **TopNav**: Logo, Home, Tentang, Peta, Data links + dark mode toggle
-- **Sidebar**: Dashboard navigation (6 links)
+- **Sidebar**: Dashboard navigation (7 tabs in sidebar)
 - **MobileNav**: Collapsible hamburger menu
 
-### DashboardLayout
+### DashboardLayout (Tabbed Single-Page Dashboard)
+```
+┌─────────────────────────────────────────────────────────┐
+│  🌴 SISKA Dashboard                      [User] [⚙]   │
+├──────────────┬──────────────────────────────────────────┤
+│              │  [Mutasi] [Pengusaha] [Perkebun] [Produk]│
+│  Sidebar     ├──────────────────────────────────────────┤
+│              │                                          │
+│  • Mutasi    │         ┌────────────────────────┐       │
+│    Tanaman   │         │                        │       │
+│  • Pengusaha │         │      MAIN CHART        │       │
+│    an        │         │                        │       │
+│  • Perkebun  │         └────────────────────────┘       │
+│    an        │                                          │
+│  • Produksi  │         ┌────┬────┬────┬────┐            │
+│  • Pabrik    │         │Stat│Stat│Stat│Stat│            │
+│  • Izin      │         └────┴────┴────┴────┘            │
+│  • Sawit     │                                          │
+│    Rakyat    │                                          │
+└──────────────┴──────────────────────────────────────────┘
+```
+
+### HomepageLayout
+```
+┌─────────────────────────────────┐
+│           TopNav                │
+├─────────────────────────────────┤
+│                                 │
+│      Commodity Cards Grid       │
+│   (Sawit, Karet, Kelapa...)    │
+│                                 │
+└─────────────────────────────────┘
 ```
 ┌─────────────────────────────────┐
 │           TopNav                │
@@ -170,19 +198,21 @@ Simple session-based auth:
 
 1. Project scaffolding (Vite + React + Tailwind + shadcn)
 2. Layout components (MainLayout, DashboardLayout, Navigation)
-3. Static pages (Homepage first, then others)
-4. Data tables + Livewire equivalent
-5. Charts integration
-6. Map integration
-7. Authentication
-8. Polish (animations, transitions)
+3. Homepage (commodity cards with expandable panels)
+4. **Consolidated SawitDashboard** (tabbed interface with all chart sections)
+5. Map page
+6. Data page with tabs
+7. Static pages (Tentang, FAQ, Tim, Glossary)
+8. Login/auth
+9. Polish (animations, transitions)
 
 ## Success Criteria
 
-- [ ] All 20 pages render correctly
+- [ ] All 12 pages render correctly
+- [ ] Dashboard tabs switch charts/data correctly
 - [ ] Navigation works between all pages
-- [ ] Charts display data correctly
-- [ ] Map loads with layers
+- [ ] Charts display data correctly (Recharts)
+- [ ] Map loads with layers (react-leaflet)
 - [ ] Responsive on mobile/tablet/desktop
 - [ ] Login/auth protects dashboard pages
 - [ ] No console errors
