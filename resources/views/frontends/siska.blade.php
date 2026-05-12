@@ -6,13 +6,11 @@
         @include('partials.nav')
 
         <!-- Hero Section -->
-        <div class="max-w-4xl mx-auto px-6 py-20 text-center">
-            <img src="{{ asset('assets/v1/web-logo-ok-disbun.png') }}" alt="SISKA" class="h-20 mx-auto mb-8">
+        <div class="max-w-4xl mx-auto px-6 py-16 text-center">
             <h1 class="text-4xl font-bold text-forest mb-6">Tentang SISKA</h1>
             <p class="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto">
                 Sistem Informasi Komoditas Perkebunan Kalimantan Tengah merupakan platform yang menyajikan data dan informasi mengenai komoditas perkebunan meliputi perkebunan sawit, karet, kelapa, lada, kopi, kakau, pinang, aren, jambu mete, kemiri, kapuk randu, dan cengkeh yang ada di Provinsi Kalimantan Tengah.
             </p>
-            <div class="mt-12 mb-8 leaf-divider"></div>
         </div>
 
         <!-- Tujuan Section -->
@@ -76,7 +74,7 @@
         </div>
 
         <!-- Manfaat Section -->
-        <div class="bg-cream py-20 px-6">
+        <div class="bg-cream py-20 px-6 pb-32">
             <div class="max-w-4xl mx-auto">
                 <h2 class="text-3xl font-bold text-forest mb-12 text-center">Manfaat</h2>
                 <div class="grid md:grid-cols-3 gap-6">
