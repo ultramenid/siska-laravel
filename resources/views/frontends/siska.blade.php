@@ -5,8 +5,10 @@
         @include('partials.nav')
 
         {{-- Hero --}}
-        <div class="w-full flex items-center justify-center" style="background-color: #132822; min-height: 40vh;">
-            <div class="text-center px-6 py-16">
+        <div class="w-full relative flex items-center justify-center" style="min-height: 40vh;">
+            <img src="{{ asset('assets/v1/sawitfull.png') }}" alt="Sawit" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+            <div class="relative text-center px-6 py-16">
                 <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">Tentang SISKA</h1>
                 <p class="text-white text-base sm:text-lg opacity-80">Sistem Informasi Komoditas Perkebunan Kalimantan Tengah</p>
             </div>
