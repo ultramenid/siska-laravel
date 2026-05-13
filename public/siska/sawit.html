@@ -80,30 +80,34 @@
 
     <hr class="border-gray-200" />
 
-    <!-- 4. PRODUKSI PBS -->
+    <!-- 4. PERKEBUNAN BESAR -->
     <section>
-      <h2 class="text-xl font-bold text-gray-900 mb-1">Produksi — Perkebunan Besar Swasta</h2>
+      <h2 class="text-xl font-bold text-gray-900 mb-1">Perkebunan Besar Swasta</h2>
       <div class="w-12 h-1 rounded mb-6" style="background-color:#009180;"></div>
-      <div id="chart-produksi-pbs" class="w-full"></div>
+      <div id="chart-perkebunanbesar" class="w-full"></div>
     </section>
 
     <hr class="border-gray-200" />
 
-    <!-- 5. PRODUKSI PBR -->
+    <!-- 5. PERKEBUNAN RAKYAT -->
     <section>
-      <h2 class="text-xl font-bold text-gray-900 mb-1">Produksi — Perkebunan Rakyat</h2>
+      <h2 class="text-xl font-bold text-gray-900 mb-1">Perkebunan Rakyat</h2>
       <div class="w-12 h-1 rounded mb-6" style="background-color:#009180;"></div>
-      <div id="chart-produksi-pbr" class="w-full"></div>
+      <div id="chart-perkebunanrakyat" class="w-full"></div>
     </section>
 
     <hr class="border-gray-200" />
 
-    <!-- 6. PRODUKSI SECTION (coming soon) -->
+    <!-- 6. PRODUKSI (coming soon) -->
     <section>
       <h2 class="text-xl font-bold text-gray-900 mb-1">Produksi</h2>
       <div class="w-12 h-1 rounded mb-6" style="background-color:#009180;"></div>
-      <div class="flex items-center justify-center rounded-xl border-2 border-dashed border-gray-200 py-16 text-gray-400 text-sm">
-        Data segera tersedia
+      <div class="flex flex-col items-center justify-center py-16 text-center">
+        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-4" style="background-color:#e6f4f2;">
+          <svg class="w-8 h-8" style="color:#009180;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-700 mb-1">Data Produksi</h3>
+        <p class="text-sm text-gray-400">Segera hadir</p>
       </div>
     </section>
 
@@ -135,166 +139,66 @@
 
   <!-- HIGHCHARTS INIT -->
   <script>
-    const BRAND = ['#009180', '#132822', '#8ccfc2', '#4a9e8e', '#1e4d3d'];
-    const YEARS = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021];
+    var brandColors = ['#009180', '#132822', '#8ccfc2', '#4a9e8e', '#1e4d3d'];
 
-    const baseOptions = {
-      colors: BRAND,
-      chart: {
-        height: 300,
-        backgroundColor: '#ffffff',
-        style: { fontFamily: 'inherit' }
-      },
-      credits: { enabled: false },
-      title: { text: null },
-      xAxis: {
-        categories: YEARS,
-        labels: { style: { color: '#555' } },
-        lineColor: '#e5e7eb',
-        tickColor: '#e5e7eb'
-      },
-      yAxis: {
-        gridLineColor: '#f3f4f6',
-        labels: { style: { color: '#555' } },
-        title: { text: null }
-      },
-      tooltip: {
-        backgroundColor: '#132822',
-        style: { color: '#ffffff' },
-        borderRadius: 6,
-        borderWidth: 0,
-        shadow: false
-      },
-      legend: {
-        itemStyle: { color: '#374151', fontWeight: '500' }
-      },
+    var areaDefaults = {
+      credits: false,
+      title: { text: '' },
+      colors: brandColors,
+      chart: { type: 'area', height: 300, style: { fontFamily: 'inherit' }, backgroundColor: '#ffffff' },
+      yAxis: { title: { text: '' }, gridLineColor: '#f0f0f0' },
+      xAxis: { lineColor: '#e5e7eb', tickColor: '#e5e7eb', labels: { style: { color: '#6b7280', fontSize: '11px' } } },
+      legend: { itemStyle: { color: '#374151', fontSize: '11px', fontWeight: 'normal' } },
+      tooltip: { shared: true, backgroundColor: '#132822', style: { color: '#ffffff' }, headerFormat: '<span style="font-size:11px;font-weight:bold">{point.key}</span><br>' },
       plotOptions: {
-        area: {
-          stacking: 'normal',
-          fillOpacity: 0.7,
-          lineWidth: 1.5,
-          marker: { enabled: false }
-        },
-        spline: {
-          lineWidth: 2.5,
-          marker: { enabled: false }
-        }
+        series: { pointStart: 2010 },
+        area: { stacking: 'normal', lineWidth: 1.5, fillOpacity: 0.7, marker: { radius: 3, lineWidth: 1 } }
       }
     };
 
-    // 1. Pengusahaan — PBS vs PBR total luas (ha)
-    Highcharts.chart('chart-pengusahaan', Highcharts.merge(baseOptions, {
-      chart: Highcharts.merge(baseOptions.chart, { type: 'area' }),
-      yAxis: Highcharts.merge(baseOptions.yAxis, {
-        title: { text: 'Luas (ha)' }
-      }),
-      tooltip: Highcharts.merge(baseOptions.tooltip, {
-        valueSuffix: ' ha'
-      }),
+    var splineDefaults = {
+      credits: false,
+      title: { text: '' },
+      colors: brandColors,
+      chart: { type: 'spline', height: 300, style: { fontFamily: 'inherit' }, backgroundColor: '#ffffff' },
+      yAxis: { title: { text: '' }, gridLineColor: '#f0f0f0', labels: { format: '{value} ton', style: { color: '#6b7280', fontSize: '11px' } } },
+      xAxis: { lineColor: '#e5e7eb', tickColor: '#e5e7eb', labels: { style: { color: '#6b7280', fontSize: '11px' } } },
+      legend: { itemStyle: { color: '#374151', fontSize: '11px', fontWeight: 'normal' } },
+      tooltip: { crosshairs: true, shared: true, backgroundColor: '#132822', style: { color: '#ffffff' } },
+      plotOptions: { spline: { marker: { radius: 3, lineWidth: 1 } } }
+    };
+
+    Highcharts.chart('chart-pengusahaan', Highcharts.merge(areaDefaults, {
       series: [
-        {
-          name: 'PBS — Total Luas',
-          data: [312000, 345000, 389000, 432000, 478000, 521000, 563000, 598000, 634000, 671000, 698000, 712000]
-        },
-        {
-          name: 'PBR — Total Luas',
-          data: [185000, 204000, 228000, 257000, 289000, 318000, 347000, 374000, 398000, 421000, 439000, 452000]
-        }
+        { name: 'Perkebunan Besar Swasta', data: [312000, 345000, 389000, 432000, 478000, 521000, 563000, 598000, 634000, 671000, 698000, 712000] },
+        { name: 'Perkebunan Rakyat', data: [185000, 204000, 228000, 257000, 289000, 318000, 347000, 374000, 398000, 421000, 439000, 452000] }
       ]
     }));
 
-    // 2. Mutasi Tanaman PBS — TBM, TM, TR
-    Highcharts.chart('chart-mutasi-pbs', Highcharts.merge(baseOptions, {
-      chart: Highcharts.merge(baseOptions.chart, { type: 'area' }),
-      yAxis: Highcharts.merge(baseOptions.yAxis, {
-        title: { text: 'Luas (ha)' }
-      }),
-      tooltip: Highcharts.merge(baseOptions.tooltip, {
-        valueSuffix: ' ha'
-      }),
+    Highcharts.chart('chart-mutasi-pbs', Highcharts.merge(areaDefaults, {
       series: [
-        {
-          name: 'TBM (Tanaman Belum Menghasilkan)',
-          data: [98000, 112000, 127000, 143000, 158000, 167000, 172000, 178000, 182000, 185000, 179000, 171000]
-        },
-        {
-          name: 'TM (Tanaman Menghasilkan)',
-          data: [198000, 215000, 241000, 268000, 296000, 328000, 361000, 388000, 418000, 448000, 476000, 498000]
-        },
-        {
-          name: 'TR (Tanaman Rusak/Tua)',
-          data: [16000, 18000, 21000, 21000, 24000, 26000, 30000, 32000, 34000, 38000, 43000, 43000]
-        }
+        { name: 'Tanaman Belum Menghasilkan (ha)', data: [98000, 112000, 127000, 143000, 158000, 167000, 172000, 178000, 182000, 185000, 179000, 171000] },
+        { name: 'Tanaman Menghasilkan (ha)', data: [198000, 215000, 241000, 268000, 296000, 328000, 361000, 388000, 418000, 448000, 476000, 498000] },
+        { name: 'Tanaman Rusak (ha)', data: [16000, 18000, 21000, 21000, 24000, 26000, 30000, 32000, 34000, 38000, 43000, 43000] }
       ]
     }));
 
-    // 3. Mutasi Tanaman PBR — TBM, TM, TR
-    Highcharts.chart('chart-mutasi-pbr', Highcharts.merge(baseOptions, {
-      chart: Highcharts.merge(baseOptions.chart, { type: 'area' }),
-      yAxis: Highcharts.merge(baseOptions.yAxis, {
-        title: { text: 'Luas (ha)' }
-      }),
-      tooltip: Highcharts.merge(baseOptions.tooltip, {
-        valueSuffix: ' ha'
-      }),
+    Highcharts.chart('chart-mutasi-pbr', Highcharts.merge(areaDefaults, {
       series: [
-        {
-          name: 'TBM (Tanaman Belum Menghasilkan)',
-          data: [54000, 62000, 71000, 82000, 93000, 101000, 107000, 112000, 115000, 117000, 113000, 108000]
-        },
-        {
-          name: 'TM (Tanaman Menghasilkan)',
-          data: [121000, 131000, 145000, 161000, 179000, 198000, 218000, 237000, 255000, 272000, 289000, 303000]
-        },
-        {
-          name: 'TR (Tanaman Rusak/Tua)',
-          data: [10000, 11000, 12000, 14000, 17000, 19000, 22000, 25000, 28000, 32000, 37000, 41000]
-        }
+        { name: 'Tanaman Belum Menghasilkan (ha)', data: [54000, 62000, 71000, 82000, 93000, 101000, 107000, 112000, 115000, 117000, 113000, 108000] },
+        { name: 'Tanaman Menghasilkan (ha)', data: [121000, 131000, 145000, 161000, 179000, 198000, 218000, 237000, 255000, 272000, 289000, 303000] },
+        { name: 'Tanaman Rusak (ha)', data: [10000, 11000, 12000, 14000, 17000, 19000, 22000, 25000, 28000, 32000, 37000, 41000] }
       ]
     }));
 
-    // 4. Produksi PBS — spline
-    Highcharts.chart('chart-produksi-pbs', Highcharts.merge(baseOptions, {
-      chart: Highcharts.merge(baseOptions.chart, { type: 'spline' }),
-      yAxis: Highcharts.merge(baseOptions.yAxis, {
-        title: { text: 'Produksi (ton)' }
-      }),
-      tooltip: Highcharts.merge(baseOptions.tooltip, {
-        valueSuffix: ' ton'
-      }),
-      series: [
-        {
-          name: 'Produksi PBS',
-          color: '#009180',
-          data: [
-            3120000, 3480000, 3890000, 4320000, 4780000,
-            5210000, 5630000, 5980000, 6340000, 6710000,
-            6980000, 7120000
-          ]
-        }
-      ]
+    Highcharts.chart('chart-perkebunanbesar', Highcharts.merge(splineDefaults, {
+      xAxis: { categories: [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021] },
+      series: [{ name: 'Perkebunan Besar Swasta', marker: { symbol: 'circle' }, data: [3120000,3480000,3890000,4320000,4780000,5210000,5630000,5980000,6340000,6710000,6980000,7120000] }]
     }));
 
-    // 5. Produksi PBR — spline
-    Highcharts.chart('chart-produksi-pbr', Highcharts.merge(baseOptions, {
-      chart: Highcharts.merge(baseOptions.chart, { type: 'spline' }),
-      yAxis: Highcharts.merge(baseOptions.yAxis, {
-        title: { text: 'Produksi (ton)' }
-      }),
-      tooltip: Highcharts.merge(baseOptions.tooltip, {
-        valueSuffix: ' ton'
-      }),
-      series: [
-        {
-          name: 'Produksi PBR',
-          color: '#4a9e8e',
-          data: [
-            1210000, 1380000, 1560000, 1740000, 1930000,
-            2110000, 2290000, 2460000, 2620000, 2780000,
-            2910000, 3020000
-          ]
-        }
-      ]
+    Highcharts.chart('chart-perkebunanrakyat', Highcharts.merge(splineDefaults, {
+      xAxis: { categories: [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021] },
+      series: [{ name: 'Perkebunan Rakyat', marker: { symbol: 'circle' }, data: [1210000,1380000,1560000,1740000,1930000,2110000,2290000,2460000,2620000,2780000,2910000,3020000] }]
     }));
   </script>
 
