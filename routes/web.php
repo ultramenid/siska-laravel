@@ -36,16 +36,6 @@ Route::get('/data', [DataController::class, 'index']);
 
     // sawit
     Route::get('/dashboard/sawit/pabrik', [FrontendDashboardController::class, 'index']);
-    // Route::get('/dashboard/sawit/produksi', [FrontendDashboardController::class, 'produksi']);
-    // Route::get('/dashboard/sawit/izin', [FrontendDashboardController::class, 'izin']);
-    // Route::get('/dashboard/sawit/sawitrakyat', [FrontendDashboardController::class, 'sawitrakyat']);
-    // Route::get('/dashboard/sawit/analisistutupansawit', [FrontendDashboardController::class, 'analisistutupansawit']);
-    Route::get('/dashboard/sawit/mutasitanaman', [sawitController::class, 'mutasitanaman']);
-    Route::get('/dashboard/sawit/mutasitanamanrakyat', [sawitController::class, 'mutasitanamanrakyat']);
-    Route::get('/dashboard/sawit/pengusahaan', [sawitController::class, 'pengusahaan']);
-    Route::get('/dashboard/sawit/perkebunanbesar', [sawitController::class, 'perkebunanbesar']);
-    Route::get('/dashboard/sawit/perkebunanrakyat', [sawitController::class, 'perkebunanrakyat']);
-    Route::get('/dashboard/sawit/produksi', [sawitController::class, 'produksi']);
 
 
 
