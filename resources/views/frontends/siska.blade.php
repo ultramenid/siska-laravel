@@ -6,7 +6,7 @@
 
         {{-- Hero --}}
         <div class="w-full relative flex items-center justify-center" style="min-height: 40vh;">
-            <img src="{{ asset('assets/v1/sawitfull.png') }}" alt="Sawit" class="absolute inset-0 w-full h-full object-cover">
+            <img src="{{ asset('assets/v1/perkebunanrakyat.png') }}" alt="Sawit" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-black opacity-60"></div>
             <div class="relative text-center px-6 py-16">
                 <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">Tentang SISKA</h1>
