@@ -1,9 +1,9 @@
 <div>
-    <div class="rounded-xl border border-gray-200">
-        <table class="w-full text-xs table-fixed">
+    <div class="overflow-x-auto rounded-xl border border-gray-200">
+        <table class="w-full text-xs">
             <thead>
                 <tr style="background-color: #132822;">
-                    <th wire:click='sortingField("tahun")' class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider cursor-pointer w-14">
+                    <th wire:click='sortingField("tahun")' class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider cursor-pointer whitespace-nowrap">
                         <div class="flex items-center gap-1">
                             Tahun
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 opacity-70 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -11,30 +11,30 @@
                             </svg>
                         </div>
                     </th>
-                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider w-20">TBM</th>
-                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider w-20">TM</th>
-                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider w-20">TR</th>
-                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider w-24">Total Luas</th>
-                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider w-24">Produksi</th>
-                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider w-24">Produktifitas</th>
-                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider w-16">Petani</th>
-                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider w-16">Produk</th>
-                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider">Pengusahaan</th>
+                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider whitespace-nowrap">TBM</th>
+                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider whitespace-nowrap">TM</th>
+                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider whitespace-nowrap">TR</th>
+                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider whitespace-nowrap">Total Luas</th>
+                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider whitespace-nowrap">Produksi</th>
+                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider whitespace-nowrap">Produktifitas</th>
+                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider whitespace-nowrap">Petani</th>
+                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider whitespace-nowrap">Produk</th>
+                    <th class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider whitespace-nowrap">Pengusahaan</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100">
                 @forelse ($sawit as $index => $item)
                 <tr class="{{ $index % 2 === 0 ? 'bg-white' : 'bg-gray-50' }} hover:bg-teal-50 transition-colors duration-100">
-                    <td class="px-2 py-2 font-medium text-gray-900">{{ $item->tahun }}</td>
-                    <td class="px-2 py-2 text-gray-600">{{ number_format($item->tbm, 2) }}</td>
-                    <td class="px-2 py-2 text-gray-600">{{ number_format($item->tm, 2) }}</td>
-                    <td class="px-2 py-2 text-gray-600">{{ number_format($item->tr, 2) }}</td>
-                    <td class="px-2 py-2 text-gray-600">{{ number_format($item->totalluas, 2) }}</td>
-                    <td class="px-2 py-2 text-gray-600">{{ number_format($item->produksi, 2) }}</td>
-                    <td class="px-2 py-2 text-gray-600">{{ number_format($item->produktifitas, 2) }}</td>
-                    <td class="px-2 py-2 text-gray-600">{{ $item->petani }}</td>
-                    <td class="px-2 py-2 text-gray-600">{{ $item->produk }}</td>
-                    <td class="px-2 py-2">
+                    <td class="px-2 py-2 font-medium text-gray-900 whitespace-nowrap">{{ $item->tahun }}</td>
+                    <td class="px-2 py-2 text-gray-600 whitespace-nowrap">{{ number_format($item->tbm, 2) }}</td>
+                    <td class="px-2 py-2 text-gray-600 whitespace-nowrap">{{ number_format($item->tm, 2) }}</td>
+                    <td class="px-2 py-2 text-gray-600 whitespace-nowrap">{{ number_format($item->tr, 2) }}</td>
+                    <td class="px-2 py-2 text-gray-600 whitespace-nowrap">{{ number_format($item->totalluas, 2) }}</td>
+                    <td class="px-2 py-2 text-gray-600 whitespace-nowrap">{{ number_format($item->produksi, 2) }}</td>
+                    <td class="px-2 py-2 text-gray-600 whitespace-nowrap">{{ number_format($item->produktifitas, 2) }}</td>
+                    <td class="px-2 py-2 text-gray-600 whitespace-nowrap">{{ $item->petani }}</td>
+                    <td class="px-2 py-2 text-gray-600 whitespace-nowrap">{{ $item->produk }}</td>
+                    <td class="px-2 py-2 whitespace-nowrap">
                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium"
                             style="{{ str_contains($item->pengusahaan, 'Rakyat') ? 'background-color: #e6f4f2; color: #009180;' : 'background-color: #f0f4ff; color: #3b5bdb;' }}">
                             {{ $item->pengusahaan }}
