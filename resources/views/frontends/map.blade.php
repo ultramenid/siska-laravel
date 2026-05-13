@@ -11,7 +11,7 @@
             <div id="map" class="absolute inset-0"></div>
 
             {{-- Title overlay --}}
-            <div class="absolute top-4 left-4 z-20 pointer-events-none">
+            <div class="absolute top-4 left-4 pointer-events-none" style="z-index: 1000;">
                 <div class="bg-white bg-opacity-90 rounded-xl px-4 py-3 shadow-md">
                     <h1 class="text-sm font-bold" style="color: #132822;">Peta Perkebunan</h1>
                     <p class="text-xs text-gray-500">Kalimantan Tengah</p>
@@ -19,7 +19,7 @@
             </div>
 
             {{-- Custom layer panel --}}
-            <div class="absolute top-4 right-4 z-20">
+            <div class="absolute top-4 right-4" style="z-index: 1000;">
                 <div class="bg-white rounded-xl shadow-md overflow-hidden" style="min-width: 180px;">
                     <button onclick="toggleLayerPanel()"
                         class="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold focus:outline-none"
