@@ -5,7 +5,7 @@
         @include('partials.nav')
 
         {{-- Full-screen commodity grid --}}
-        <div class="flex-1 grid grid-cols-2 sm:grid-cols-3" style="grid-template-rows: repeat(2, minmax(160px, 1fr));">
+        <div class="flex-1 grid grid-cols-2 sm:grid-cols-3" style="grid-template-rows: repeat(3, minmax(160px, 1fr)); min-height: calc(100vh - 64px);">
 
             {{-- Sawit — desktop: CSS hover, mobile: tap to toggle --}}
             <div x-data="{ open: false }" class="group relative overflow-hidden">
