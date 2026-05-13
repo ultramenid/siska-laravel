@@ -31,20 +31,18 @@
                                 'kakao'  => ['label' => 'Kakao',  'soon' => true],
                             ] as $key => $item)
                             <button
-                                @click="sidenav = '{{ $key }}'"
+                                @if(!$item['soon']) @click="sidenav = '{{ $key }}'" @endif
                                 :class="sidenav === '{{ $key }}'
                                     ? 'text-white font-semibold'
-                                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'"
-                                class="w-full text-left px-4 py-2 rounded-lg text-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-1"
+                                    : '{{ $item['soon'] ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}'"
+                                class="w-full text-left px-4 py-2 rounded-lg text-sm transition-colors duration-150 focus:outline-none"
                                 :style="sidenav === '{{ $key }}' ? 'background-color: #009180;' : ''"
-                                style="--tw-ring-color: #009180;"
+                                {{ $item['soon'] ? 'disabled' : '' }}
                             >
                                 <span class="flex items-center justify-between gap-2">
                                     {{ $item['label'] }}
                                     @if($item['soon'])
-                                    <span class="text-xs px-1.5 py-0.5 rounded font-normal"
-                                        :style="sidenav === '{{ $key }}' ? 'background-color: rgba(255,255,255,0.2); color: white;' : 'background-color: #f3f4f6; color: #9ca3af;'"
-                                    >soon</span>
+                                    <span class="text-xs px-1.5 py-0.5 rounded font-normal bg-gray-100 text-gray-400">soon</span>
                                     @endif
                                 </span>
                             </button>
