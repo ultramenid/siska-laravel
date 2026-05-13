@@ -31,48 +31,48 @@
                 </div>
 
                 {{-- Summary panel --}}
-                <div class="absolute inset-0 flex flex-col justify-end p-3 sm:p-5 transition-opacity duration-300 overflow-y-auto pointer-events-none"
+                <div class="absolute inset-0 flex flex-col justify-end p-2 sm:p-5 transition-opacity duration-300 overflow-y-auto pointer-events-none"
                      :class="open ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'">
-                    <h3 class="text-white text-sm sm:text-xl font-bold mb-1 sm:mb-2">Sawit</h3>
-                    <p class="text-white text-xs opacity-80 mb-2 leading-relaxed hidden sm:block">Telusuri data dan informasi industri pengolahan kelapa sawit di Kalimantan Tengah.</p>
-                    <div class="grid grid-cols-2 gap-1 text-white">
+                    <h3 class="text-white text-xs sm:text-xl font-bold mb-1 sm:mb-2">Sawit</h3>
+                    <p class="text-white opacity-80 mb-1 leading-relaxed hidden sm:block" style="font-size: 11px;">Telusuri data dan informasi industri pengolahan kelapa sawit di Kalimantan Tengah.</p>
+                    <div class="grid grid-cols-2 gap-0.5 sm:gap-1 text-white">
                         <div class="bg-black bg-opacity-40 rounded p-1 sm:p-2">
-                            <p class="opacity-70 text-xs leading-tight">Perkebunan Sawit</p>
-                            <p class="font-semibold text-xs sm:text-sm">2.029.319 ha</p>
+                            <p class="opacity-70 leading-tight" style="font-size: 9px;">Perkebunan Sawit</p>
+                            <p class="font-semibold leading-tight" style="font-size: 10px;">2.029.319 ha</p>
                         </div>
                         <div class="bg-black bg-opacity-40 rounded p-1 sm:p-2">
-                            <p class="opacity-70 text-xs leading-tight">Izin Usaha (280)</p>
-                            <p class="font-semibold text-xs sm:text-sm">2.936.486 ha</p>
+                            <p class="opacity-70 leading-tight" style="font-size: 9px;">Izin Usaha (280)</p>
+                            <p class="font-semibold leading-tight" style="font-size: 10px;">2.936.486 ha</p>
                         </div>
                         <div class="bg-black bg-opacity-40 rounded p-1 sm:p-2">
-                            <p class="opacity-70 text-xs leading-tight">TM</p>
-                            <p class="font-semibold text-xs sm:text-sm">1.949.146 ha</p>
+                            <p class="opacity-70 leading-tight" style="font-size: 9px;">TM</p>
+                            <p class="font-semibold leading-tight" style="font-size: 10px;">1.949.146 ha</p>
                         </div>
                         <div class="bg-black bg-opacity-40 rounded p-1 sm:p-2">
-                            <p class="opacity-70 text-xs leading-tight">TBM</p>
-                            <p class="font-semibold text-xs sm:text-sm">13.319 ha</p>
+                            <p class="opacity-70 leading-tight" style="font-size: 9px;">TBM</p>
+                            <p class="font-semibold leading-tight" style="font-size: 10px;">13.319 ha</p>
                         </div>
                         <div class="bg-black bg-opacity-40 rounded p-1 sm:p-2">
-                            <p class="opacity-70 text-xs leading-tight">TR</p>
-                            <p class="font-semibold text-xs sm:text-sm">66.854 ha</p>
+                            <p class="opacity-70 leading-tight" style="font-size: 9px;">TR</p>
+                            <p class="font-semibold leading-tight" style="font-size: 10px;">66.854 ha</p>
                         </div>
                         <div class="bg-black bg-opacity-40 rounded p-1 sm:p-2">
-                            <p class="opacity-70 text-xs leading-tight">PBS</p>
-                            <p class="font-semibold text-xs sm:text-sm">1.731.586 ha</p>
+                            <p class="opacity-70 leading-tight" style="font-size: 9px;">PBS</p>
+                            <p class="font-semibold leading-tight" style="font-size: 10px;">1.731.586 ha</p>
                         </div>
                         <div class="bg-black bg-opacity-40 rounded p-1 sm:p-2">
-                            <p class="opacity-70 text-xs leading-tight">PR</p>
-                            <p class="font-semibold text-xs sm:text-sm">297.733 ha</p>
+                            <p class="opacity-70 leading-tight" style="font-size: 9px;">PR</p>
+                            <p class="font-semibold leading-tight" style="font-size: 10px;">297.733 ha</p>
                         </div>
                         <div class="bg-black bg-opacity-40 rounded p-1 sm:p-2">
-                            <p class="opacity-70 text-xs leading-tight">Pabrik</p>
-                            <p class="font-semibold text-xs sm:text-sm">127 Unit</p>
+                            <p class="opacity-70 leading-tight" style="font-size: 9px;">Pabrik</p>
+                            <p class="font-semibold leading-tight" style="font-size: 10px;">127 Unit</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-1 mt-2 text-white text-xs font-medium pointer-events-auto">
+                    <div class="flex items-center gap-1 mt-1 sm:mt-2 text-white font-medium pointer-events-auto" style="font-size: 9px;">
                         <a href="{{ url('/dashboard/sawit') }}" class="flex items-center gap-1">
                             Selengkapnya
-                            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
                         </a>
