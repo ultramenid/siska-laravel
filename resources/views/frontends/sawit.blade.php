@@ -98,76 +98,71 @@
     var perkebunanbesar  = JSON.parse('<?php echo $perkebunanbesar ?>');
     var perkebunanrakyat = JSON.parse('<?php echo $perkebunanrakyat ?>');
 
-    Highcharts.chart('chart-pengusahaan', {
-        chart: { type: 'area', height: 470 },
+    var brandColors = ['#009180', '#132822', '#8ccfc2', '#4a9e8e', '#1e4d3d'];
+
+    var areaDefaults = {
         credits: false,
         title: { text: '' },
-        yAxis: { title: { text: '' } },
-        tooltip: { shared: true, headerFormat: '<span style="font-size:12px"><b>{point.key}</b></span><br>' },
+        colors: brandColors,
+        chart: { type: 'area', height: 300, style: { fontFamily: 'inherit' }, backgroundColor: '#ffffff' },
+        yAxis: { title: { text: '' }, gridLineColor: '#f0f0f0' },
+        xAxis: { lineColor: '#e5e7eb', tickColor: '#e5e7eb', labels: { style: { color: '#6b7280', fontSize: '11px' } } },
+        legend: { itemStyle: { color: '#374151', fontSize: '11px', fontWeight: 'normal' } },
+        tooltip: { shared: true, backgroundColor: '#132822', style: { color: '#ffffff' }, headerFormat: '<span style="font-size:11px;font-weight:bold">{point.key}</span><br>' },
         plotOptions: {
             series: { pointStart: 2010 },
-            area: { stacking: 'normal', lineColor: '#666666', lineWidth: 1, marker: { lineWidth: 1, lineColor: '#666666' } }
-        },
+            area: {
+                stacking: 'normal',
+                lineWidth: 1.5,
+                fillOpacity: 0.7,
+                marker: { radius: 3, lineWidth: 1 }
+            }
+        }
+    };
+
+    var splineDefaults = {
+        credits: false,
+        title: { text: '' },
+        colors: brandColors,
+        chart: { type: 'spline', height: 300, style: { fontFamily: 'inherit' }, backgroundColor: '#ffffff' },
+        yAxis: { title: { text: '' }, gridLineColor: '#f0f0f0', labels: { format: '{value} ton', style: { color: '#6b7280', fontSize: '11px' } } },
+        xAxis: { lineColor: '#e5e7eb', tickColor: '#e5e7eb', labels: { style: { color: '#6b7280', fontSize: '11px' } } },
+        legend: { itemStyle: { color: '#374151', fontSize: '11px', fontWeight: 'normal' } },
+        tooltip: { crosshairs: true, shared: true, backgroundColor: '#132822', style: { color: '#ffffff' } },
+        plotOptions: { spline: { marker: { radius: 3, lineWidth: 1 } } }
+    };
+
+    Highcharts.chart('chart-pengusahaan', Highcharts.merge(areaDefaults, {
         series: [
             { name: 'Perkebunan Besar Swasta', data: pengusahaanPBS.totalluas },
             { name: 'Perkebunan Rakyat', data: pengusahaanPBR.totalluas }
         ]
-    });
+    }));
 
-    Highcharts.chart('chart-mutasi-pbs', {
-        chart: { type: 'area', height: 470 },
-        credits: false,
-        title: { text: '' },
-        yAxis: { title: { text: '' } },
-        tooltip: { shared: true, headerFormat: '<span style="font-size:12px"><b>{point.key}</b></span><br>' },
-        plotOptions: {
-            series: { pointStart: 2010 },
-            area: { stacking: 'normal', lineColor: '#666666', lineWidth: 1, marker: { lineWidth: 1, lineColor: '#666666' } }
-        },
+    Highcharts.chart('chart-mutasi-pbs', Highcharts.merge(areaDefaults, {
         series: [
             { name: 'Tanaman Belum Menghasilkan (ha)', data: mutasiPBS.tbm },
             { name: 'Tanaman Menghasilkan (ha)', data: mutasiPBS.tm },
             { name: 'Tanaman Rusak (ha)', data: mutasiPBS.tr }
         ]
-    });
+    }));
 
-    Highcharts.chart('chart-mutasi-pbr', {
-        chart: { type: 'area', height: 470 },
-        credits: false,
-        title: { text: '' },
-        yAxis: { title: { text: '' } },
-        tooltip: { shared: true, headerFormat: '<span style="font-size:12px"><b>{point.key}</b></span><br>' },
-        plotOptions: {
-            series: { pointStart: 2010 },
-            area: { stacking: 'normal', lineColor: '#666666', lineWidth: 1, marker: { lineWidth: 1, lineColor: '#666666' } }
-        },
+    Highcharts.chart('chart-mutasi-pbr', Highcharts.merge(areaDefaults, {
         series: [
             { name: 'Tanaman Belum Menghasilkan (ha)', data: mutasiPBR.tbm },
             { name: 'Tanaman Menghasilkan (ha)', data: mutasiPBR.tm },
             { name: 'Tanaman Rusak (ha)', data: mutasiPBR.tr }
         ]
-    });
+    }));
 
-    Highcharts.chart('chart-perkebunanbesar', {
-        chart: { type: 'spline', height: 470 },
-        credits: false,
-        title: { text: '' },
+    Highcharts.chart('chart-perkebunanbesar', Highcharts.merge(splineDefaults, {
         xAxis: { categories: perkebunanbesar.tahun },
-        yAxis: { title: { text: '' }, labels: { format: '{value} ton' } },
-        tooltip: { crosshairs: true, shared: true },
-        plotOptions: { spline: { marker: { radius: 4, lineColor: '#666666', lineWidth: 1 } } },
-        series: [{ name: 'Perkebunan Besar Swasta', marker: { symbol: 'diamond' }, data: perkebunanbesar.produksi }]
-    });
+        series: [{ name: 'Perkebunan Besar Swasta', marker: { symbol: 'circle' }, data: perkebunanbesar.produksi }]
+    }));
 
-    Highcharts.chart('chart-perkebunanrakyat', {
-        chart: { type: 'spline', height: 470 },
-        credits: false,
-        title: { text: '' },
+    Highcharts.chart('chart-perkebunanrakyat', Highcharts.merge(splineDefaults, {
         xAxis: { categories: perkebunanrakyat.tahun },
-        yAxis: { title: { text: '' }, labels: { format: '{value} ton' } },
-        tooltip: { crosshairs: true, shared: true },
-        plotOptions: { spline: { marker: { radius: 4, lineColor: '#666666', lineWidth: 1 } } },
-        series: [{ name: 'Perkebunan Rakyat', marker: { symbol: 'diamond' }, data: perkebunanrakyat.produksi }]
-    });
+        series: [{ name: 'Perkebunan Rakyat', marker: { symbol: 'circle' }, data: perkebunanrakyat.produksi }]
+    }));
 </script>
 @endpush
