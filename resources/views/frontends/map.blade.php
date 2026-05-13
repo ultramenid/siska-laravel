@@ -29,7 +29,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
-                    <div x-show="open" x-transition class="border-t border-gray-100 px-4 py-3 space-y-2.5">
+                    <div x-show="open" class="border-t border-gray-100 px-4 py-3 space-y-2.5">
                         <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Overlay</p>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="layer-pabrik" class="rounded" style="accent-color: #009180;">
