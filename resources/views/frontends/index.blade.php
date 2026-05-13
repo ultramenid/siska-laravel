@@ -10,10 +10,11 @@
 
             {{-- Sawit --}}
             <a href="{{ url('/dashboard/sawit') }}"
-               x-data="{ open: false }"
-               @mouseenter="open = true"
-               @mouseleave="open = false"
-               @click.prevent="open ? window.location.href='{{ url('/dashboard/sawit') }}' : open = true"
+               x-data="{ open: false, touch: false }"
+               @mouseenter="if (!touch) open = true"
+               @mouseleave="if (!touch) open = false"
+               @touchstart.passive="touch = true; open = !open"
+               @click="if (touch && !open) { $event.preventDefault(); }"
                class="group relative overflow-hidden">
                 <img src="{{ asset('assets/v1/sawitfull.png') }}" alt="Sawit" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                 <div class="absolute inset-0 transition-opacity duration-300" :class="open ? 'bg-black opacity-60' : 'bg-black opacity-40'"></div>
