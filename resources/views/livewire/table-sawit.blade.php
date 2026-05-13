@@ -36,7 +36,7 @@
                     <td class="px-2 py-2 text-gray-600 whitespace-nowrap">{{ $item->produk }}</td>
                     <td class="px-2 py-2 whitespace-nowrap">
                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium"
-                            style="{{ str_contains($item->pengusahaan, 'Rakyat') ? 'background-color: #e6f4f2; color: #009180;' : 'background-color: #f0f4ff; color: #3b5bdb;' }}">
+                            style="{{ str_contains($item->pengusahaan, 'Rakyat') ? 'background-color: #e6f4f2; color: #009180;' : 'background-color: #e8f0ec; color: #132822;' }}">
                             {{ $item->pengusahaan }}
                         </span>
                     </td>

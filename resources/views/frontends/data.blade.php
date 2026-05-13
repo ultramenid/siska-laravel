@@ -37,7 +37,7 @@
                                     ? 'text-white font-semibold'
                                     : '{{ $item['soon'] ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}'"
                                 class="w-full text-left px-4 py-2 rounded-lg text-sm transition-colors duration-150 focus:outline-none"
-                                :style="sidenav === '{{ $key }}' ? 'background-color: #009180;' : ''"
+                                :style="sidenav === '{{ $key }}' ? 'background-color: #132822;' : ''"
                                 {{ $item['soon'] ? 'disabled' : '' }}
                             >
                                 <span class="flex items-center justify-between gap-2">
