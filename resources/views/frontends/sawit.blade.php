@@ -5,10 +5,12 @@
         @include('partials.nav')
 
         {{-- Hero --}}
-        <div class="w-full flex items-center justify-center" style="background-color: #132822; min-height: 28vh;">
-            <div class="text-center px-6 py-12">
-                <h1 class="text-4xl sm:text-5xl font-bold text-white mb-3">Dashboard Sawit</h1>
-                <p class="text-white text-base sm:text-lg opacity-80">Sistem Informasi Perkebunan Kelapa Sawit Kalimantan Tengah</p>
+        <div class="relative w-full min-h-[34vh] overflow-hidden flex items-center justify-center">
+            <img src="{{ asset('assets/v1/sawitfull.png') }}" alt="Perkebunan sawit" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/55"></div>
+            <div class="relative z-10 text-center px-6 py-16">
+                <h1 class="text-4xl sm:text-5xl font-bold text-white mb-3 drop-shadow-lg">Dashboard Sawit</h1>
+                <p class="text-white text-base sm:text-lg opacity-85 drop-shadow">Sistem Informasi Perkebunan Kelapa Sawit Kalimantan Tengah</p>
             </div>
         </div>
 

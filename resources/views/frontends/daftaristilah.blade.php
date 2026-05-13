@@ -13,7 +13,7 @@
                 </div>
                     <div>
                         <div class=" overflow-x-auto">
-                            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                            <div class="inline-block min-w-full shadow-sm rounded-lg overflow-hidden">
                                 <table class="min-w-full leading-normal">
                                     <thead>
                                         <tr>

@@ -26,13 +26,11 @@ class LoginComponent extends Component{
                'username' => $this->getDatauser()->username,
            ]);
         //    dd('oke');
-           redirect('/');
+           $this->redirect('/', navigate: true);
         }else{
-            session()->flash('message', 'Username & Password not valid.');
+            $this->addError('username', 'Username & Password not valid.');
         }
     }
 
-    public function render(){
-        return view('livewire.login-component');
-    }
+    // render() is optional with Livewire 3 - will auto-detect view from class name
 }

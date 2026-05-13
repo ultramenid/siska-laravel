@@ -9,7 +9,7 @@
                 autofocus
                 wire:model.defer="username"
                 wire:keydown.enter="login"
-                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:border-transparent transition"
+                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm text-gray-900 focus:outline-hidden focus:ring-2 focus:border-transparent transition"
                 style="--tw-ring-color: #009180;"
                 placeholder="Masukkan username"
             >
@@ -22,7 +22,7 @@
                 type="password"
                 wire:model.defer="password"
                 wire:keydown.enter="login"
-                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:border-transparent transition"
+                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm text-gray-900 focus:outline-hidden focus:ring-2 focus:border-transparent transition"
                 style="--tw-ring-color: #009180;"
                 placeholder="Masukkan password"
             >
@@ -39,7 +39,7 @@
             wire:click="login"
             wire:loading.attr="disabled"
             type="button"
-            class="w-full py-2.5 rounded-lg text-white text-sm font-semibold transition-opacity hover:opacity-90 focus:outline-none"
+            class="w-full py-2.5 rounded-lg text-white text-sm font-semibold transition-opacity hover:opacity-90 focus:outline-hidden"
             style="background-color: #132822;"
         >
             <span wire:loading.remove>Masuk</span>

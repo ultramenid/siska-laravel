@@ -37,15 +37,15 @@
                     Mendukung penerapan decision support system untuk perencanaan, pengawasan dan pengendalian usaha perkebunan di Kalimantan Tengah yang terukur, berkeadilan dan berkelanjutan.
                 </p>
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-lg p-6 shadow-sm border-l-4" style="border-left-color: #009180;">
+                    <div class="bg-white rounded-lg p-6 shadow-xs border-l-4" style="border-left-color: #009180;">
                         <h3 class="text-lg font-semibold text-gray-900 mb-3">Terukur</h3>
                         <p class="text-gray-600 text-sm leading-relaxed">Perencanaan, pengendalian dan pengawasan perkebunan akan lebih terukur dengan basis data yang kredibel dan terintegrasi.</p>
                     </div>
-                    <div class="bg-white rounded-lg p-6 shadow-sm border-l-4" style="border-left-color: #009180;">
+                    <div class="bg-white rounded-lg p-6 shadow-xs border-l-4" style="border-left-color: #009180;">
                         <h3 class="text-lg font-semibold text-gray-900 mb-3">Berkeadilan</h3>
                         <p class="text-gray-600 text-sm leading-relaxed">Perkembangan usaha perkebunan tidak hanya fokus pada perkebunan skala besar namun juga berdampak langsung pada perkebunan rakyat.</p>
                     </div>
-                    <div class="bg-white rounded-lg p-6 shadow-sm border-l-4" style="border-left-color: #009180;">
+                    <div class="bg-white rounded-lg p-6 shadow-xs border-l-4" style="border-left-color: #009180;">
                         <h3 class="text-lg font-semibold text-gray-900 mb-3">Berkelanjutan</h3>
                         <p class="text-gray-600 text-sm leading-relaxed">Pengembangan perkebunan selaras dengan daya dukung dan daya tampung lingkungan sebagai bentuk komitmen pembangunan berkelanjutan.</p>
                     </div>
@@ -81,15 +81,15 @@
                 <h2 class="text-2xl font-semibold text-gray-900">Manfaat</h2>
                 <div class="w-12 h-1 mt-2 mb-8" style="background-color: #009180;"></div>
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-lg p-6 shadow-sm border-l-4" style="border-left-color: #009180;">
+                    <div class="bg-white rounded-lg p-6 shadow-xs border-l-4" style="border-left-color: #009180;">
                         <h3 class="text-base font-semibold text-gray-900 mb-2">Pemerintah Daerah</h3>
                         <p class="text-gray-600 text-sm leading-relaxed">Memudahkan Pemerintah Provinsi dan Kabupaten/Kota menghimpun dan menyajikan data secara cepat untuk mendukung perencanaan, pengawasan dan pengendalian perizinan.</p>
                     </div>
-                    <div class="bg-white rounded-lg p-6 shadow-sm border-l-4" style="border-left-color: #009180;">
+                    <div class="bg-white rounded-lg p-6 shadow-xs border-l-4" style="border-left-color: #009180;">
                         <h3 class="text-base font-semibold text-gray-900 mb-2">Pemerintah Pusat</h3>
                         <p class="text-gray-600 text-sm leading-relaxed">Memudahkan Pemerintah Pusat mengintegrasikan data untuk pengawasan kepatuhan perizinan, kewajiban keuangan dan lingkungan.</p>
                     </div>
-                    <div class="bg-white rounded-lg p-6 shadow-sm border-l-4" style="border-left-color: #009180;">
+                    <div class="bg-white rounded-lg p-6 shadow-xs border-l-4" style="border-left-color: #009180;">
                         <h3 class="text-base font-semibold text-gray-900 mb-2">Pelaku Usaha</h3>
                         <p class="text-gray-600 text-sm leading-relaxed">Memungkinkan Pelaku Usaha untuk mengidentifikasi potensi pasokan bahan baku dan pengawasan rantai pasok dari perkebunan rakyat.</p>
                     </div>
@@ -105,9 +105,9 @@
 
                 <div class="divide-y divide-gray-200">
                     <div x-data="{ open: false }">
-                        <button @click="open = !open" class="w-full flex justify-between items-center py-4 text-left text-gray-900 font-medium focus:outline-none">
+                        <button @click="open = !open" class="w-full flex justify-between items-center py-4 text-left text-gray-900 font-medium focus:outline-hidden">
                             <span>Apa itu SISKA?</span>
-                            <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-gray-500 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-gray-500 transition-transform duration-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
@@ -117,9 +117,9 @@
                     </div>
 
                     <div x-data="{ open: false }">
-                        <button @click="open = !open" class="w-full flex justify-between items-center py-4 text-left text-gray-900 font-medium focus:outline-none">
+                        <button @click="open = !open" class="w-full flex justify-between items-center py-4 text-left text-gray-900 font-medium focus:outline-hidden">
                             <span>Sumber Data?</span>
-                            <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-gray-500 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-gray-500 transition-transform duration-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
@@ -129,9 +129,9 @@
                     </div>
 
                     <div x-data="{ open: false }">
-                        <button @click="open = !open" class="w-full flex justify-between items-center py-4 text-left text-gray-900 font-medium focus:outline-none">
+                        <button @click="open = !open" class="w-full flex justify-between items-center py-4 text-left text-gray-900 font-medium focus:outline-hidden">
                             <span>Bagaimana cara mengakses SISKA?</span>
-                            <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-gray-500 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-gray-500 transition-transform duration-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
@@ -141,9 +141,9 @@
                     </div>
 
                     <div x-data="{ open: false }">
-                        <button @click="open = !open" class="w-full flex justify-between items-center py-4 text-left text-gray-900 font-medium focus:outline-none">
+                        <button @click="open = !open" class="w-full flex justify-between items-center py-4 text-left text-gray-900 font-medium focus:outline-hidden">
                             <span>Seberapa sering data diperbarui?</span>
-                            <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-gray-500 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-gray-500 transition-transform duration-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>

@@ -6,7 +6,7 @@
                     <th wire:click='sortingField("tahun")' class="px-2 py-2 text-left font-semibold text-white uppercase tracking-wider cursor-pointer whitespace-nowrap">
                         <div class="flex items-center gap-1">
                             Tahun
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 opacity-70 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 opacity-70 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
                             </svg>
                         </div>

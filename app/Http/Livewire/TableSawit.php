@@ -9,7 +9,9 @@ use Livewire\WithPagination;
 class TableSawit extends Component
 {
     use WithPagination;
+    
     public $dataField = 'tahun', $dataOrder = 'asc';
+    
     public function sortingField($field){
         $this->dataField = $field;
         $this->dataOrder = $this->dataOrder == 'asc' ? 'desc' : 'asc';
@@ -21,7 +23,7 @@ class TableSawit extends Component
 
     public function render()
     {
-        $sawit = $this->getSawit();
-        return view('livewire.table-sawit', compact('sawit'));
+        return view('livewire.table-sawit')
+            ->withSawit($this->getSawit());
     }
 }

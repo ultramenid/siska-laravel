@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Perkebunan — SISKA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css">
+    <style>
+        .bg-nav{background-color:#132822;}
+        .leaflet-control-zoom a{color:#132822!important;font-weight:600;}
+        .leaflet-control-zoom a:hover{background-color:#009180!important;color:#fff!important;}
+        .leaflet-bar{border-radius:10px!important;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.12)!important;border:none!important;}
+        .leaflet-bar a{border-bottom-color:#e5e7eb!important;}
+        .leaflet-control-minimap{border-radius:10px!important;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.15)!important;border:2px solid #fff!important;}
+        .leaflet-control-attribution{font-size:10px;background:rgba(255,255,255,.8)!important;border-radius:6px!important;}
+    </style>
+</head>
+<body class="font-sans">
+
+<header class="w-full bg-nav relative z-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+            <a href="index.html"><img src="../assets/v1/web-logo-ok-disbun.png" alt="SISKA" class="h-10"></a>
+            <nav class="hidden sm:flex items-center space-x-8">
+                <a href="index.html" class="text-white text-sm font-medium hover:opacity-80">Home</a>
+                <a href="tentang.html" class="text-white text-sm font-medium hover:opacity-80">Tentang</a>
+                <a href="map.html" class="text-white text-sm font-medium hover:opacity-80">Peta</a>
+                <a href="data.html" class="text-white text-sm font-medium hover:opacity-80">Data</a>
+                <a href="login.html" class="text-white text-sm font-medium hover:opacity-80">Login</a>
+            </nav>
+            <div class="sm:hidden" x-data="{ open: false }">
+                <button @click="open = !open" class="text-white focus:outline-none">
+                    <svg x-show="!open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg x-show="open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+                <div x-show="open" @click.outside="open = false" class="absolute top-16 left-0 right-0 bg-nav shadow-lg z-50 px-6 py-4 space-y-3" style="display:none;">
+                    <a href="index.html" class="block text-white text-sm font-medium py-2 border-b border-white border-opacity-10">Home</a>
+                    <a href="tentang.html" class="block text-white text-sm font-medium py-2 border-b border-white border-opacity-10">Tentang</a>
+                    <a href="map.html" class="block text-white text-sm font-medium py-2 border-b border-white border-opacity-10">Peta</a>
+                    <a href="data.html" class="block text-white text-sm font-medium py-2 border-b border-white border-opacity-10">Data</a>
+                    <a href="login.html" class="block text-white text-sm font-medium py-2">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="w-full flex flex-col" style="height:calc(100dvh - 64px);">
+    <div class="relative flex-1 min-h-0">
+        <div id="map" class="absolute inset-0"></div>
+
+        <!-- Title overlay -->
+        <div class="absolute top-4 left-4 pointer-events-none" style="z-index:1000;">
+            <div class="bg-white bg-opacity-90 rounded-xl px-4 py-3 shadow-md">
+                <h1 class="text-sm font-bold" style="color:#132822;">Peta Perkebunan</h1>
+                <p class="text-xs text-gray-500">Kalimantan Tengah</p>
+            </div>
+        </div>
+
+        <!-- Layer panel -->
+        <div class="absolute top-4 right-4" style="z-index:1000;">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden" style="min-width:180px;">
+                <button onclick="toggleLayerPanel()" class="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold focus:outline-none" style="color:#132822;">
+                    <span>Layer</span>
+                    <svg id="layer-chevron" class="w-4 h-4 transition-transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div id="layer-panel-body" class="border-t border-gray-100 px-4 py-3 space-y-2.5">
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Overlay</p>
+                    <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="layer-pabrik" checked style="accent-color:#009180;"><span class="text-xs text-gray-700">Pabrik Kelapa Sawit</span></label>
+                    <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="layer-kawasan" checked style="accent-color:#009180;"><span class="text-xs text-gray-700">Kawasan Hutan</span></label>
+                    <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="layer-izin" checked style="accent-color:#009180;"><span class="text-xs text-gray-700">Izin Usaha</span></label>
+                    <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="layer-tutupan" checked style="accent-color:#009180;"><span class="text-xs text-gray-700">Tutupan Sawit</span></label>
+                    <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="layer-batas" checked style="accent-color:#009180;"><span class="text-xs text-gray-700">Batas Wilayah</span></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+<script>
+    var map = new L.Map('map', { zoomControl: false });
+    var osmUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+    var osm = new L.TileLayer(osmUrl, { minZoom: 5, maxZoom: 18, attribution: 'Dinas Perkebunan Kalteng' });
+    map.addLayer(osm);
+    map.setView(new L.LatLng(-1.2193, 113.6213), 8);
+    new L.Control.Zoom({ position: 'bottomleft' }).addTo(map);
+
+    var layers = {
+        pabrik: L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', { layers: 'siska:Pabrik_Kelapa_Sawit_New', transparent: true, format: 'image/png' }),
+        kawasan: L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', { layers: 'siska:Penunjukan_Kawasan_Hutan_Update2021_Trial', transparent: true, format: 'image/png' }),
+        izin: L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', { layers: 'siska:Update_Ijin_Kalteng 2021', transparent: true, format: 'image/png' }),
+        tutupan: L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', { layers: 'siska:kalteng_tutupan_sawit_20190918', transparent: true, format: 'image/png' }),
+        batas: L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', { layers: 'siska:kalteng_adm_line', transparent: true, format: 'image/png' }),
+    };
+    Object.values(layers).forEach(function(l){ l.addTo(map); });
+
+    ['pabrik','kawasan','izin','tutupan','batas'].forEach(function(id){
+        document.getElementById('layer-'+id).addEventListener('change', function(){
+            this.checked ? layers[id].addTo(map) : map.removeLayer(layers[id]);
+        });
+    });
+
+    function toggleLayerPanel(){
+        var body = document.getElementById('layer-panel-body');
+        var chevron = document.getElementById('layer-chevron');
+        if(body.style.display==='none'){ body.style.display='block'; chevron.classList.add('rotate-180'); }
+        else{ body.style.display='none'; chevron.classList.remove('rotate-180'); }
+    }
+    window.addEventListener('resize', function(){ map.invalidateSize(); });
+</script>
+</body>
+</html>

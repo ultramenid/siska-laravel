@@ -19,7 +19,7 @@
             <div class="flex sm:flex-row flex-col gap-8">
 
                 {{-- Sidenav --}}
-                <div class="sm:w-48 w-full flex-shrink-0">
+                <div class="sm:w-48 w-full shrink-0">
                     <div class="sticky top-6">
                         <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 px-2">Komoditas</p>
                         <nav class="flex sm:flex-col flex-row flex-wrap gap-1">
@@ -36,14 +36,14 @@
                                 :class="sidenav === '{{ $key }}'
                                     ? 'text-white font-semibold'
                                     : '{{ $item['soon'] ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}'"
-                                class="w-full text-left px-4 py-2 rounded-lg text-sm transition-colors duration-150 focus:outline-none"
+                                class="w-full text-left px-4 py-2 rounded-lg text-sm transition-colors duration-150 focus:outline-hidden"
                                 :style="sidenav === '{{ $key }}' ? 'background-color: #132822;' : ''"
                                 {{ $item['soon'] ? 'disabled' : '' }}
                             >
                                 <span class="flex items-center justify-between gap-2">
                                     {{ $item['label'] }}
                                     @if($item['soon'])
-                                    <span class="text-xs px-1.5 py-0.5 rounded font-normal bg-gray-100 text-gray-400">soon</span>
+                                    <span class="text-xs px-1.5 py-0.5 rounded-sm font-normal bg-gray-100 text-gray-400">soon</span>
                                     @endif
                                 </span>
                             </button>

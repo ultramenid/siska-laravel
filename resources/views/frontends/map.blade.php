@@ -22,7 +22,7 @@
             <div class="absolute top-4 right-4" style="z-index: 1000;">
                 <div class="bg-white rounded-xl shadow-md overflow-hidden" style="min-width: 180px;">
                     <button onclick="toggleLayerPanel()"
-                        class="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold focus:outline-none"
+                        class="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold focus:outline-hidden"
                         style="color: #132822;">
                         <span>Layer</span>
                         <svg id="layer-chevron" class="w-4 h-4 transition-transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -150,6 +150,9 @@
 
         // Add default layers
         layers.izin.addTo(map);
+        layers.pabrik.addTo(map);
+        layers.kawasan.addTo(map);
+        layers.tutupan.addTo(map);
         layers.batas.addTo(map);
 
         // Wire custom checkboxes to layers
