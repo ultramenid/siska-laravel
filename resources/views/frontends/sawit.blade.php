@@ -19,7 +19,7 @@
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Pengusahaan</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div id="chart-pengusahaan"></div>
+                <div class="max-w-3xl" id="chart-pengusahaan"></div>
             </div>
 
             <hr class="border-gray-200">
@@ -28,7 +28,7 @@
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Mutasi Tanaman — Perkebunan Besar Swasta</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div id="chart-mutasi-pbs"></div>
+                <div class="max-w-3xl" id="chart-mutasi-pbs"></div>
             </div>
 
             <hr class="border-gray-200">
@@ -36,7 +36,7 @@
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Mutasi Tanaman — Perkebunan Rakyat</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div id="chart-mutasi-pbr"></div>
+                <div class="max-w-3xl" id="chart-mutasi-pbr"></div>
             </div>
 
             <hr class="border-gray-200">
@@ -45,7 +45,7 @@
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Perkebunan Besar Swasta</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div id="chart-perkebunanbesar"></div>
+                <div class="max-w-3xl" id="chart-perkebunanbesar"></div>
             </div>
 
             <hr class="border-gray-200">
@@ -54,7 +54,7 @@
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Perkebunan Rakyat</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div id="chart-perkebunanrakyat"></div>
+                <div class="max-w-3xl" id="chart-perkebunanrakyat"></div>
             </div>
 
             <hr class="border-gray-200">
