@@ -23,22 +23,30 @@
                         <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 px-2">Komoditas</p>
                         <nav class="flex sm:flex-col flex-row flex-wrap gap-1">
                             @foreach ([
-                                'sawit'  => 'Sawit',
-                                'karet'  => 'Karet',
-                                'kelapa' => 'Kelapa',
-                                'lada'   => 'Lada',
-                                'kopi'   => 'Kopi',
-                                'kakao'  => 'Kakao',
-                            ] as $key => $label)
+                                'sawit'  => ['label' => 'Sawit',  'soon' => false],
+                                'karet'  => ['label' => 'Karet',  'soon' => true],
+                                'kelapa' => ['label' => 'Kelapa', 'soon' => true],
+                                'lada'   => ['label' => 'Lada',   'soon' => true],
+                                'kopi'   => ['label' => 'Kopi',   'soon' => true],
+                                'kakao'  => ['label' => 'Kakao',  'soon' => true],
+                            ] as $key => $item)
                             <button
                                 @click="sidenav = '{{ $key }}'"
                                 :class="sidenav === '{{ $key }}'
                                     ? 'text-white font-semibold'
                                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'"
-                                class="w-full text-left px-4 py-2 rounded-lg text-sm transition-colors duration-150"
+                                class="w-full text-left px-4 py-2 rounded-lg text-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-1"
                                 :style="sidenav === '{{ $key }}' ? 'background-color: #009180;' : ''"
+                                style="--tw-ring-color: #009180;"
                             >
-                                {{ $label }}
+                                <span class="flex items-center justify-between gap-2">
+                                    {{ $item['label'] }}
+                                    @if($item['soon'])
+                                    <span class="text-xs px-1.5 py-0.5 rounded font-normal"
+                                        :style="sidenav === '{{ $key }}' ? 'background-color: rgba(255,255,255,0.2); color: white;' : 'background-color: #f3f4f6; color: #9ca3af;'"
+                                    >soon</span>
+                                    @endif
+                                </span>
                             </button>
                             @endforeach
                         </nav>
