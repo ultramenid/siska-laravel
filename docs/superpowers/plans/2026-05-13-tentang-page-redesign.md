@@ -1,12 +1,12 @@
 # Tentang Page Redesign Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Redesign the Tentang SISKA page with nature-inspired elegant styling featuring earth-toned colors and organic design elements.
+**Goal:** Rewrite `resources/views/frontends/siska.blade.php` into a single modern, minimal tentang page combining About, Tujuan, Produk & Pengguna, Manfaat, and FAQ sections.
 
-**Architecture:** Modify existing Blade template and CSS to apply full-width alternating section backgrounds with nature-inspired decorative elements and card-based content.
+**Architecture:** Single Blade view rewrite — no controller or route changes needed. Uses existing layout (`layouts/indexLayout`), existing nav partials, Alpine.js accordion for FAQ (already available via Livewire), and Tailwind CSS utility classes plus existing custom CSS classes.
 
-**Tech Stack:** Laravel Blade, Tailwind CSS, vanilla CSS
+**Tech Stack:** Laravel 9 Blade, Tailwind CSS 3, Alpine.js 3 (via Livewire)
 
 ---
 

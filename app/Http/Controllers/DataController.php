@@ -9,6 +9,9 @@ class DataController extends Controller
 {
 
     public function index(){
+        if(!session('username')){
+            return redirect('/login');
+        }
         $title = 'Data - Sawit kalteng';
         return view('frontends.data', compact('title'));
     }
