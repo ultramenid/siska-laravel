@@ -14,7 +14,9 @@
         </div>
 
         {{-- Map --}}
-        <div id="map" class="w-full" style="height: 75vh;"></div>
+        <div class="relative w-full" style="height: calc(100vh - 20vh - 64px);">
+            <div id="map" class="absolute inset-0"></div>
+        </div>
 
         @include('partials.footer')
     </section>
@@ -27,10 +29,83 @@
     <script src="js/wms.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.js"></script>
 
+    <style>
+        /* Override Leaflet controls to match brand */
+        .leaflet-control-zoom a,
+        .leaflet-control-resetview a {
+            color: #132822 !important;
+            font-weight: 600;
+        }
+        .leaflet-control-zoom a:hover,
+        .leaflet-control-resetview a:hover {
+            background-color: #009180 !important;
+            color: #fff !important;
+        }
+        .leaflet-control-layers {
+            border: none !important;
+            border-radius: 8px !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12) !important;
+            font-family: inherit;
+            font-size: 12px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        .leaflet-control-layers-toggle {
+            background-color: #009180 !important;
+        }
+        .leaflet-control-layers-expanded {
+            padding: 10px 14px !important;
+            min-width: 180px;
+        }
+        .leaflet-control-layers-separator {
+            border-top-color: #e5e7eb !important;
+        }
+        .leaflet-control-layers label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 0;
+            cursor: pointer;
+            color: #374151;
+        }
+        .leaflet-control-layers label:hover {
+            color: #009180;
+        }
+        .leaflet-control-layers input[type="checkbox"],
+        .leaflet-control-layers input[type="radio"] {
+            accent-color: #009180;
+        }
+        .leaflet-bar {
+            border-radius: 8px !important;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+            border: none !important;
+        }
+        .leaflet-bar a {
+            border-bottom-color: #e5e7eb !important;
+        }
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
+            font-family: inherit;
+            font-size: 13px;
+        }
+        .leaflet-popup-tip {
+            box-shadow: none !important;
+        }
+        /* Minimap */
+        .leaflet-control-minimap {
+            border-radius: 8px !important;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+            border: 2px solid #fff !important;
+        }
+    </style>
+
     <script>
-        var map = new L.Map('map');
+        var map = new L.Map('map', { zoomControl: false });
         var osmUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
-        var osmAttrib = 'Siska';
+        var osmAttrib = 'SISKA — Dinas Perkebunan Kalteng';
         var osm = new L.TileLayer(osmUrl, { minZoom: 5, maxZoom: 18, attribution: osmAttrib });
 
         map.addLayer(osm);
@@ -39,20 +114,20 @@
         new L.Control.Zoom({ position: 'bottomleft' }).addTo(map);
         L.control.resetView({
             position: 'bottomleft',
-            title: 'Reset view',
+            title: 'Reset tampilan',
             latlng: L.latLng([-1.2193, 114.0213]),
             zoom: 8,
         }).addTo(map);
 
         var osm2 = new L.TileLayer(osmUrl, { minZoom: 0, maxZoom: 13, attribution: osmAttrib });
-        var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: true }).addTo(map);
+        var miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: true, position: 'bottomleft' }).addTo(map);
 
         var pabrik = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
             layers: 'siska:Pabrik_Kelapa_Sawit_New',
             transparent: true,
             format: 'image/png'
         });
-        var TutupanSawit = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
+        var tutupanSawit = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
             layers: 'siska:kalteng_tutupan_sawit_20190918',
             transparent: true,
             format: 'image/png'
@@ -73,14 +148,17 @@
             format: 'image/png'
         }).addTo(map);
 
-        var baseLayers = { 'Base': osm };
+        var baseLayers = { 'Base Map': osm };
         var overlays = {
             'Pabrik Kelapa Sawit': pabrik,
             'Kawasan Hutan': kawasanKalteng,
             'Izin Usaha': izinUsaha,
-            'Tutupan Sawit': TutupanSawit,
+            'Tutupan Sawit': tutupanSawit,
             'Batas Wilayah': admKalteng,
         };
-        L.control.layers(baseLayers, overlays, { collapsed: false, position: 'bottomright' }).addTo(map);
+        L.control.layers(baseLayers, overlays, { collapsed: false, position: 'topright' }).addTo(map);
+
+        // Invalidate map size on window resize for responsiveness
+        window.addEventListener('resize', function() { map.invalidateSize(); });
     </script>
 @endpush
