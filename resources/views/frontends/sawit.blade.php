@@ -25,25 +25,18 @@
             <hr class="border-gray-200">
 
             {{-- Mutasi Tanaman --}}
-            <div x-data="{ mutasi: 'pbs' }">
-                <h2 class="text-xl font-semibold text-gray-900 mb-2">Mutasi Tanaman</h2>
+            <div>
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Mutasi Tanaman — Perkebunan Besar Swasta</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div class="flex gap-2 mb-6">
-                    <button
-                        @click="mutasi = 'pbs'"
-                        :class="mutasi === 'pbs' ? 'text-white font-semibold' : 'text-gray-600 hover:bg-gray-100'"
-                        class="px-3 py-1.5 rounded-lg text-sm transition-colors duration-150 focus:outline-none"
-                        :style="mutasi === 'pbs' ? 'background-color: #009180;' : ''"
-                    >Perkebunan Besar Swasta</button>
-                    <button
-                        @click="mutasi = 'pbr'"
-                        :class="mutasi === 'pbr' ? 'text-white font-semibold' : 'text-gray-600 hover:bg-gray-100'"
-                        class="px-3 py-1.5 rounded-lg text-sm transition-colors duration-150 focus:outline-none"
-                        :style="mutasi === 'pbr' ? 'background-color: #009180;' : ''"
-                    >Perkebunan Rakyat</button>
-                </div>
-                <div x-show="mutasi === 'pbs'" id="chart-mutasi-pbs"></div>
-                <div x-show="mutasi === 'pbr'" id="chart-mutasi-pbr"></div>
+                <div id="chart-mutasi-pbs"></div>
+            </div>
+
+            <hr class="border-gray-200">
+
+            <div>
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Mutasi Tanaman — Perkebunan Rakyat</h2>
+                <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
+                <div id="chart-mutasi-pbr"></div>
             </div>
 
             <hr class="border-gray-200">
