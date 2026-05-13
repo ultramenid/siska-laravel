@@ -13,13 +13,13 @@
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 py-12 space-y-16">
+        <div class="max-w-3xl mx-auto px-6 py-12 space-y-16">
 
             {{-- Pengusahaan --}}
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Pengusahaan</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div class="max-w-3xl" id="chart-pengusahaan"></div>
+                <div class="max-w-3xl mx-auto" id="chart-pengusahaan"></div>
             </div>
 
             <hr class="border-gray-200">
@@ -28,7 +28,7 @@
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Mutasi Tanaman — Perkebunan Besar Swasta</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div class="max-w-3xl" id="chart-mutasi-pbs"></div>
+                <div class="max-w-3xl mx-auto" id="chart-mutasi-pbs"></div>
             </div>
 
             <hr class="border-gray-200">
@@ -36,7 +36,7 @@
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Mutasi Tanaman — Perkebunan Rakyat</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div class="max-w-3xl" id="chart-mutasi-pbr"></div>
+                <div class="max-w-3xl mx-auto" id="chart-mutasi-pbr"></div>
             </div>
 
             <hr class="border-gray-200">
@@ -45,7 +45,7 @@
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Perkebunan Besar Swasta</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div class="max-w-3xl" id="chart-perkebunanbesar"></div>
+                <div class="max-w-3xl mx-auto" id="chart-perkebunanbesar"></div>
             </div>
 
             <hr class="border-gray-200">
@@ -54,7 +54,7 @@
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Perkebunan Rakyat</h2>
                 <div class="w-10 h-1 mb-6" style="background-color: #009180;"></div>
-                <div class="max-w-3xl" id="chart-perkebunanrakyat"></div>
+                <div class="max-w-3xl mx-auto" id="chart-perkebunanrakyat"></div>
             </div>
 
             <hr class="border-gray-200">
@@ -91,12 +91,12 @@
 
 @push('script')
 <script>
-    var pengusahaanPBS   = JSON.parse('<?php echo $pengusahaanPBS ?>');
-    var pengusahaanPBR   = JSON.parse('<?php echo $pengusahaanPBR ?>');
-    var mutasiPBS        = JSON.parse('<?php echo $pbs ?>');
-    var mutasiPBR        = JSON.parse('<?php echo $pbr ?>');
-    var perkebunanbesar  = JSON.parse('<?php echo $perkebunanbesar ?>');
-    var perkebunanrakyat = JSON.parse('<?php echo $perkebunanrakyat ?>');
+    var pengusahaanPBS   = JSON.parse('<?php echo $pengusahaanPBS; ?>');
+    var pengusahaanPBR   = JSON.parse('<?php echo $pengusahaanPBR; ?>');
+    var mutasiPBS        = JSON.parse('<?php echo $pbs; ?>');
+    var mutasiPBR        = JSON.parse('<?php echo $pbr; ?>');
+    var perkebunanbesar  = JSON.parse('<?php echo $perkebunanbesar; ?>');
+    var perkebunanrakyat = JSON.parse('<?php echo $perkebunanrakyat; ?>');
 
     var brandColors = ['#009180', '#132822', '#8ccfc2', '#4a9e8e', '#1e4d3d'];
 
