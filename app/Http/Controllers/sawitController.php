@@ -8,9 +8,22 @@ use Illuminate\Support\Facades\DB;
 class sawitController extends Controller
 {
     public function index(){
-        $title = 'Sawit';
+        $title = 'Dashboard Sawit';
         $nav = 'index';
-        return view('frontends.sawit',compact('title', 'nav'));
+
+        $pbs       = $this->getMutasiPBS();
+        $pbr       = $this->getMutasiPBR();
+        $pengusahaanPBS = $this->getPengusahaanPBS();
+        $pengusahaanPBR = $this->getPengusahaanPBR();
+        $perkebunanbesar  = $this->getPerkebunanBesar();
+        $perkebunanrakyat = $this->getPerkebunanRakyat();
+
+        return view('frontends.sawit', compact(
+            'title', 'nav',
+            'pbs', 'pbr',
+            'pengusahaanPBS', 'pengusahaanPBR',
+            'perkebunanbesar', 'perkebunanrakyat'
+        ));
     }
 
     public function getMutasiPBS(){
