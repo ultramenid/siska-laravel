@@ -14,11 +14,8 @@
         </div>
 
         {{-- Map --}}
-        <div class="relative w-full" style="height: calc(100vh - 20vh - 64px);">
-            <div id="map" class="absolute inset-0"></div>
-        </div>
+        <div id="map" class="w-full" style="height: calc(100vh - 20vh - 64px); min-height: 400px;"></div>
 
-        @include('partials.footer')
     </section>
 @endsection
 
