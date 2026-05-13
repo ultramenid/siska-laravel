@@ -19,36 +19,36 @@
             </div>
 
             {{-- Custom layer panel --}}
-            <div class="absolute top-4 right-4 z-20" x-data="{ open: true }">
+            <div class="absolute top-4 right-4 z-20">
                 <div class="bg-white rounded-xl shadow-md overflow-hidden" style="min-width: 180px;">
-                    <button @click="open = !open"
+                    <button onclick="toggleLayerPanel()"
                         class="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold focus:outline-none"
                         style="color: #132822;">
                         <span>Layer</span>
-                        <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg id="layer-chevron" class="w-4 h-4 transition-transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
-                    <div x-show="open" class="border-t border-gray-100 px-4 py-3 space-y-2.5">
+                    <div id="layer-panel-body" class="border-t border-gray-100 px-4 py-3 space-y-2.5">
                         <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Overlay</p>
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-pabrik" class="rounded" style="accent-color: #009180;">
+                            <input type="checkbox" id="layer-pabrik" style="accent-color: #009180;">
                             <span class="text-xs text-gray-700">Pabrik Kelapa Sawit</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-kawasan" class="rounded" style="accent-color: #009180;">
+                            <input type="checkbox" id="layer-kawasan" style="accent-color: #009180;">
                             <span class="text-xs text-gray-700">Kawasan Hutan</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-izin" checked class="rounded" style="accent-color: #009180;">
+                            <input type="checkbox" id="layer-izin" checked style="accent-color: #009180;">
                             <span class="text-xs text-gray-700">Izin Usaha</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-tutupan" class="rounded" style="accent-color: #009180;">
+                            <input type="checkbox" id="layer-tutupan" style="accent-color: #009180;">
                             <span class="text-xs text-gray-700">Tutupan Sawit</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-batas" checked class="rounded" style="accent-color: #009180;">
+                            <input type="checkbox" id="layer-batas" checked style="accent-color: #009180;">
                             <span class="text-xs text-gray-700">Batas Wilayah</span>
                         </label>
                     </div>
@@ -114,7 +114,7 @@
     <script>
         var map = new L.Map('map', { zoomControl: false });
         var osmUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
-        var osm = new L.TileLayer(osmUrl, { minZoom: 5, maxZoom: 18, attribution: 'SISKA — Dinas Perkebunan Kalteng' });
+        var osm = new L.TileLayer(osmUrl, { minZoom: 5, maxZoom: 18, attribution: ' Dinas Perkebunan Kalteng' });
 
         map.addLayer(osm);
         map.setView(new L.LatLng(-1.2193, 113.6213), 8);
@@ -170,5 +170,17 @@
         });
 
         window.addEventListener('resize', function() { map.invalidateSize(); });
+
+        function toggleLayerPanel() {
+            var body = document.getElementById('layer-panel-body');
+            var chevron = document.getElementById('layer-chevron');
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                chevron.classList.add('rotate-180');
+            } else {
+                body.style.display = 'none';
+                chevron.classList.remove('rotate-180');
+            }
+        }
     </script>
 @endpush
