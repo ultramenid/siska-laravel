@@ -32,11 +32,11 @@
                     <div id="layer-panel-body" class="border-t border-gray-100 px-4 py-3 space-y-2.5">
                         <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Overlay</p>
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-pabrik" style="accent-color: #009180;">
+                            <input type="checkbox" id="layer-pabrik" checked style="accent-color: #009180;">
                             <span class="text-xs text-gray-700">Pabrik Kelapa Sawit</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-kawasan" style="accent-color: #009180;">
+                            <input type="checkbox" id="layer-kawasan" checked style="accent-color: #009180;">
                             <span class="text-xs text-gray-700">Kawasan Hutan</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
@@ -44,7 +44,7 @@
                             <span class="text-xs text-gray-700">Izin Usaha</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-tutupan" style="accent-color: #009180;">
+                            <input type="checkbox" id="layer-tutupan" checked style="accent-color: #009180;">
                             <span class="text-xs text-gray-700">Tutupan Sawit</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
