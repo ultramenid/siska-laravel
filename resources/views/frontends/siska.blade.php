@@ -2,7 +2,6 @@
 
 @section('content')
     <section class="w-full">
-        @include('partials.navMobile')
         @include('partials.nav')
 
         {{-- Hero --}}

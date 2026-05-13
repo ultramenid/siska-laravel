@@ -2,30 +2,23 @@
 
 @section('content')
     <section class="w-full min-h-screen flex flex-col">
-        @include('partials.navMobile')
         @include('partials.nav')
 
         {{-- Full-screen commodity grid --}}
         <div class="flex-1 grid grid-cols-2 sm:grid-cols-3" style="grid-template-rows: repeat(2, minmax(200px, 1fr));">
 
             {{-- Sawit --}}
-            <a href="{{ url('/dashboard/sawit') }}"
-               x-data="{ open: false, touch: false }"
-               @mouseenter="if (!touch) open = true"
-               @mouseleave="if (!touch) open = false"
-               @touchstart.passive="touch = true; open = !open"
-               @click="if (touch && !open) { $event.preventDefault(); }"
-               class="group relative overflow-hidden">
+            <a href="{{ url('/dashboard/sawit') }}" class="group relative overflow-hidden">
                 <img src="{{ asset('assets/v1/sawitfull.png') }}" alt="Sawit" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                <div class="absolute inset-0 transition-opacity duration-300" :class="open ? 'bg-black opacity-60' : 'bg-black opacity-40'"></div>
+                <div class="absolute inset-0 bg-black opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
 
-                {{-- Default label --}}
-                <div class="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300" :class="open ? 'opacity-0' : 'opacity-100'">
+                {{-- Default label — hidden on hover --}}
+                <div class="absolute inset-0 flex flex-col items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
                     <h3 class="text-white text-2xl sm:text-4xl font-bold drop-shadow">Sawit</h3>
                 </div>
 
-                {{-- Expanded summary --}}
-                <div class="absolute inset-0 flex flex-col justify-end p-3 sm:p-5 transition-opacity duration-300 overflow-y-auto" :class="open ? 'opacity-100' : 'opacity-0'">
+                {{-- Hover summary — shown on hover --}}
+                <div class="absolute inset-0 flex flex-col justify-end p-3 sm:p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto pointer-events-none">
                     <h3 class="text-white text-base sm:text-xl font-bold mb-1 sm:mb-3">Sawit</h3>
                     <p class="text-white text-xs opacity-80 mb-2 leading-relaxed hidden sm:block">Telusuri data dan informasi industri pengolahan kelapa sawit meliputi jumlah, sebaran, serta kapasitas pengolahan pabrik di Kalimantan Tengah.</p>
                     <div class="grid grid-cols-2 gap-1 sm:gap-2 text-white" style="font-size: 10px;">
@@ -64,7 +57,7 @@
                     </div>
                     <div class="flex items-center gap-1 mt-2 text-white font-medium" style="font-size: 10px;">
                         <span>Selengkapnya</span>
-                        <svg class="w-3 h-3 transition-transform" :class="open ? 'translate-x-1' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>
                     </div>

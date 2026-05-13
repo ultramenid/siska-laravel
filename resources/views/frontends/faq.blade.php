@@ -2,7 +2,6 @@
 
 @section('content')
     <section class="w-full relative" >
-        @include('partials.navMobile')
         @include('partials.nav')
         <div class="flex flex-col  max-w-3xl mx-auto sm:py-32 py-4 text-sm px-4">
             <div class="text-center">
