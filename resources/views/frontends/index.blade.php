@@ -21,26 +21,43 @@
                 {{-- Hover summary --}}
                 <div class="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <h3 class="text-white text-xl font-bold mb-3">Sawit</h3>
+                    <p class="text-white text-xs opacity-80 mb-3 leading-relaxed">Telusuri data dan informasi industri pengolahan kelapa sawit meliputi jumlah, sebaran, serta kapasitas pengolahan pabrik di Kalimantan Tengah.</p>
                     <div class="grid grid-cols-2 gap-2 text-xs text-white">
                         <div class="bg-black bg-opacity-40 rounded-lg p-2">
-                            <p class="opacity-70">Luas Total</p>
+                            <p class="opacity-70">Perkebunan Sawit</p>
                             <p class="font-semibold text-sm">2.029.319 ha</p>
                         </div>
                         <div class="bg-black bg-opacity-40 rounded-lg p-2">
-                            <p class="opacity-70">Izin Usaha</p>
-                            <p class="font-semibold text-sm">280 Izin</p>
+                            <p class="opacity-70">Izin Usaha (280 Izin)</p>
+                            <p class="font-semibold text-sm">2.936.486 ha</p>
                         </div>
                         <div class="bg-black bg-opacity-40 rounded-lg p-2">
                             <p class="opacity-70">TM</p>
                             <p class="font-semibold text-sm">1.949.146 ha</p>
                         </div>
                         <div class="bg-black bg-opacity-40 rounded-lg p-2">
-                            <p class="opacity-70">Produksi TBS</p>
-                            <p class="font-semibold text-sm">2.512.651 Ton</p>
+                            <p class="opacity-70">TBM</p>
+                            <p class="font-semibold text-sm">13.319 ha</p>
+                        </div>
+                        <div class="bg-black bg-opacity-40 rounded-lg p-2">
+                            <p class="opacity-70">TR</p>
+                            <p class="font-semibold text-sm">66.854 ha</p>
+                        </div>
+                        <div class="bg-black bg-opacity-40 rounded-lg p-2">
+                            <p class="opacity-70">PBS</p>
+                            <p class="font-semibold text-sm">1.731.586 ha</p>
+                        </div>
+                        <div class="bg-black bg-opacity-40 rounded-lg p-2">
+                            <p class="opacity-70">PR</p>
+                            <p class="font-semibold text-sm">297.733 ha</p>
+                        </div>
+                        <div class="bg-black bg-opacity-40 rounded-lg p-2">
+                            <p class="opacity-70">Jumlah Pabrik</p>
+                            <p class="font-semibold text-sm">127 Unit</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-1 mt-3 text-white text-xs font-medium">
-                        <span>Lihat Data</span>
+                        <span>Selengkapnya</span>
                         <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>
