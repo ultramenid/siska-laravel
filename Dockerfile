@@ -1,14 +1,15 @@
-FROM php:8.4-fpm-alpine
+FROM php:8.4-fpm-bookworm
 
 # Runtime extensions Laravel 13 / this app needs.
-# pdo_pgsql -> PostGIS DB, gd -> image handling, zip/intl/bcmath -> Laravel core + composer.
-RUN apk add --no-cache \
+# Debian apt resolves these reliably (the Alpine build hit a partial repo index).
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libpq-dev \
         libpng-dev \
         libzip-dev \
-        icu-dev \
-        oniguruma-dev \
-        libpq-dev \
-    && docker-php-ext-install pdo_pgsql pdo_mysql gd zip bcmath intl opcache
+        libicu-dev \
+        unzip \
+    && docker-php-ext-install pdo_pgsql pdo_mysql gd zip bcmath intl opcache \
+    && rm -rf /var/lib/apt/lists/*
 
 # Composer binary (run `composer install` inside the container).
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
