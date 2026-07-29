@@ -13,3 +13,13 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+.agents/
+.claude/
+
+# Docker production artifacts (built in CI, mounted on the server — never commit)
+public/build/
+certs/
+docker-data/
+tests/
+AGENTS.md
+CLAUDE.md

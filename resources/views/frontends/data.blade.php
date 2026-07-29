@@ -1,81 +1,158 @@
 @extends('layouts.indexLayout')
 
+@php
+    $komoditas = [
+        'sawit'  => ['label' => 'Sawit',  'ada' => true],
+        'karet'  => ['label' => 'Karet',  'ada' => false],
+        'kelapa' => ['label' => 'Kelapa', 'ada' => false],
+        'lada'   => ['label' => 'Lada',   'ada' => false],
+        'kopi'   => ['label' => 'Kopi',   'ada' => false],
+        'kakao'  => ['label' => 'Kakao',  'ada' => false],
+    ];
+@endphp
+
 @section('content')
-    <section class="w-full">
+    <div class="min-h-screen flex flex-col">
         @include('partials.nav')
 
-        {{-- Hero --}}
-        <div class="w-full relative flex items-center justify-center" style="min-height: 28vh;">
-            <img src="{{ asset('assets/v1/pekerbunanbesar.png') }}" alt="Data Perkebunan" class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black opacity-60"></div>
-            <div class="relative text-center px-6 py-12">
-                <h1 class="text-4xl sm:text-5xl font-bold text-white mb-3">Data Perkebunan</h1>
-                <p class="text-white text-base sm:text-lg opacity-80">Kalimantan Tengah</p>
-            </div>
-        </div>
+        <main id="content" class="flex-1">
 
-        {{-- Content --}}
-        <div class="max-w-7xl mx-auto px-4 py-10" x-data="{ sidenav: 'sawit' }">
-            <div class="flex sm:flex-row flex-col gap-8">
+            {{-- Header band --}}
+            <section class="bg-ink text-white border-b border-ink-line">
+                <div class="max-w-[110rem] mx-auto px-5 sm:px-8 py-10 sm:py-14 text-center">
+                    <p class="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-white/50">Register data</p>
 
-                {{-- Sidenav --}}
-                <div class="sm:w-48 w-full shrink-0">
-                    <div class="sticky top-6">
-                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 px-2">Komoditas</p>
-                        <nav class="flex sm:flex-col flex-row flex-wrap gap-1">
-                            @foreach ([
-                                'sawit'  => ['label' => 'Sawit',  'soon' => false],
-                                'karet'  => ['label' => 'Karet',  'soon' => true],
-                                'kelapa' => ['label' => 'Kelapa', 'soon' => true],
-                                'lada'   => ['label' => 'Lada',   'soon' => true],
-                                'kopi'   => ['label' => 'Kopi',   'soon' => true],
-                                'kakao'  => ['label' => 'Kakao',  'soon' => true],
-                            ] as $key => $item)
-                            <button
-                                @if(!$item['soon']) @click="sidenav = '{{ $key }}'" @endif
-                                :class="sidenav === '{{ $key }}'
-                                    ? 'text-white font-semibold'
-                                    : '{{ $item['soon'] ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}'"
-                                class="w-full text-left px-4 py-2 rounded-lg text-sm transition-colors duration-150 focus:outline-hidden"
-                                :style="sidenav === '{{ $key }}' ? 'background-color: #132822;' : ''"
-                                {{ $item['soon'] ? 'disabled' : '' }}
-                            >
-                                <span class="flex items-center justify-between gap-2">
-                                    {{ $item['label'] }}
-                                    @if($item['soon'])
-                                    <span class="text-xs px-1.5 py-0.5 rounded-sm font-normal bg-gray-100 text-gray-400">soon</span>
-                                    @endif
-                                </span>
-                            </button>
-                            @endforeach
+                    <h1 class="mt-3 font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+                        Tabel data perkebunan
+                    </h1>
+
+                    <p class="mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed text-white/70">
+                        Luas tanam, produksi dan produktivitas komoditas perkebunan Kalimantan Tengah,
+                        dirinci per tahun dan per bentuk pengusahaan.
+                    </p>
+
+                    <div class="mt-8 grid gap-2.5 sm:grid-cols-2 max-w-3xl mx-auto">
+                        <p class="annot annot-invert justify-center">
+                            <span class="annot-label">Periode</span>
+                            <span class="annot-rule"></span>
+                            <span class="annot-value figure">2010–2021</span>
+                        </p>
+                        <p class="annot annot-invert justify-center">
+                            <span class="annot-label">Sumber</span>
+                            <span class="annot-rule"></span>
+                            <span class="annot-value">Disbun Kalteng</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {{-- Register + commodity index --}}
+            <div class="max-w-[110rem] mx-auto px-5 sm:px-8 py-10 sm:py-14" x-data="{ sidenav: 'sawit' }">
+                <div class="flex flex-col sm:flex-row gap-8 lg:gap-12">
+
+                    {{-- Commodity index: ruled list on desktop, scrolling strip on mobile --}}
+                    <div class="sm:w-56 shrink-0 sm:sticky sm:top-6 sm:self-start">
+                        <p class="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-muted">Komoditas</p>
+
+                        <nav
+                            aria-label="Pilih komoditas"
+                            class="mt-3 -mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto sm:overflow-visible"
+                        >
+                            <div class="flex sm:flex-col w-max sm:w-auto border-rule sm:border-t">
+                                @foreach ($komoditas as $key => $item)
+                                    <button
+                                        type="button"
+                                        @if ($item['ada'])
+                                            @click="sidenav = '{{ $key }}'"
+                                            :aria-current="sidenav === '{{ $key }}' ? 'true' : 'false'"
+                                            :class="sidenav === '{{ $key }}'
+                                                ? 'bg-ink text-white border-l-cpo'
+                                                : 'bg-white text-ink hover:bg-teal-wash border-l-transparent'"
+                                            class="shrink-0 whitespace-nowrap border-b border-r sm:border-r-0 border-rule border-l-2 px-4 py-2.5 text-left font-mono text-xs tracking-[0.04em] transition-colors duration-150 cursor-pointer"
+                                        @else
+                                            disabled
+                                            class="shrink-0 whitespace-nowrap border-b border-r sm:border-r-0 border-rule border-l-2 border-l-transparent bg-paper-dim px-4 py-2.5 text-left font-mono text-xs tracking-[0.04em] text-muted/60 cursor-not-allowed"
+                                        @endif
+                                    >
+                                        <span class="flex items-center justify-between gap-3">
+                                            <span>{{ $item['label'] }}</span>
+                                            @unless ($item['ada'])
+                                                <span class="font-mono text-[0.5625rem] uppercase tracking-[0.1em] text-muted/60">belum ada</span>
+                                            @endunless
+                                        </span>
+                                    </button>
+                                @endforeach
+                            </div>
                         </nav>
                     </div>
-                </div>
 
-                {{-- Table Area --}}
-                <div class="flex-1 min-w-0">
-                    <div x-show="sidenav === 'sawit'" style="display: none !important;">
-                        <livewire:table-sawit/>
-                    </div>
+                    {{-- Panels --}}
+                    <div class="flex-1 min-w-0">
 
-                    @foreach (['karet' => 'Karet', 'kelapa' => 'Kelapa', 'lada' => 'Lada', 'kopi' => 'Kopi', 'kakao' => 'Kakao'] as $key => $label)
-                    <div x-show="sidenav === '{{ $key }}'" style="display: none !important;">
-                        <div class="flex flex-col items-center justify-center py-24 text-center">
-                            <div class="w-16 h-16 rounded-full flex items-center justify-center mb-4" style="background-color: #e6f4f2;">
-                                <svg class="w-8 h-8" style="color: #009180;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                                </svg>
+                        @if (session('username'))
+                            <div x-show="sidenav === 'sawit'" x-cloak>
+                                <div class="mb-5">
+                                    <h2 class="sect-title text-xl sm:text-2xl">Kelapa sawit</h2>
+                                    <p class="mt-3 annot">
+                                        <span class="annot-label">Satuan</span>
+                                        <span class="annot-rule"></span>
+                                        <span class="annot-value figure">ha · ton · ton/ha</span>
+                                    </p>
+                                </div>
+
+                                <livewire:table-sawit/>
                             </div>
-                            <h3 class="text-lg font-semibold text-gray-700 mb-1">Data {{ $label }}</h3>
-                            <p class="text-sm text-gray-400">Segera hadir</p>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
 
+                            @foreach ($komoditas as $key => $item)
+                                @continue($item['ada'])
+                                <div x-show="sidenav === '{{ $key }}'" x-cloak>
+                                    <div class="border border-rule bg-white bg-survey px-6 py-16 sm:py-24 text-center">
+                                        <p class="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-muted">Belum tersedia</p>
+
+                                        <h2 class="mt-3 sect-title text-xl sm:text-2xl">Data {{ $item['label'] }}</h2>
+
+                                        <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink/70">
+                                            Halaman ini akan memuat luas tanam, produksi, produktivitas dan jumlah petani
+                                            {{ strtolower($item['label']) }} per tahun — dalam format yang sama dengan tabel sawit,
+                                            segera setelah datanya dihimpun Dinas Perkebunan.
+                                        </p>
+
+                                        <button
+                                            type="button"
+                                            @click="sidenav = 'sawit'"
+                                            class="btn btn-ghost mt-7 border-rule"
+                                        >
+                                            Lihat tabel sawit
+                                        </button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="border border-rule bg-white bg-survey px-6 py-16 sm:py-24 text-center">
+                                <p class="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-muted">Akses terbatas</p>
+
+                                <h2 class="mt-3 sect-title text-xl sm:text-2xl">Masuk untuk melihat tabel</h2>
+
+                                <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink/70">
+                                    Tabel rinci memerlukan kredensial. Gunakan tombol di atas untuk membuka dialog masuk,
+                                    atau tunggu dialog ini terbuka secara otomatis.
+                                </p>
+
+                                <button
+                                    type="button"
+                                    x-on:click="$dispatch('open-login')"
+                                    class="btn mt-7 border-rule"
+                                >
+                                    Masuk
+                                </button>
+                            </div>
+                        @endif
+
+                    </div>
+                </div>
             </div>
-        </div>
+        </main>
 
         @include('partials.footer')
-    </section>
+    </div>
 @endsection

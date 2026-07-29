@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PetaDataController extends Controller
 {
-    public function index(){
-        $title = 'Platform Map - Sistem Informasi Perkebunan Kelapa Sawit Kalimantan Tengah ';
-        $nav = 'petadata';
-        return view('frontends.map', compact('title', 'nav'));
-    }
-
-    public function daftaristilah(){
-        $title = 'Daftar Istilah - Sistem Informasi Perkebunan Kelapa Sawit Kalimantan Tengah ';
-        $nav = 'petadata';
-        return view('frontends.daftaristilah', compact('title', 'nav'));
+    public function index(): View
+    {
+        return view('frontends.map', [
+            'title' => 'Peta Perkebunan — SISKA Kalimantan Tengah',
+        ]);
     }
 }

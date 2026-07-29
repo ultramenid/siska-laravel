@@ -1,115 +1,263 @@
 @extends('layouts.indexLayout')
 
+@push('head')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css">
+    <link rel="stylesheet" href="{{ asset('css/Control.MiniMap.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.css">
+@endpush
+
+@push('head')
+    <style>
+        /* Leaflet chrome, redrawn as survey instrumentation: hairlines, 2px radii, no shadows. */
+        .leaflet-container {
+            font-family: var(--font-sans);
+            background: var(--color-paper-dim);
+        }
+
+        .leaflet-bar,
+        .leaflet-control-minimap {
+            border: 1px solid var(--color-ink) !important;
+            border-radius: 2px !important;
+            box-shadow: 0 2px 0 rgb(19 40 34 / 0.08) !important;
+            overflow: hidden;
+        }
+
+        /* Make the minimap stand out: white paper backing, ink border, teal viewport. */
+        .leaflet-control-minimap {
+            background: #fff !important;
+        }
+
+        .leaflet-control-minimap .leaflet-control-minimap-map {
+            background: var(--color-paper);
+        }
+
+        .leaflet-control-minimap .leaflet-control-minimap-viewport {
+            border: 1px solid var(--color-ink) !important;
+            background: rgb(0 145 128 / 0.08) !important;
+        }
+
+        .leaflet-bar a,
+        .leaflet-control-resetview a {
+            font-family: var(--font-mono);
+            font-weight: 500;
+            color: var(--color-ink) !important;
+            background: #fff;
+            border-bottom: 1px solid var(--color-rule) !important;
+        }
+
+        .leaflet-bar a:last-child {
+            border-bottom: none !important;
+        }
+
+        .leaflet-bar a:hover,
+        .leaflet-control-resetview a:hover {
+            background-color: var(--color-teal) !important;
+            color: #fff !important;
+        }
+
+        /* cpo marks the active press — the only warm colour in the chrome. */
+        .leaflet-bar a:active,
+        .leaflet-control-resetview a:active,
+        .leaflet-control-minimap-toggle-display:hover {
+            background-color: var(--color-cpo) !important;
+            color: #fff !important;
+        }
+
+        .leaflet-bar a.leaflet-disabled {
+            color: var(--color-muted) !important;
+            background: var(--color-paper-dim);
+        }
+
+        .leaflet-control-scale-line {
+            padding: 2px 7px;
+            border: 1px solid var(--color-rule) !important;
+            border-top: none !important;
+            border-radius: 0 0 2px 2px !important;
+            background: rgb(255 255 255 / 0.9) !important;
+            color: var(--color-ink) !important;
+            font-family: var(--font-mono);
+            font-variant-numeric: tabular-nums;
+            font-size: 10px;
+            letter-spacing: 0.06em;
+            line-height: 1.4;
+            box-shadow: none !important;
+        }
+
+        /* betterWms renders permit attributes into these popups. */
+        .leaflet-popup-content-wrapper {
+            border: 1px solid var(--color-ink) !important;
+            border-radius: 2px !important;
+            box-shadow: none !important;
+            background: #fff;
+        }
+
+        .leaflet-popup-tip {
+            border: 1px solid var(--color-ink);
+            background: #fff;
+            box-shadow: none !important;
+        }
+
+        .leaflet-popup-content {
+            margin: 0.75rem 1rem;
+        }
+
+        .leaflet-popup-content p {
+            margin: 0;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            line-height: 1.45;
+            letter-spacing: 0.04em;
+            color: var(--color-ink);
+        }
+
+        .leaflet-container a.leaflet-popup-close-button {
+            color: var(--color-muted) !important;
+        }
+
+        .leaflet-container a.leaflet-popup-close-button:hover {
+            color: var(--color-cpo) !important;
+            background: transparent !important;
+        }
+
+        .leaflet-attribution-flag { display: none !important; }
+
+        .leaflet-control-attribution {
+            border-top: 1px solid var(--color-rule);
+            border-left: 1px solid var(--color-rule);
+            border-radius: 0 !important;
+            background: rgb(255 255 255 / 0.85) !important;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            letter-spacing: 0.04em;
+            color: var(--color-muted);
+        }
+    </style>
+@endpush
+
 @section('content')
     <section class="w-full flex flex-col" style="height: 100dvh;">
         @include('partials.nav')
 
-        {{-- Map wrapper fills remaining height --}}
-        <div class="relative flex-1 min-h-0">
+        <main id="content" class="relative flex-1 min-h-0">
 
-            {{-- Map --}}
-            <div id="map" class="absolute inset-0"></div>
+            <div id="map" class="absolute inset-0" role="region"
+                aria-label="Peta interaktif perkebunan Kalimantan Tengah"></div>
 
-            {{-- Title overlay --}}
-            <div class="absolute top-4 left-4 pointer-events-none" style="z-index: 1000;">
-                <div class="bg-white bg-opacity-90 rounded-xl px-4 py-3 shadow-md">
-                    <h1 class="text-sm font-bold" style="color: #132822;">Peta Perkebunan</h1>
-                    <p class="text-xs text-gray-500">Kalimantan Tengah</p>
+            @php
+                $geoserverUrl = 'https://geoserver.sawitkalteng.id/geoserver';
+                $mapLayers = [
+                    ['key' => 'pabrik', 'name' => 'Pabrik Kelapa Sawit', 'wms' => 'sawitkalteng:Pabrik_Kelapa_Sawit_New_1', 'hasLegend' => true],
+                    ['key' => 'kawasan', 'name' => 'Kawasan Hutan', 'wms' => 'sawitkalteng:KH2025', 'hasLegend' => true],
+                    ['key' => 'izin', 'name' => 'Izin Usaha', 'wms' => 'sawitkalteng:Update_Ijin_Kalteng 2021', 'hasLegend' => true],
+                    ['key' => 'tutupan', 'name' => 'Tutupan Sawit', 'wms' => 'sawitkalteng:kalteng_tutupan_sawit_20190918', 'hasLegend' => true],
+                    ['key' => 'batas', 'name' => 'Batas Wilayah', 'wms' => 'sawitkalteng:kalteng_boundaries', 'hasLegend' => true],
+                ];
+
+                $kawasanClasses = [
+                    ['label' => 'APL', 'color' => '#f5f0e6'],
+                    ['label' => 'Hutan Lindung (HL)', 'color' => '#2e8b2e'],
+                    ['label' => 'Hutan Produksi (HP)', 'color' => '#f7f45c'],
+                    ['label' => 'HP Konversi (HPK)', 'color' => '#e060e0'],
+                    ['label' => 'HP Terbatas (HPT)', 'color' => '#8be060'],
+                    ['label' => 'KSA/KPA', 'color' => '#8b5cf6'],
+                    ['label' => 'KSA/KPA Air', 'color' => '#a78bfa'],
+                    ['label' => 'Tubuh Air', 'color' => '#0000ff'],
+                ];
+            @endphp
+
+            {{-- Layers register, top-right: mono instrument readout (label · dashed leader · active count) --}}
+            <div class="absolute right-3 top-3 sm:right-5 sm:top-5 w-auto sm:w-[15rem] max-w-[calc(100vw-1.5rem)] reveal"
+                style="z-index: 1000; --d: 90ms;">
+                <div class="bg-white/95 border border-rule rounded-sm">
+                    <section x-data="{ open: window.innerWidth >= 640 }">
+                        <button type="button" x-on:click="open = !open"
+                            :aria-expanded="open ? 'true' : 'false'" aria-controls="layer-panel-body"
+                            class="w-full flex items-center justify-between gap-2 px-3 py-2.5 hover:text-teal-deep focus:outline-hidden focus-visible:ring-1 focus-visible:ring-teal-deep">
+                            <span class="font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-ink">Layers</span>
+                            <svg class="w-3.5 h-3.5 shrink-0 transition-transform text-ink" :class="open ? 'rotate-180' : ''"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="square" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <div id="layer-panel-body" x-show="open" x-cloak class="border-t border-rule px-3 pb-1">
+                            @foreach ($mapLayers as $layer)
+                                <div class="flex items-center gap-2.5 py-2 {{ ! $loop->last ? 'border-b border-rule/70' : '' }}">
+                                    <label for="layer-{{ $layer['key'] }}"
+                                        class="flex flex-1 items-center gap-2.5 cursor-pointer font-mono text-[0.6875rem] uppercase tracking-[0.08em] text-ink hover:text-teal-deep">
+                                        <span>{{ $layer['name'] }}</span>
+                                    </label>
+                                    <input type="checkbox" id="layer-{{ $layer['key'] }}" checked
+                                        class="shrink-0 w-3.5 h-3.5 cursor-pointer accent-[#009180]"
+                                    >
+                                </div>
+                            @endforeach
+                        </div>
+                    </section>
                 </div>
             </div>
 
-            {{-- Custom layer panel --}}
-            <div class="absolute top-4 right-4" style="z-index: 1000;">
-                <div class="bg-white rounded-xl shadow-md overflow-hidden" style="min-width: 180px;">
-                    <button onclick="toggleLayerPanel()"
-                        class="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold focus:outline-hidden"
-                        style="color: #132822;">
-                        <span>Layer</span>
-                        <svg id="layer-chevron" class="w-4 h-4 transition-transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div id="layer-panel-body" class="border-t border-gray-100 px-4 py-3 space-y-2.5">
-                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Overlay</p>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-pabrik" checked style="accent-color: #009180;">
-                            <span class="text-xs text-gray-700">Pabrik Kelapa Sawit</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-kawasan" checked style="accent-color: #009180;">
-                            <span class="text-xs text-gray-700">Kawasan Hutan</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-izin" checked style="accent-color: #009180;">
-                            <span class="text-xs text-gray-700">Izin Usaha</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-tutupan" checked style="accent-color: #009180;">
-                            <span class="text-xs text-gray-700">Tutupan Sawit</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="layer-batas" checked style="accent-color: #009180;">
-                            <span class="text-xs text-gray-700">Batas Wilayah</span>
-                        </label>
-                    </div>
+            {{-- Legend register, top-left: same instrument-readout pattern as Layers --}}
+            <div class="absolute left-3 top-3 sm:left-5 sm:top-5 w-auto sm:w-[16.5rem] max-w-[calc(100vw-1.5rem)] reveal"
+                style="z-index: 1000; --d: 120ms;">
+                <div class="bg-white/95 border border-rule rounded-sm">
+                    <section x-data="{ open: window.innerWidth >= 640 }">
+                        <button type="button" x-on:click="open = !open"
+                            :aria-expanded="open ? 'true' : 'false'" aria-controls="legend-panel-body"
+                            class="w-full flex items-center justify-between gap-2 px-3 py-2.5 hover:text-teal-deep focus:outline-hidden focus-visible:ring-1 focus-visible:ring-teal-deep">
+                            <span class="font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-ink">Legenda</span>
+                            <svg class="w-3.5 h-3.5 shrink-0 transition-transform text-ink" :class="open ? 'rotate-180' : ''"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="square" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <div id="legend-panel-body" x-show="open" x-cloak class="border-t border-rule px-3 pb-2">
+                            <p id="legend-empty" class="hidden font-mono text-[0.6875rem] uppercase tracking-[0.08em] text-muted py-2">
+                                Tidak ada layer aktif.
+                            </p>
+                            @foreach ($mapLayers as $layer)
+                                <div id="legend-{{ $layer['key'] }}" class="legend-item py-2 {{ ! $loop->last ? 'border-b border-rule/70' : '' }}">
+                                    <p class="font-mono text-[0.6875rem] uppercase tracking-[0.08em] text-ink mb-2">{{ $layer['name'] }}</p>
+
+                                    @if ($layer['key'] === 'kawasan')
+                                        {{-- Land-use key: vertical ribbon swatches, the surveyor's color register --}}
+                                        <ul class="grid grid-cols-1 gap-y-1.5">
+                                            @foreach ($kawasanClasses as $class)
+                                                <li class="flex items-center gap-2.5">
+                                                    <span class="shrink-0 w-1.5 h-5 rounded-sm border border-rule"
+                                                          style="background-color: {{ $class['color'] }};"
+                                                          aria-hidden="true"></span>
+                                                    <span class="font-mono text-[0.8125rem] leading-tight text-ink">{{ $class['label'] }}</span>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        <img
+                                            src="{{ $geoserverUrl }}/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER={{ urlencode($layer['wms']) }}"
+                                            alt="Legenda {{ $layer['name'] }}"
+                                            loading="lazy"
+                                            class="max-w-full h-auto border border-rule rounded-sm bg-white"
+                                            onerror="this.style.display='none'"
+                                        >
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </section>
                 </div>
             </div>
 
-        </div>
+        </main>
     </section>
 @endsection
 
 @push('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
-    <script src="js/Control.MiniMap.min.js"></script>
-    <script src="js/wms.js"></script>
+    <script src="{{ asset('js/Control.MiniMap.min.js') }}"></script>
+    <script src="{{ asset('js/wms.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.js"></script>
-
-    <style>
-        .leaflet-control-zoom a {
-            color: #132822 !important;
-            font-weight: 600;
-        }
-        .leaflet-control-zoom a:hover {
-            background-color: #009180 !important;
-            color: #fff !important;
-        }
-        .leaflet-bar {
-            border-radius: 10px !important;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
-            border: none !important;
-        }
-        .leaflet-bar a {
-            border-bottom-color: #e5e7eb !important;
-        }
-        .leaflet-control-resetview a {
-            color: #132822 !important;
-        }
-        .leaflet-control-resetview a:hover {
-            background-color: #009180 !important;
-            color: #fff !important;
-        }
-        .leaflet-control-minimap {
-            border-radius: 10px !important;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
-            border: 2px solid #fff !important;
-        }
-        .leaflet-popup-content-wrapper {
-            border-radius: 10px !important;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
-            font-family: inherit;
-            font-size: 13px;
-        }
-        .leaflet-attribution-flag { display: none !important; }
-        .leaflet-control-attribution {
-            font-size: 10px;
-            background: rgba(255,255,255,0.8) !important;
-            border-radius: 6px !important;
-        }
-    </style>
 
     <script>
         var map = new L.Map('map', { zoomControl: false });
@@ -127,24 +275,35 @@
             zoom: 8,
         }).addTo(map);
 
+        L.control.scale({ imperial: false, position: 'bottomright' }).addTo(map);
+
         var osm2 = new L.TileLayer(osmUrl, { minZoom: 0, maxZoom: 13 });
-        new L.Control.MiniMap(osm2, { toggleDisplay: true, position: 'bottomleft' }).addTo(map);
+        new L.Control.MiniMap(osm2, {
+            toggleDisplay: true,
+            position: 'bottomright',
+            width: 140,
+            height: 140,
+            collapsedWidth: 24,
+            collapsedHeight: 24,
+            zoomLevelFixed: 4,
+            strings: { hideText: 'Sembunyikan mini peta', showText: 'Tampilkan mini peta' },
+        }).addTo(map);
 
         var layers = {
-            pabrik: L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-                layers: 'siska:Pabrik_Kelapa_Sawit_New', transparent: true, format: 'image/png'
+            pabrik: L.tileLayer.wms('https://geoserver.sawitkalteng.id/geoserver/wms', {
+                layers: 'sawitkalteng:Pabrik_Kelapa_Sawit_New_1', transparent: true, format: 'image/png'
             }),
-            kawasan: L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-                layers: 'siska:Penunjukan_Kawasan_Hutan_Update2021_Trial', transparent: true, format: 'image/png'
+            kawasan: L.tileLayer.wms('https://geoserver.sawitkalteng.id/geoserver/wms', {
+                layers: 'sawitkalteng:KH2025', transparent: true, format: 'image/png'
             }),
-            izin: L.tileLayer.betterWms('https://aws.simontini.id/geoserver/wms', {
-                layers: 'siska:Update_Ijin_Kalteng 2021', transparent: true, format: 'image/png'
+            izin: L.tileLayer.betterWms('https://geoserver.sawitkalteng.id/geoserver/wms', {
+                layers: 'sawitkalteng:Update_Ijin_Kalteng 2021', transparent: true, format: 'image/png'
             }),
-            tutupan: L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-                layers: 'siska:kalteng_tutupan_sawit_20190918', transparent: true, format: 'image/png'
+            tutupan: L.tileLayer.wms('https://geoserver.sawitkalteng.id/geoserver/wms', {
+                layers: 'sawitkalteng:kalteng_tutupan_sawit_20190918', transparent: true, format: 'image/png'
             }),
-            batas: L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-                layers: 'siska:kalteng_adm_line', transparent: true, format: 'image/png'
+            batas: L.tileLayer.wms('https://geoserver.sawitkalteng.id/geoserver/wms', {
+                layers: 'sawitkalteng:kalteng_boundaries', transparent: true, format: 'image/png'
             }),
         };
 
@@ -155,35 +314,31 @@
         layers.tutupan.addTo(map);
         layers.batas.addTo(map);
 
-        // Wire custom checkboxes to layers
-        document.getElementById('layer-pabrik').addEventListener('change', function() {
-            this.checked ? layers.pabrik.addTo(map) : map.removeLayer(layers.pabrik);
+        // Wire legend checkboxes to layers and legend items by id
+        var legendEmpty = document.getElementById('legend-empty');
+        Object.keys(layers).forEach(function (key) {
+            var checkbox = document.getElementById('layer-' + key);
+            var legend = document.getElementById('legend-' + key);
+
+            checkbox.addEventListener('change', function () {
+                this.checked ? layers[key].addTo(map) : map.removeLayer(layers[key]);
+                if (legend) legend.style.display = this.checked ? 'block' : 'none';
+                syncPanelState();
+            });
+
+            // Sync initial state
+            if (legend) legend.style.display = checkbox.checked ? 'block' : 'none';
         });
-        document.getElementById('layer-kawasan').addEventListener('change', function() {
-            this.checked ? layers.kawasan.addTo(map) : map.removeLayer(layers.kawasan);
-        });
-        document.getElementById('layer-izin').addEventListener('change', function() {
-            this.checked ? layers.izin.addTo(map) : map.removeLayer(layers.izin);
-        });
-        document.getElementById('layer-tutupan').addEventListener('change', function() {
-            this.checked ? layers.tutupan.addTo(map) : map.removeLayer(layers.tutupan);
-        });
-        document.getElementById('layer-batas').addEventListener('change', function() {
-            this.checked ? layers.batas.addTo(map) : map.removeLayer(layers.batas);
-        });
+
+        function syncPanelState() {
+            var anyActive = Object.keys(layers).some(function (k) {
+                var cb = document.getElementById('layer-' + k);
+                return cb && cb.checked;
+            });
+            if (legendEmpty) legendEmpty.classList.toggle('hidden', anyActive);
+        }
+        syncPanelState();
 
         window.addEventListener('resize', function() { map.invalidateSize(); });
-
-        function toggleLayerPanel() {
-            var body = document.getElementById('layer-panel-body');
-            var chevron = document.getElementById('layer-chevron');
-            if (body.style.display === 'none') {
-                body.style.display = 'block';
-                chevron.classList.add('rotate-180');
-            } else {
-                body.style.display = 'none';
-                chevron.classList.remove('rotate-180');
-            }
-        }
     </script>
 @endpush

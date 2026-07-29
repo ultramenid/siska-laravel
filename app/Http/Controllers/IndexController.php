@@ -2,83 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class IndexController extends Controller
 {
-    // public function getISPO(){
-    //         $req = Http::get('https://aws.simontini.id/geoserver/wfs',
-    //         [
-    //             'service' => 'wfs',
-    //             'version' => '1.1.1',
-    //             'request' => 'GetFeature',
-    //             'typename' => 'siska:Pabrik_Kelapa_Sawit_New',
-    //             'cql_filter' => "sertifikasi='ISPO'",
-    //             'outputFormat' => 'application/json',
-    //         ]);
-    //         $response = json_decode($req->getBody()->getContents(), true);
-    //         return $response['numberMatched'];
+    public function index(): View
+    {
+        return view('frontends.index', [
+            'title' => 'SISKA — Sistem Informasi Komoditas Perkebunan Kalimantan Tengah',
+            'sawit' => $this->latestSawitFigures(),
+        ]);
+    }
 
-    // }
-    // public function getNonISPO(){
-    //     $req = Http::get('https://aws.simontini.id/geoserver/wfs',
-    //         [
-    //             'service' => 'wfs',
-    //             'version' => '1.1.1',
-    //             'request' => 'GetFeature',
-    //             'typename' => 'siska:Pabrik_Kelapa_Sawit_New',
-    //             'cql_filter' => "sertifikasi='Non ISPO'",
-    //             'outputFormat' => 'application/json',
-    //         ]);
-    //         $response = json_decode($req->getBody()->getContents(), true);
-    //         return $response['numberMatched'];
-    // }
+    /**
+     * Headline figures for the most recent year on record.
+     *
+     * @return array{tahun: string, luas: float, pbs: float, pr: float, tbm: float, tm: float, tr: float, produksi: float, petani: int, pabrik: int}
+     */
+    private function latestSawitFigures(): array
+    {
+        $rows = DB::table('tbsawit')
+            ->where('komoditas', 'Sawit')
+            ->whereRaw('tahun = (select max(tahun) from tbsawit where komoditas = ?)', ['Sawit'])
+            ->get();
 
-    // public function getTotalPabrik(){
-    //     $req = Http::get('https://aws.simontini.id/geoserver/wfs',
-    //         [
-    //             'service' => 'wfs',
-    //             'version' => '1.1.1',
-    //             'request' => 'GetFeature',
-    //             'typename' => 'siska:Pabrik_Kelapa_Sawit_New',
-    //             'featurename' =>'perusahaan',
-    //             'outputFormat' => 'application/json',
-    //         ]);
-    //         $response = json_decode($req->getBody()->getContents(), true);
-    //         // dd($response);
-    //         return $response['numberMatched'];
-    // }
-    // public function getTotalIzin(){
-    //     $req = Http::get('https://aws.simontini.id/geoserver/wfs',
-    //         [
-    //             'service' => 'wfs',
-    //             'version' => '1.1.1',
-    //             'request' => 'GetFeature',
-    //             'typename' => 'siska:Kalimantan Tengah - Analisis Izin Sawit',
-    //             'propertyName' => 'name_obj',
-    //             'outputFormat' => 'application/json',
-    //         ]);
-    //         $response = json_decode($req, true);
-    //         // $arrUnique = array_unique($response['features'][0]['properties']['provinsi']);
-
-    //         $res = array();
-    //         foreach ($response['features'] as $each) {
-    //             if (isset($res[$each['properties']['name_obj']]))
-    //                 array_push($res[$each['properties']['name_obj']], $each['properties']['name_obj']);
-    //             else
-    //                 $res[$each['properties']['name_obj']] = array($each['properties']['name_obj']);
-    //             }
-    //         return count($res);
-    // }
-    public function index(){
-        // $ispo = $this->getISPO();
-        // $nonispo = $this->getNonISPO();
-        // // $totalpabrik = $this->getTotalPabrik();
-        // $totalizin = $this->getTotalIzin();
-        $nav = 'index';
-        $title = 'Index - Sistem Informasi Perkebunan Kelapa Sawit Kalimantan Tengah';
-        return view('frontends.index', compact('title', 'nav'));
+        return [
+            'tahun' => (string) ($rows->first()->tahun ?? '—'),
+            'luas' => (float) $rows->sum('totalluas'),
+            'pbs' => (float) ($rows->firstWhere('pengusahaan', 'Perkebunan Besar Swasta')->totalluas ?? 0),
+            'pr' => (float) ($rows->firstWhere('pengusahaan', 'Perkebunan Rakyat')->totalluas ?? 0),
+            'tbm' => (float) $rows->sum('tbm'),
+            'tm' => (float) $rows->sum('tm'),
+            'tr' => (float) $rows->sum('tr'),
+            'produksi' => (float) $rows->sum('produksi'),
+            'petani' => (int) $rows->sum('petani'),
+            // ponytail: mill count is not in tbsawit, it lives in the GeoServer layer.
+            // Swap for a query when that layer is exposed to the app.
+            'pabrik' => 127,
+        ];
     }
 }

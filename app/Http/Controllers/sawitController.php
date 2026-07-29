@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class sawitController extends Controller
 {
-    public function index(){
-        $title = 'Dashboard Sawit';
+    public function index()
+    {
+        $title = 'Dashboard Sawit — SISKA Kalimantan Tengah';
         $nav = 'index';
 
-        $pbs              = $this->getMutasiPBS();
-        $pbr              = $this->getMutasiPBR();
-        $pengusahaanPBS   = $this->getPengusahaanPBS();
-        $pengusahaanPBR   = $this->getPengusahaanPBR();
-        $perkebunanbesar  = $this->getPerkebunanBesar();
+        $pbs = $this->getMutasiPBS();
+        $pbr = $this->getMutasiPBR();
+        $pengusahaanPBS = $this->getPengusahaanPBS();
+        $pengusahaanPBR = $this->getPengusahaanPBR();
+        $perkebunanbesar = $this->getPerkebunanBesar();
         $perkebunanrakyat = $this->getPerkebunanRakyat();
 
         return view('frontends.sawit', compact(
@@ -26,61 +26,73 @@ class sawitController extends Controller
         ));
     }
 
-    private function getMutasiPBS(){
+    private function getMutasiPBS()
+    {
         $mutasi = DB::table('tbsawit')->where('pengusahaan', 'Perkebunan Besar Swasta')->get();
-        foreach($mutasi as $item){
+        foreach ($mutasi as $item) {
             $data['tahun'][] = $item->tahun;
-            $data['tbm'][]   = $item->tbm;
-            $data['tr'][]    = $item->tr;
-            $data['tm'][]    = $item->tm;
+            $data['tbm'][] = $item->tbm;
+            $data['tr'][] = $item->tr;
+            $data['tm'][] = $item->tm;
         }
+
         return json_encode($data ?? []);
     }
 
-    private function getMutasiPBR(){
+    private function getMutasiPBR()
+    {
         $mutasi = DB::table('tbsawit')->where('pengusahaan', 'Perkebunan Rakyat')->get();
-        foreach($mutasi as $item){
+        foreach ($mutasi as $item) {
             $data['tahun'][] = $item->tahun;
-            $data['tbm'][]   = $item->tbm;
-            $data['tr'][]    = $item->tr;
-            $data['tm'][]    = $item->tm;
+            $data['tbm'][] = $item->tbm;
+            $data['tr'][] = $item->tr;
+            $data['tm'][] = $item->tm;
         }
+
         return json_encode($data ?? []);
     }
 
-    private function getPengusahaanPBS(){
+    private function getPengusahaanPBS()
+    {
         $rows = DB::table('tbsawit')->where('pengusahaan', 'Perkebunan Besar Swasta')->get();
-        foreach($rows as $item){
-            $data['tahun'][]     = $item->tahun;
+        foreach ($rows as $item) {
+            $data['tahun'][] = $item->tahun;
             $data['totalluas'][] = $item->totalluas;
         }
+
         return json_encode($data ?? []);
     }
 
-    private function getPengusahaanPBR(){
+    private function getPengusahaanPBR()
+    {
         $rows = DB::table('tbsawit')->where('pengusahaan', 'Perkebunan Rakyat')->get();
-        foreach($rows as $item){
-            $data['tahun'][]     = $item->tahun;
+        foreach ($rows as $item) {
+            $data['tahun'][] = $item->tahun;
             $data['totalluas'][] = $item->totalluas;
         }
+
         return json_encode($data ?? []);
     }
 
-    private function getPerkebunanBesar(){
+    private function getPerkebunanBesar()
+    {
         $rows = DB::table('tbsawit')->where('pengusahaan', 'Perkebunan Besar Swasta')->get();
-        foreach($rows as $item){
-            $data['tahun'][]    = $item->tahun;
+        foreach ($rows as $item) {
+            $data['tahun'][] = $item->tahun;
             $data['produksi'][] = $item->produksi;
         }
+
         return json_encode($data ?? []);
     }
 
-    private function getPerkebunanRakyat(){
+    private function getPerkebunanRakyat()
+    {
         $rows = DB::table('tbsawit')->where('pengusahaan', 'Perkebunan Rakyat')->get();
-        foreach($rows as $item){
-            $data['tahun'][]    = $item->tahun;
+        foreach ($rows as $item) {
+            $data['tahun'][] = $item->tahun;
             $data['produksi'][] = $item->produksi;
         }
+
         return json_encode($data ?? []);
     }
 }

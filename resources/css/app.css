@@ -1,295 +1,231 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap')
-layer(base);
 @import 'tailwindcss';
 
+/*
+  SISKA design tokens.
+
+  Palette is drawn from the subject: peat-water dark green (the agency's own
+  brand ink), survey-paper grey, agency teal, crude-palm-oil orange for data
+  accents, and laterite red for damaged/alert states.
+*/
 @theme {
-  --font-sans:
-    Inter, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-notoserif: Noto Serif;
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Archivo', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --color-ink: #132822;
+  --color-ink-soft: #214036;
+  --color-ink-line: #2f544a;
+  --color-paper: #f4f5f2;
+  --color-paper-dim: #e9eae5;
+  --color-teal: #009180;
+  --color-teal-deep: #00705f;
+  --color-teal-wash: #e2f0ed;
+  --color-cpo: #c8761e;
+  --color-cpo-wash: #f6ebdd;
+  --color-clay: #a8422a;
+  --color-rule: #d5d6d0;
+  --color-muted: #6e756f;
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
+    border-color: var(--color-rule);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Visible keyboard focus everywhere, without a permanent mouse-click ring. */
+  :focus-visible {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 
   [x-cloak] {
     display: none !important;
   }
-}
 
-/* Responsive commodity grid — fills viewport at every breakpoint */
-.siska-grid {
-    /* mobile: 3 rows × 2 cols */
-    grid-template-rows: repeat(3, minmax(0, 1fr));
-    min-height: calc(100dvh - 64px);
-}
-@media (min-width: 640px) and (max-width: 1023px) {
-    /* tablet: 3 rows × 3 cols (still 6 cells) */
-    .siska-grid {
-        grid-template-rows: repeat(2, minmax(0, 1fr));
-        min-height: calc(100dvh - 64px);
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
     }
-}
-@media (min-width: 1024px) {
-    /* desktop: 2 rows × 3 cols */
-    .siska-grid {
-        grid-template-rows: repeat(2, minmax(0, 1fr));
-        min-height: calc(100dvh - 64px);
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
+  }
 }
 
-.bg-nav{
-    background-color: #132822;
-}
-.text-color-siska{
-    color: #009180;
-}
-.text-siska-hover{
-    color: #333333;
-}
-.bgtentangsiskamuda{
-    background-color: #8ccfc2;
-}
-.border-siska {
-    --tw-border-opacity: 1;
-    border-color: #009180;
-}
-.bgtentangsiskagelap{
-    background-color: #009180;
+@layer components {
+  /*
+    Signature device: a survey annotation. A mono label and a mono measurement
+    joined by a hairline rule, the way a figure is called out on a plot map.
+    Used as the section header on every content page.
+
+    <p class="annot">
+      <span class="annot-label">Luas tanam</span>
+      <span class="annot-rule"></span>
+      <span class="annot-value figure">1.884.604 ha</span>
+    </p>
+  */
+  .annot {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .annot-label {
+    color: var(--color-muted);
+    white-space: nowrap;
+  }
+
+  .annot-rule {
+    flex: 1 1 auto;
+    height: 0;
+    border-bottom: 1px dashed var(--color-rule);
+    transform: translateY(-0.2em);
+  }
+
+  .annot-value {
+    color: var(--color-ink);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* Same device on ink surfaces. */
+  .annot-invert .annot-label {
+    color: rgb(255 255 255 / 0.55);
+  }
+  .annot-invert .annot-rule {
+    border-bottom-color: rgb(255 255 255 / 0.25);
+  }
+  .annot-invert .annot-value {
+    color: #fff;
+  }
+
+  /* Section title, paired above an .annot */
+  .sect-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+  }
+
+  /* Cadastral surface: a plain block on paper with a hairline boundary. */
+  .card {
+    background-color: #fff;
+    border: 1px solid var(--color-rule);
+    border-radius: 2px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.125rem;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background-color: var(--color-ink);
+    color: #fff;
+    border: 1px solid var(--color-ink);
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover {
+    background-color: var(--color-teal-deep);
+    border-color: var(--color-teal-deep);
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--color-ink);
+  }
+  .btn-ghost:hover {
+    background-color: var(--color-ink);
+    color: #fff;
+  }
+
+  .field {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    background-color: #fff;
+    border: 1px solid var(--color-rule);
+    border-radius: 2px;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    transition: border-color 0.15s ease;
+  }
+  .field:focus {
+    border-color: var(--color-teal);
+  }
+
+  .field-label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* Ambient cadastral grid, opt-in on large paper areas. */
+  .bg-survey {
+    background-image:
+      linear-gradient(to right, rgba(19, 40, 34, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(19, 40, 34, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
 }
 
-.bg-sage-light {
-    background-color: #E8F5E9;
-}
-.bg-cream {
-    background-color: #FFFDD0;
-}
-.text-forest {
-    color: #228B22;
-}
-.text-sage {
-    color: #8FBC8F;
-}
-.border-terracotta {
-    border-color: #CC7755;
-}
+@layer utilities {
+  /* Every number on this site is tabular, so columns of figures line up. */
+  .figure {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
 
-.organic-card {
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(34, 139, 34, 0.1);
-}
-.leaf-divider {
-    position: relative;
-}
-.leaf-divider:after {
-    content: "";
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 24px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23228B22' d='M12 2C8 2 4 6 4 12c0 3 1 5 3 7 1 1 2 0 2-2 0-2-1-4-2-5-1-2 1-4 3-5 1-1 2 0 2 2 0 3-1 5-3 7-2 2-2 5-2 7 0 1 1 2 2 0 2 2 0 2-4 1-5 2-5 1-2 2 0 2-1 0-3-3-5 0-7 0-2-1-3-2-4 0-5 1-6 2-7 3-7 2 0 1 2 3 4 2 5 1 6 2 7 1 2 2 2 2 2 2 2 2 2 2 2 2 2?z=1'%3E%3C/path%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.nature-pattern {
-    background-image: radial-gradient(circle at 10% 20%, rgba(143, 194, 191, 0.1) 0%, transparent 20%);
-}
+  /* Plots surveyed in, one after another. Set --d per element to stagger. */
+  .reveal {
+    animation: reveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
 
-.bg-color-siska{
-    background-color:#009180;
-}
-.siska-hover{
-    background-color:#aad0c9;
-}
-
-.font-ultrabold {
-    font-weight: 900;
-}
-
-.bg-pabrik{
-    background-color: rgb(255, 255, 255);
-}
-
-.text-xss {
-    font-size: 0.45rem/* 12px */;
-    line-height: 0.5rem/* 16px */;
-}
-
-.bg-img-siska{
-    background-image: url(../assets/bg-2.png);
-            background-repeat: no-repat;
-            background-size: cover;
-            background-color: transparent;
-            background-blend-mode:multiply;
-}
-
-.bg-img-siska1{
-            background-repeat: no-repat;
-            background-size: cover;
-            height: 100vh;
-            background-color: transparent;
-            background-position: center;
-            background-blend-mode:multiply;
-}
-.bg-img-siska1hover{
-            background-repeat: no-repat;
-            background-size: cover;
-            height: 100vh;
-            background-color: rgb(155, 155, 155);
-            background-position: center;
-            background-blend-mode:multiply;
-}
-.bg-img-siska2{
-            background-repeat: no-repat;
-            background-size: cover;
-            height: 100vh;
-            background-position: center;
-            background-color: transparent;
-            background-blend-mode:multiply;
-}
-.bg-img-siska2hover{
-
-            background-repeat: no-repat;
-            background-size: cover;
-            height: 100vh;
-            background-position: center;
-            background-color: transparent;
-            background-blend-mode:multiply;
-            background-color: rgb(155, 155, 155);
-}
-
-
-.bg-img-siska3{
-
-            background-repeat: no-repat;
-            background-size: cover;
-            height: 100vh;
-            background-position: center;
-            background-color: transparent;
-            background-blend-mode:multiply;
-}
-.bg-img-siska3hover{
-
-            background-repeat: no-repat;
-            background-size: cover;
-            height: 100vh;
-            background-position: center;
-            background-color: transparent;
-            background-blend-mode:multiply;
-            background-color: rgb(155, 155, 155);
-}
-.bg-img-siska4{
-
-            background-repeat: no-repat;
-            background-size: cover;
-            height: 100vh;
-            background-position: center;
-            background-color: transparent;
-            background-blend-mode:multiply;
-}
-.bg-img-siska4hover{
-
-            background-repeat: no-repat;
-            background-size: cover;
-            height: 100vh;
-            background-position: center;
-            background-color: transparent;
-            background-blend-mode:multiply;
-            background-color: rgb(155, 155, 155);
-}
-
-@media screen and (max-width: 420px) {
-    .bg-img-siska4{
-
-                background-repeat: no-repat;
-                background-size: cover;
-                background-position: center;
-                background-color: transparent;
-                background-blend-mode:multiply;
-                height: 25vh;
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
     }
-    .bg-img-siska4hover{
-
-                background-repeat: no-repat;
-                background-size: cover;
-                background-position: center;
-                background-color: transparent;
-                background-blend-mode:multiply;
-                height: 100vh;
-                background-color: #009180;
+    to {
+      opacity: 1;
+      transform: none;
     }
-    .bg-img-siska3{
-
-                background-repeat: no-repat;
-                background-size: cover;
-                background-position: center;
-                background-color: transparent;
-                background-blend-mode:multiply;
-                height: 25vh;
-    }
-    .bg-img-siska3hover{
-
-                background-repeat: no-repat;
-                background-size: cover;
-                background-position: center;
-                background-color: transparent;
-                background-blend-mode:multiply;
-                height: 100vh;
-                background-color: #009180;
-    }
-    .bg-img-siska2{
-
-                background-repeat: no-repat;
-                background-size: cover;
-                background-position: center;
-                background-color: transparent;
-                background-blend-mode:multiply;
-                height: 25vh;
-    }
-    .bg-img-siska2hover{
-
-                background-repeat: no-repat;
-                background-size: cover;
-                background-position: center;
-                background-color: transparent;
-                background-blend-mode:multiply;
-                height: 100vh;
-                background-color: #009180;
-    }
-    .bg-img-siska1{
-
-                background-repeat: no-repat;
-                background-size: cover;
-                background-position: center;
-                background-color: transparent;
-                background-blend-mode:multiply;
-                height: 25vh;
-    }
-    .bg-img-siska1hover{
-
-                background-repeat: no-repat;
-                background-size: cover;
-                background-position: center;
-                background-color: transparent;
-                background-blend-mode:multiply;
-                height: 100vh;
-                background-color: #009180;
-    }
-
+  }
 }
