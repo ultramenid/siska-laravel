@@ -1,0 +1,26 @@
+# Only the Laravel PHP-FPM container. nginx, certbot, and geoserver-db already
+# run elsewhere — do NOT re-add them here.
+#
+# app joins two EXISTING networks so it can be reached by nginx and reach the DB:
+#   - webservice_default  (nginx is here  -> fastcgi_pass app:9000 resolves)
+#   - geoserver_default   (geoserver-db is here -> DB_HOST=geoserver-db resolves)
+
+services:
+  app:
+    build: .
+    container_name: siska-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - /home/disbun/larasiska:/var/www/html
+    networks:
+      - webnet
+      - dbnet
+
+networks:
+  webnet:
+    external: true
+    name: webservice_default
+  dbnet:
+    external: true
+    name: geoserver_default
